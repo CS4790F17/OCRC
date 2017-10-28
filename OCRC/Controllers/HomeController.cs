@@ -29,7 +29,7 @@ namespace OCRC.Controllers
         }
 
         //Yi Lao (Ming)-------------------------
-        public ActionResult Resule()
+        public ActionResult Result()
         {
             ViewBag.Message = "this is the result page";
             DummyDate data = new DummyDate();
