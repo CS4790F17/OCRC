@@ -1,0 +1,54 @@
+﻿@model OCRC.Models.DummyDate
+@{
+    ViewBag.Title = "Resule";
+}
+
+<h2>Resule</h2>
+<span>@ViewBag.Message</span>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Something)
+        </th>
+
+
+    </tr>
+
+    @*@foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.serviceDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.vin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.serviceType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.serviceMileage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.serviceAmount)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+
+            </td>
+        </tr>
+    }*@
+
+</table>

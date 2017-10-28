@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using OCRC.Models;
 
 namespace OCRC.Controllers
 {
@@ -25,6 +26,14 @@ namespace OCRC.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        //Yi Lao (Ming)-------------------------
+        public ActionResult Resule()
+        {
+            ViewBag.Message = "this is the result page";
+            DummyDate data = new DummyDate();
+            return View(data);
         }
     }
 }
