@@ -11,8 +11,18 @@ namespace OCRC.Models
 {
     public class OCRC
     {
+
+        
     }
 
+    //Yi Lao (Ming)--Creat Dummy Date--------------
+    public class DummyDate
+    {
+        public int Id { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Something { get; set; }
+    }
 
     public class OCRCDbContext : DbContext
     {
