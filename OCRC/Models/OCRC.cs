@@ -28,10 +28,10 @@ namespace OCRC.Models
         public string LastName { get; set; }
         public string Something { get; set; }
     }
-
+*/
     public class OCRCDbContext : DbContext
     {
 
     }
-    */
+    
 }
