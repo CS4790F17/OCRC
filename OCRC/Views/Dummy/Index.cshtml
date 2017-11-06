@@ -1,0 +1,41 @@
+﻿@model OCRC.Models.DummyDate
+
+@{
+    ViewBag.Title = "Index";
+
+
+
+}
+
+<script>
+
+
+    function showmod() {
+        var mod = document.getElementById("mm");
+        mod.style.visibility = (mod.style.visibility == "visible") ? "hidden" : "visible";
+
+    }
+</script>
+
+<h2>Index</h2>
+
+
+
+<input type="button" data-toggle="modal" data-target="#mm" value="Show" class="btn btn-default" />
+
+
+    <div class="modal fade" id="mm" role="dialog">
+        <div class="modal-dialog ">
+            
+            <div class="modal-title" style="background-color:dodgerblue">Person's Details</div>
+            
+            <!-- make the title colored-->
+            <!-- Modal content-->
+            <div class="modal-content">
+               @Html.Partial("_Dummy")
+                
+            </div>
+        </div>
+    </div>
+
+

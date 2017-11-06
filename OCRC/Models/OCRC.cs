@@ -31,7 +31,7 @@ namespace OCRC.Models
 
     public class OCRCDbContext : DbContext
     {
-
+        
     }
     */
 }
