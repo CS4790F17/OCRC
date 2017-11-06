@@ -19,8 +19,8 @@ namespace OCRC.Controllers
         
         public ActionResult _Dummy(int? id)
         {
-            
-            DummyDate dd = new DummyDate();
+
+            DummyDatabase dd = new DummyDatabase();
 
             dd.FirstName = "fname";
             dd.LastName = "lName";

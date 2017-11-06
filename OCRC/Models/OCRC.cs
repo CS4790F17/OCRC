@@ -20,7 +20,7 @@ namespace OCRC.Models
      * Modified Heather Wilcox 11/1/2017
      */
      /* Prof. Hilton said to not focus on the database part, just the views and 
-      * models functionality until we know more about the database they're using.
+      * models functionality until we know more about the database they're using.*/
     public class DummyDatabase
     {
         public int Id { get; set; }
@@ -33,5 +33,5 @@ namespace OCRC.Models
     {
         
     }
-    */
+   
 }
