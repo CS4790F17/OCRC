@@ -1,54 +1,125 @@
-﻿@model OCRC.Models.DummyDate
+﻿
 @{
-    ViewBag.Title = "Resule";
+    ViewBag.Title = "Sport Search";
 }
 
-<h2>Resule</h2>
-<span>@ViewBag.Message</span>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Something)
-        </th>
+<div class="row">
+    <!-- filter start -->
+    <div class="col-md-12">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs nav-justified" role="tablist">
+            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Filter By Sport</a></li>
+            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">More Filter</a></li>
+
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="home">
+                <form class="form-inline">
+                    <!-- Single button -->
+                    <label class="checkbox-inline">
+                        <input type="checkbox" value="">Option 1
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" value="">Option 2
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" value="">Option 3
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" value="">Option 1
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" value="">Option 2
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" value="">Option 3
+                    </label>
+                </form>
+            </div>
+
+            <div role="tabpanel" class="tab-pane" id="profile">
+                <form class="form-inline">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" value="">Option 1
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" value="">Option 2
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" value="">Option 3
+                    </label>
 
 
-    </tr>
+                    <div class="form-group ">
+                        <label for="School" class="sr-only">School</label>
+                        <input type="text" class="form-control" placeholder="School">
+                    </div>
+                    <div class="form-group">
+                        <label for="Name" class="sr-only">Name</label>
+                        <input type="text" class="form-control" placeholder="Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="Year" class="sr-only">Year</label>
+                        <input type="text" class="form-control" placeholder="Year">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Search</button>
 
-    @*@foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.serviceDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.vin)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.serviceType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.serviceMileage)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.serviceAmount)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Age <span class="caret"></span>
+                    </button>
 
-            </td>
-        </tr>
-    }*@
+                </form>
+            </div>
 
-</table>
+        </div>
+
+    </div>
+
+</div>
+<!-- filter end -->
+    <!-- right section -->
+    <br>
+    <div class="col-xs-12 col-md-10">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Username</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>fat</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>twitter</td>
+                </tr>
+                <tr>
+                    <th scope="row">4</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>twitter</td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
