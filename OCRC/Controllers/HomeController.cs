@@ -29,11 +29,13 @@ namespace OCRC.Controllers
         }
 
         //Yi Lao (Ming)-------------------------
+        /*
         public ActionResult Result()
         {
             ViewBag.Message = "this is the result page";
             DummyDate data = new DummyDate();
             return View(data);
         }
+        */
     }
 }

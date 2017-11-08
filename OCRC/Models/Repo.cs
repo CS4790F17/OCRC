@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace OCRC.Models
 {
@@ -40,7 +41,8 @@ namespace OCRC.Models
             public DateTime datecreated, datemodified;
         }
 
-        public class SearchDataModel {
+        public class SearchDataModel
+        {
             String school, fname, lname;
             int year;
             Filter filter;
@@ -65,6 +67,14 @@ namespace OCRC.Models
 
         //Nelson
 
+        public class CoachDataModel
+        {
+            String fName, lName, sportName, teamName, coachName;
+            int year;
 
+            public String getCoachName { get; set; }
+
+
+        }
     }
 }
