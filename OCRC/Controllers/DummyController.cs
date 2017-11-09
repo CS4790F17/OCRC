@@ -13,19 +13,26 @@ namespace OCRC.Controllers
         // GET: Dummy
         public ActionResult Index()
         {
-            return View();
+            DummyDatabase dd = new DummyDatabase();
+
+            dd.FirstName = "Nas";
+            dd.LastName = "Dos";
+            dd.Id = 8;
+            dd.Something = "A something";
+            return View(dd);
         }
 
         
         public ActionResult _Dummy(int? id)
         {
+            
 
             DummyDatabase dd = new DummyDatabase();
 
             dd.FirstName = "fname";
             dd.LastName = "lName";
-            dd.Id = 8;
-            dd.Something = "A something";
+            dd.Id = 5;
+            dd.Something = "A something2";
 
             return PartialView(dd);
         }

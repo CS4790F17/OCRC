@@ -237,9 +237,7 @@
     <Content Include="Views\Dummy\Index.cshtml" />
     <Content Include="Views\Dummy\_Dummy.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />

@@ -22,17 +22,27 @@
 
 
 <input type="button" data-toggle="modal" data-target="#mm" value="Show" class="btn btn-default" />
-
+@Html.ActionLink("AL Show", "_Dummy", null,null,new { @class = "btn btn-default", data_toggle ="#mm" })
 
     <div class="modal fade" id="mm" role="dialog">
-        <div class="modal-dialog ">
+        <div class="modal-dialog " >
             
-            <div class="modal-title" style="background-color:dodgerblue">Person's Details</div>
+            <div class="modal-title" style="border-radius: 10px 10px 0px 0px;  text-align:center; background-color:dodgerblue; color:white;">Person's Details</div>
             
             <!-- make the title colored-->
             <!-- Modal content-->
-            <div class="modal-content">
-               @Html.Partial("_Dummy")
+            <div class="modal-content" style="border-radius: 0px 0px 10px 10px;">
+             
+                @Html.Partial("_Dummy", new ViewDataDictionary { { "id", Model.Id } })
+                
+             @*
+             @Html.Partial("_Dummy", new ViewDataDictionary {
+
+        { "fname", Model.FirstName } ,
+        { "lname", Model.LastName },
+        { "some", Model.Something }
+    })
+            *@
                 
             </div>
         </div>

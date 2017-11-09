@@ -1,12 +1,11 @@
 ﻿@model OCRC.Models.DummyDatabase
 
+
 <body>
 
-    Some text
-
-        <div>@Html.LabelFor(model => model.FirstName)</div>
-        <div>@Html.LabelFor(model => model.LastName)</div>
-        <div>@Html.LabelFor(model => model.Id)</div>
-        <div>@Html.LabelFor(model => model.Something)</div>
-
+    
+        <div>@Html.LabelFor(model => model.FirstName) @Html.DisplayFor(model => model.FirstName)</div>
+        <div>@Html.LabelFor(model => model.LastName)  @Html.DisplayFor(model => model.LastName)</div>
+        <div>@Html.LabelFor(model => model.Something) @Html.DisplayFor(model => model.Something)</div>
+    @* @Ajax.ViewData["fname"]  *@
 </body>
