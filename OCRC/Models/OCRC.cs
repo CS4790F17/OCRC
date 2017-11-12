@@ -9,8 +9,105 @@ using System.ComponentModel;
 
 namespace OCRC.Models
 {
+    /// <summary>
+    /// Contains all the CRUD methods for OCRC models
+    /// </summary>
     public class OCRC
     {
+        //TODO: add summaries to all methods
+
+        public static Kid findKid(int? id)
+        {
+            using(OCRCDbContext db = new OCRCDbContext())
+            {
+                var kid = db.Kids.Find(id);
+                return kid;
+            }  
+        }
+
+        public static Notes findNotes(int? id)
+        {
+            using (OCRCDbContext db = new OCRCDbContext())
+            {
+                var note = db.Notes.Find(id);
+                return note;
+            }
+        }
+
+        public static Ranking findRanking(int? id)
+        {
+            using (OCRCDbContext db = new OCRCDbContext())
+            {
+                var ranking = db.Rankings.Find(id);
+                return ranking;
+            }
+        }
+
+        public static Registration findRegistration(int? id)
+        {
+            using (OCRCDbContext db = new OCRCDbContext())
+            {
+                var registeration = db.Registrations.Find(id);
+                return registeration;
+            }
+        }
+
+        public static Role findRole(int? id)
+        {
+            using (OCRCDbContext db = new OCRCDbContext())
+            {
+                var role = db.Roles.Find(id);
+                return role;
+            }
+        }
+
+        public static School findSchool(int? id)
+        {
+            using (OCRCDbContext db = new OCRCDbContext())
+            {
+                var school = db.Schools.Find(id);
+                return school;
+            }
+        }
+
+        public static Sport findSport(int? id)
+        {
+            using (OCRCDbContext db = new OCRCDbContext())
+            {
+                var sport = db.Sports.Find(id);
+                return sport;
+            }
+        }
+
+        public static Status findStatus(int? id)
+        {
+            using (OCRCDbContext db = new OCRCDbContext())
+            {
+                var status = db.Statuses.Find(id);
+                return status;
+            }
+        }
+
+        public static Team findTeam(int? id)
+        {
+            using (OCRCDbContext db = new OCRCDbContext())
+            {
+                var team = db.Teams.Find(id);
+                return team;
+            }
+        }
+
+        public static User findUser(int? id)
+        {
+            using (OCRCDbContext db = new OCRCDbContext())
+            {
+                var user = db.Users.Find(id);
+                return user;
+            }
+        }
+
+
+
 
 
     }
@@ -194,6 +291,16 @@ namespace OCRC.Models
 
     public class OCRCDbContext : DbContext
     {
+       public DbSet<Kid> Kids { get; set; }
+       public DbSet<Notes> Notes { get; set; }
+       public DbSet<Ranking> Rankings { get; set; }
+       public DbSet<Registration> Registrations { get; set; }
+       public DbSet<Role> Roles { get; set; }
+       public DbSet<School> Schools { get; set; }
+       public DbSet<Sport> Sports { get; set; }
+       public DbSet<Status> Statuses { get; set; }
+       public DbSet<Team> Teams { get; set; }
+       public DbSet<User> Users { get; set; }
 
     }
 
