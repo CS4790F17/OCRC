@@ -171,6 +171,7 @@
     </Compile>
     <Compile Include="Models\OCRC.cs" />
     <Compile Include="Models\Repo.cs" />
+    <Compile Include="Models\ReturnResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
