@@ -32,8 +32,8 @@ namespace OCRC.Controllers
         public ActionResult Result()
         {
             ViewBag.Message = "this is the result page";
-            DummyDatabase data = new DummyDatabase();
-            return View(data);
+            
+            return View();
         }
     }
 }
