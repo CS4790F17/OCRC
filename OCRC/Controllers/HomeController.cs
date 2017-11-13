@@ -14,6 +14,27 @@ namespace OCRC.Controllers
             return View();
         }
 
+        public ActionResult ForgotPassword()
+        {
+            ViewBag.Message = "Forgot Password.";
+
+            return View();
+        }
+
+        public ActionResult UserList()
+        {
+            ViewBag.Message = "UserList";
+
+            return View();
+        }
+
+        public ActionResult Login()
+        {
+            ViewBag.Message = "Login";
+
+            return View();
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -32,8 +53,8 @@ namespace OCRC.Controllers
         public ActionResult Result()
         {
             ViewBag.Message = "this is the result page";
-            DummyDate data = new DummyDate();
-            return View(data);
+            
+            return View();
         }
     }
 }
