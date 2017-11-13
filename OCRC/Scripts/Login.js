@@ -13,7 +13,8 @@ function getLocalProfile(callback) {
         callback(profileName, profileReAuthEmail);
     }
     else {
-        location.href = 'Result.cshtml';
+        var url = $("#RedirectTo").val();
+        location.href = url;
     }
 }
 

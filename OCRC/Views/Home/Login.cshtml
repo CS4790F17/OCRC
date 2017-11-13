@@ -1,24 +1,15 @@
 ﻿
 @{
-    ViewBag.Title = "Login";
-   
+    ViewBag.Title = "Home Page";
+
 }
 
 @{
     Layout = "";
 }
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>@ViewBag.Title -Ogdent City</title>
     @Styles.Render("~/Content/bootstrap.min.css")
-    @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/Content/Site.css")
-
 </head>
 <body>
     <div class="container">
@@ -36,14 +27,13 @@
                 </div>
                 <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
             </form><!-- /form -->
-            <a href="#" class="forgot-password">
-                Forgot the password?
-            </a>
+            <ul>
+                <li class="forgot-password">@Html.ActionLink("Forgot the password?", "ForgotPassword", "Home")</li>
+            </ul>
         </div>
     </div>
+
 </body>
 </html>
-
-
 
 
