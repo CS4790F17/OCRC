@@ -8,7 +8,7 @@
     <title>@ViewBag.Title -Ogdent City</title>
     @Styles.Render("~/Content/bootstrap.min.css")
     @Scripts.Render("~/bundles/modernizr")
-    @Styles.Render("~/Content/Site.css")
+    
 
 
 
@@ -39,8 +39,8 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
 
-                        <li role="presentation" class="active">@Html.ActionLink("Home", "Result", "Home")</li>
-                        <li role="presentation">@Html.ActionLink("Report", "Result", "Home")</li>
+                        <li role="presentation" class="active">@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li role="presentation">@Html.ActionLink("Report", "About", "Home")</li>
                         <li role="presentation">@Html.ActionLink("Data", "Result", "Home")</li>
                         <li role="presentation">@Html.ActionLink("Tracking", "Result", "Home")</li>
                     </ul>
@@ -58,27 +58,9 @@
             <div class="col-md-2">
                 <!-- logo go here -->
             </div>
-
+            
             <!-- menu start end-->
-            <!-- search form -->
-            <div class="col-md-10">
-                <form class="form-inline">
-                    <div class="form-group ">
-                        <label for="School" class="sr-only">School</label>
-                        <input type="text" class="form-control" placeholder="School">
-                    </div>
-                    <div class="form-group">
-                        <label for="Name" class="sr-only">Name</label>
-                        <input type="text" class="form-control" placeholder="Name">
-                    </div>
-                    <div class="form-group">
-                        <label for="Year" class="sr-only">Year</label>
-                        <input type="text" class="form-control" placeholder="Year">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Search</button>
-                </form>
-            </div>
-            <!-- search form end -->
+            
         </div>
         <div class="container body-content">
             @RenderBody()
