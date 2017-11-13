@@ -10,8 +10,7 @@ function getLocalProfile(callback) {
 
     if (profileName !== null
         && profileReAuthEmail !== null) {
-        var url = $("#RedirectTo").val();
-        location.href = url;
+        callback(profileName, profileReAuthEmail);
     }
     else {
         var url = $("#RedirectTo").val();

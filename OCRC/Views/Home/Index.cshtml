@@ -10,6 +10,7 @@
 <head>
     @Styles.Render("~/Content/bootstrap.min.css")
     @Styles.Render("~/Content/Site.css")
+    @Html.Hidden("RedirectTo", Url.Action("Login", "Home"));
 </head>
 <body>
     <div class="container">
