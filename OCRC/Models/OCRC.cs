@@ -16,14 +16,7 @@ namespace OCRC.Models
     {
         //TODO: add summaries to all methods
 
-        public static Kid findKid(int? id)
-        {
-            using(OCRCDbContext db = new OCRCDbContext())
-            {
-                var kid = db.Kids.Find(id);
-                return kid;
-            }  
-        }
+
 
         public static Notes findNotes(int? id)
         {
@@ -70,14 +63,7 @@ namespace OCRC.Models
             }
         }
 
-        public static Sport findSport(int? id)
-        {
-            using (OCRCDbContext db = new OCRCDbContext())
-            {
-                var sport = db.Sports.Find(id);
-                return sport;
-            }
-        }
+
 
         public static Status findStatus(int? id)
         {
@@ -112,27 +98,7 @@ namespace OCRC.Models
 
     }
 
-    /// <summary>
-    /// a Kid's Model , Represents a Kid's data entry
-    /// </summary>
-    [Table("Kid")]
-    public class Kid
-    {
-        [Key]
-        public int kidID { get; set; }
-        [DisplayName("First Name"), Range(3, 50), Required] //TODO: find better ranges?
-        public String fname { get; set; }
-        [DisplayName("Last Name"), Range(3, 50), Required]
-        public String lname { get; set; }
 
-        public int schoolID { get; set; }
-
-        [DisplayName("Grade")]
-        public String grade { get; set; }
-
-        [DisplayName("Age")]
-        public int age { get; set; }
-    }
 
     /// <summary>
     /// TODO: better comment
@@ -221,18 +187,6 @@ namespace OCRC.Models
     }
 
 
-    /// <summary>
-    /// TODO: better comment
-    /// </summary>
-    [Table("Sport")]
-    public class Sport
-    {
-        [Key]
-        public int sportID { get; set; }
-        [DisplayName("Sport Name")]
-        public String sportName { get; set; }
-
-    }
 
 
     /// <summary>
@@ -291,13 +245,12 @@ namespace OCRC.Models
 
     public class OCRCDbContext : DbContext
     {
-       public DbSet<Kid> Kids { get; set; }
+       
        public DbSet<Notes> Notes { get; set; }
        public DbSet<Ranking> Rankings { get; set; }
        public DbSet<Registration> Registrations { get; set; }
        public DbSet<Role> Roles { get; set; }
        public DbSet<School> Schools { get; set; }
-       public DbSet<Sport> Sports { get; set; }
        public DbSet<Status> Statuses { get; set; }
        public DbSet<Team> Teams { get; set; }
        public DbSet<User> Users { get; set; }
