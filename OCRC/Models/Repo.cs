@@ -46,9 +46,10 @@ namespace OCRC.Models
         public class SearchDataModel {
             String school, fname, lname;
             int year;
-            Filter filter;
+            //Filter filter;
 
-            public static SearchDataModel search(string school, string fname, string lname, int year, Filter filter)
+            //public static SearchDataModel search(string school, string fname, string lname, int year, Filter filter)
+            public static SearchDataModel search(string school, string fname, string lname, int year)
             {
                 //if school exist, if not then
                 //if name exist, if not then
