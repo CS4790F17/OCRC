@@ -13,5 +13,26 @@ namespace OCRC.Controllers
         {
             return View();
         }
+
+        public ActionResult ForgotPassword()
+        {
+            ViewBag.Message = "Forgot Password.";
+
+            return View();
+        }
+
+        public ActionResult UserList()
+        {
+            ViewBag.Message = "UserList";
+
+            return View();
+        }
+
+        public ActionResult Login()
+        {
+            ViewBag.Message = "Login";
+
+            return View();
+        }
     }
 }
