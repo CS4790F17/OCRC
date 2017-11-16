@@ -16,16 +16,9 @@ namespace OCRC.Models
     {
         //TODO: add summaries to all methods
 
-        public static Kid findKid(int? id)
-        {
-            using(OCRCDbContext db = new OCRCDbContext())
-            {
-                var kid = db.Kids.Find(id);
-                return kid;
-            }  
-        }
 
-        public static Notes findNotes(int? id)
+
+        public static Notes findNoteById(int? id)
         {
             using (OCRCDbContext db = new OCRCDbContext())
             {
@@ -34,7 +27,7 @@ namespace OCRC.Models
             }
         }
 
-        public static Ranking findRanking(int? id)
+        public static Ranking findRankingById(int? id)
         {
             using (OCRCDbContext db = new OCRCDbContext())
             {
@@ -43,43 +36,8 @@ namespace OCRC.Models
             }
         }
 
-        public static Registration findRegistration(int? id)
-        {
-            using (OCRCDbContext db = new OCRCDbContext())
-            {
-                var registeration = db.Registrations.Find(id);
-                return registeration;
-            }
-        }
-
-        public static Role findRole(int? id)
-        {
-            using (OCRCDbContext db = new OCRCDbContext())
-            {
-                var role = db.Roles.Find(id);
-                return role;
-            }
-        }
-
-        public static School findSchool(int? id)
-        {
-            using (OCRCDbContext db = new OCRCDbContext())
-            {
-                var school = db.Schools.Find(id);
-                return school;
-            }
-        }
-
-        public static Sport findSport(int? id)
-        {
-            using (OCRCDbContext db = new OCRCDbContext())
-            {
-                var sport = db.Sports.Find(id);
-                return sport;
-            }
-        }
-
-        public static Status findStatus(int? id)
+        
+        public static Status findStatusById(int? id)
         {
             using (OCRCDbContext db = new OCRCDbContext())
             {
@@ -88,16 +46,8 @@ namespace OCRC.Models
             }
         }
 
-        public static Team findTeam(int? id)
-        {
-            using (OCRCDbContext db = new OCRCDbContext())
-            {
-                var team = db.Teams.Find(id);
-                return team;
-            }
-        }
 
-        public static User findUser(int? id)
+        public static User findUserById(int? id)
         {
             using (OCRCDbContext db = new OCRCDbContext())
             {
@@ -105,34 +55,10 @@ namespace OCRC.Models
                 return user;
             }
         }
-
-
-
-
-
+        
     }
 
-    /// <summary>
-    /// a Kid's Model , Represents a Kid's data entry
-    /// </summary>
-    [Table("Kid")]
-    public class Kid
-    {
-        [Key]
-        public int kidID { get; set; }
-        [DisplayName("First Name"), Range(3, 50), Required] //TODO: find better ranges?
-        public String fname { get; set; }
-        [DisplayName("Last Name"), Range(3, 50), Required]
-        public String lname { get; set; }
 
-        public int schoolID { get; set; }
-
-        [DisplayName("Grade")]
-        public String grade { get; set; }
-
-        [DisplayName("Age")]
-        public int age { get; set; }
-    }
 
     /// <summary>
     /// TODO: better comment
@@ -147,6 +73,7 @@ namespace OCRC.Models
         [DisplayName("Modified Date")]
         public DateTime dateModified { get; set; }
         public int statusID { get; set; }
+        public int userID { get; set; }
         [DisplayName("Notes")]
         public String notes { get; set; }
 
@@ -162,75 +89,13 @@ namespace OCRC.Models
         public int rankingID { get; set; }
         public int statusID { get; set; }
         [DisplayName("Created Date")]
+        public int userID { get; set; }
+        [DisplayName("Date Created")]
         public DateTime dateCreated { get; set; }
-        [DisplayName("Modified Date")]
-        public DateTime dateModified { get; set; }
         [DisplayName("Rank")]
         public int rank { get; set; }
-        public int teamID { get; set; }
-
-    }
-
-
-    /// <summary>
-    /// TODO: better comment
-    /// </summary>
-    [Table("Registration")]
-    public class Registration
-    {
-        [Key]
-        public int registrationID { get; set; }
-        [DisplayName("Year Registered")]
-        public int registrationYear { get; set; }
-        public int kidID { get; set; }
-        [DisplayName("Registered Date")]
-        public DateTime dateRegistered { get; set; }
-        public int teamID { get; set; }
-
-
-    }
-
-
-    /// <summary>
-    /// TODO: better comment
-    /// </summary>
-    [Table("Role")]
-    public class Role
-    {
-        [Key]
-        public int roleID { get; set; }
-        [DisplayName("Role")]
-        public String role { get; set; }
-        [DisplayName("Access Level")]
-        public String accesslvl { get; set; }
-    }
-
-
-    /// <summary>
-    /// TODO: better comment
-    /// </summary>
-    [Table("School")]
-    public class School
-    {
-        [Key]
-        public int schoolID { get; set; }
-        [DisplayName("School Name")]
-        public String schoolName { get; set; }
-        [DisplayName("School Coach")]
-        public String schoolCoach { get; set; }
-    }
-
-
-    /// <summary>
-    /// TODO: better comment
-    /// </summary>
-    [Table("Sport")]
-    public class Sport
-    {
-        [Key]
-        public int sportID { get; set; }
-        [DisplayName("Sport Name")]
-        public String sportName { get; set; }
+        [DisplayName("Sport")]
+        public String sportType { get; set; }
 
     }
 
@@ -243,30 +108,12 @@ namespace OCRC.Models
     {
         [Key]
         public int statusID { get; set; }
-        public int kidID { get; set; }
-        public int sportID { get; set; }
+        public int kidIdentifier { get; set; }
         [DisplayName("Kid Status")]
-        public bool active { get; set; }
+        public String active { get; set; }
         [DisplayName("Modified Date")]
         public DateTime activityModified { get; set; }
     }
-
-
-    /// <summary>
-    /// TODO: better comment
-    /// </summary>
-    [Table("Team")]
-    public class Team
-    {
-        [Key]
-        public int teamID { get; set; }
-        public int userID { get; set; }
-        [DisplayName("Team Name")]
-        public String teamName { get; set; }
-        public int sportID { get; set; }
-
-    }
-
 
     /// <summary>
     /// TODO: better comment
@@ -284,24 +131,18 @@ namespace OCRC.Models
         public String email { get; set; }
         [DisplayName("Password"), PasswordPropertyText]
         public String password { get; set; } //TODO: save the hash of this password instead of the actual pw
-        public int roleID { get; set; }
+        public int accesslvl { get; set; }
+        public String teamIdentifier { get; set; }
 
     }
 
 
     public class OCRCDbContext : DbContext
     {
-       public DbSet<Kid> Kids { get; set; }
        public DbSet<Notes> Notes { get; set; }
        public DbSet<Ranking> Rankings { get; set; }
-       public DbSet<Registration> Registrations { get; set; }
-       public DbSet<Role> Roles { get; set; }
-       public DbSet<School> Schools { get; set; }
-       public DbSet<Sport> Sports { get; set; }
        public DbSet<Status> Statuses { get; set; }
-       public DbSet<Team> Teams { get; set; }
        public DbSet<User> Users { get; set; }
-
     }
 
 }
