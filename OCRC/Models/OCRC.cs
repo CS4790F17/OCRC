@@ -14,54 +14,316 @@ namespace OCRC.Models
     /// </summary>
     public class OCRC
     {
-        //TODO: add summaries to all methods
-
-
-
+        /// <summary>
+        /// Returns the notes by it's id
+        /// </summary>
+        /// <param name="id">the id that's being searched on</param>
+        /// <returns>The note being searched for</returns>
         public static Notes findNoteById(int? id)
         {
             using (OCRCDbContext db = new OCRCDbContext())
             {
-                var note = db.Notes.Find(id);
+                Notes note = db.Notes.Find(id);
                 return note;
             }
         }
 
+        /// <summary>
+        /// Returns a list of all the notes
+        /// </summary>
+        /// <returns>list of notes</returns>
+        public static List<Notes> getAllNotes()
+        {
+            using (OCRCDbContext db = new OCRCDbContext())
+            {
+                List<Notes> notes = db.Notes.ToList();
+                return notes;
+            }
+        }
+
+        /// <summary>
+        /// Adds a note to the database
+        /// </summary>
+        /// <param name="note">The note being added</param>
+        public static void addNote(Notes note)
+        {
+            using (OCRCDbContext db = new OCRCDbContext())
+            {
+                db.Notes.Add(note);
+                db.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// Sets a notes date modified field
+        /// </summary>
+        /// <param name="dateModified">The date that it was modified</param>
+        public static void setNotesDateModified(DateTime dateModified)
+        {
+            using (OCRCDbContext db = new OCRCDbContext())
+            {
+                db.Entry(dateModified).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// Sets a notes date created field
+        /// </summary>
+        /// <param name="dateCreated">The date that it was created</param>
+        public static void setNotesDateCreated(DateTime dateCreated)
+        {
+            using (OCRCDbContext db = new OCRCDbContext())
+            {
+                db.Entry(dateCreated).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
+
+        /// <summary>
+        /// Returns the ranking by it's id
+        /// </summary>
+        /// <param name="id">the id that's being searched on</param>
+        /// <returns>The ranking being searched for</returns>
         public static Ranking findRankingById(int? id)
         {
             using (OCRCDbContext db = new OCRCDbContext())
             {
-                var ranking = db.Rankings.Find(id);
+                Ranking ranking = db.Rankings.Find(id);
                 return ranking;
             }
         }
 
-        
+        /// <summary>
+        /// Returns a list of all the rankings
+        /// </summary>
+        /// <returns>list of rankings</returns>
+        public static List<Ranking> getAllRankings()
+        {
+            using (OCRCDbContext db = new OCRCDbContext())
+            {
+                List<Ranking> rankings = db.Rankings.ToList();
+                return rankings;
+            }
+        }
+
+        /// <summary>
+        /// Adds a ranking to the database
+        /// </summary>
+        /// <param name="ranking">The ranking being added</param>
+        public static void addRanking(Ranking ranking)
+        {
+            using (OCRCDbContext db = new OCRCDbContext())
+            {
+                db.Rankings.Add(ranking);
+                db.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// Sets the ranking date created field
+        /// </summary>
+        /// <param name="dateCreated">The date that it was created</param>
+        public static void setRankingDateCreated(DateTime dateCreated)
+        {
+            using (OCRCDbContext db = new OCRCDbContext())
+            {
+                db.Entry(dateCreated).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// Sets the ranking sport type field
+        /// </summary>
+        /// <param name="sportType">The sport type</param>
+        public static void setRankingSportType(string sportType)
+        {
+            using (OCRCDbContext db = new OCRCDbContext())
+            {
+                db.Entry(sportType).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
+
+        /// <summary>
+        /// Returns the status by it's id
+        /// </summary>
+        /// <param name="id">the id that's being searched on</param>
+        /// <returns>The status being searched for</returns>
         public static Status findStatusById(int? id)
         {
             using (OCRCDbContext db = new OCRCDbContext())
             {
-                var status = db.Statuses.Find(id);
+                Status status = db.Statuses.Find(id);
                 return status;
             }
         }
 
+        /// <summary>
+        /// Returns a list of all the statuses
+        /// </summary>
+        /// <returns>list of statuses</returns>
+        public static List<Status> getAllStatuses()
+        {
+            using (OCRCDbContext db = new OCRCDbContext())
+            {
+                List<Status> statuses = db.Statuses.ToList();
+                return statuses;
+            }
+        }
 
+        /// <summary>
+        /// Sets the status kidIdentifier field
+        /// </summary>
+        /// <param name="kidIdentifier">The kidIdentifier being set</param>
+        public static void setStatusKidIdentifier(string kidIdentifier)
+        {
+            using (OCRCDbContext db = new OCRCDbContext())
+            {
+                db.Entry(kidIdentifier).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// Sets the status active field
+        /// </summary>
+        /// <param name="active">The active being set</param>
+        public static void setStatusActive(string active)
+        {
+            using (OCRCDbContext db = new OCRCDbContext())
+            {
+                db.Entry(active).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// Sets the status activity modified field
+        /// </summary>
+        /// <param name="activityModified">The activity modified being set</param>
+        public static void setStatusActivityModified(DateTime activityModified)
+        {
+            using (OCRCDbContext db = new OCRCDbContext())
+            {
+                db.Entry(activityModified).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
+
+        /// <summary>
+        /// Returns the user by it's id
+        /// </summary>
+        /// <param name="id">the id that's being searched on</param>
+        /// <returns>The user being searched for</returns>
         public static User findUserById(int? id)
         {
             using (OCRCDbContext db = new OCRCDbContext())
             {
-                var user = db.Users.Find(id);
+                User user = db.Users.Find(id);
                 return user;
             }
         }
-        
+
+        /// <summary>
+        /// Returns a list of all the users
+        /// </summary>
+        /// <returns>list of users</returns>
+        public static List<User> getAllUsers()
+        {
+            using (OCRCDbContext db = new OCRCDbContext())
+            {
+                List<User> users = db.Users.ToList();
+                return users;
+            }
+        }
+
+        /// <summary>
+        /// Sets the user first name
+        /// </summary>
+        /// <param name="fname">The first name being set</param>
+        public static void setUserFName(string fname)
+        {
+            using (OCRCDbContext db = new OCRCDbContext())
+            {
+                db.Entry(fname).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// Sets the user last name
+        /// </summary>
+        /// <param name="lname">The last name being set</param>
+        public static void setUserLName(string lname)
+        {
+            using (OCRCDbContext db = new OCRCDbContext())
+            {
+                db.Entry(lname).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// Sets the user email
+        /// </summary>
+        /// <param name="email">The email being set</param>
+        public static void setUserEmail(string email)
+        {
+            using (OCRCDbContext db = new OCRCDbContext())
+            {
+                db.Entry(email).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// Sets the user password
+        /// </summary>
+        /// <param name="password">The password being set</param>
+        public static void setUserPassword(string password)
+        {
+            using (OCRCDbContext db = new OCRCDbContext())
+            {
+                db.Entry(password).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// Sets the user access level
+        /// </summary>
+        /// <param name="accesslvl">The accesslvl being set</param>
+        public static void setUserAccesslvl(string accesslvl)
+        {
+            using (OCRCDbContext db = new OCRCDbContext())
+            {
+                db.Entry(accesslvl).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// Sets the user team identifier
+        /// </summary>
+        /// <param name="teamIdentifier">The teamIdentifier being set</param>
+        public static void setUserTeamIdentifier(string teamIdentifier)
+        {
+            using (OCRCDbContext db = new OCRCDbContext())
+            {
+                db.Entry(teamIdentifier).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
     }
 
 
-
     /// <summary>
-    /// TODO: better comment
+    /// Classes for the corresponding tables in the OCRC Database
     /// </summary>
     [Table("Notes")]
     public class Notes
@@ -79,16 +341,12 @@ namespace OCRC.Models
 
     }
 
-    /// <summary>
-    /// TODO: better comment
-    /// </summary>
     [Table("Ranking")]
     public class Ranking
     {
         [Key]
         public int rankingID { get; set; }
         public int statusID { get; set; }
-        [DisplayName("Created Date")]
         public int userID { get; set; }
         [DisplayName("Date Created")]
         public DateTime dateCreated { get; set; }
@@ -99,15 +357,12 @@ namespace OCRC.Models
 
     }
 
-
-    /// <summary>
-    /// TODO: better comment
-    /// </summary>
     [Table("Status")]
     public class Status
     {
         [Key]
         public int statusID { get; set; }
+        [DisplayName("Kid")]
         public int kidIdentifier { get; set; }
         [DisplayName("Kid Status")]
         public String active { get; set; }
@@ -115,9 +370,6 @@ namespace OCRC.Models
         public DateTime activityModified { get; set; }
     }
 
-    /// <summary>
-    /// TODO: better comment
-    /// </summary>
     [Table("User")]
     public class User
     {
@@ -136,7 +388,9 @@ namespace OCRC.Models
 
     }
 
-
+    /// <summary>
+    /// DataSets connecting to database tables
+    /// </summary>
     public class OCRCDbContext : DbContext
     {
        public DbSet<Notes> Notes { get; set; }
