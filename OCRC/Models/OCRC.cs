@@ -15,47 +15,192 @@ namespace OCRC.Models
     public class OCRC
     {
         //TODO: add summaries to all methods
+        //TODO: take care of FKeys when deleting
 
 
-
-        public static Notes findNoteById(int? id)
+/// <summary>
+/// Finds a Note using its Id
+/// </summary>
+/// <param name="id"> Note Id</param>
+/// <returns>A ReturnResult with a Note as data</returns>
+        public static ReturnResult findNoteById(int? id)
         {
-            using (OCRCDbContext db = new OCRCDbContext())
+            try
             {
-                var note = db.Notes.Find(id);
-                return note;
+                using (OCRCDbContext db = new OCRCDbContext())
+                {
+                    var notes = db.Notes.Find(id);
+                    return new ReturnResult(ReturnCode.SUCCESS, notes);
+                }
+            }
+            catch (Exception e)
+            {
+                return new ReturnResult(ReturnCode.FAILURE, e.Message);
             }
         }
 
-        public static Ranking findRankingById(int? id)
+        /// <summary>
+        /// Finds a ranking by Id
+        /// </summary>
+        /// <param name="id"> Ranking Id</param>
+        /// <returns> A ReturnResult object with a ranking as data</returns>
+        public static ReturnResult findRankingById(int? id)
         {
-            using (OCRCDbContext db = new OCRCDbContext())
+            try
+            {    
+                using (OCRCDbContext db = new OCRCDbContext())
+                {
+                    var ranking = db.Rankings.Find(id);
+                    return new ReturnResult(ReturnCode.SUCCESS,ranking);
+                }
+            }
+            catch (Exception e)
             {
-                var ranking = db.Rankings.Find(id);
-                return ranking;
+                return new ReturnResult(ReturnCode.FAILURE, e.Message);
             }
         }
 
         
-        public static Status findStatusById(int? id)
+        /// <summary>
+        /// Finds a status by id
+        /// </summary>
+        /// <param name="id"> status Id</param>
+        /// <returns> ReturnResult object with a status as data</returns>
+        public static ReturnResult findStatusById(int? id)
         {
-            using (OCRCDbContext db = new OCRCDbContext())
+            try
             {
-                var status = db.Statuses.Find(id);
-                return status;
+                using (OCRCDbContext db = new OCRCDbContext())
+                {
+                    var status = db.Statuses.Find(id);
+                    return new ReturnResult(ReturnCode.SUCCESS, status);
+                }
+            }
+            catch (Exception e)
+            {
+                return new ReturnResult(ReturnCode.FAILURE, e.Message);
             }
         }
 
 
-        public static User findUserById(int? id)
+        /// <summary>
+        ///  Finds a user using their Id
+        /// </summary>
+        /// <param name="id"> User's Id</param>
+        /// <returns>ReturnResult object with a user as data</returns>
+        public static ReturnResult findUserById(int? id)
         {
-            using (OCRCDbContext db = new OCRCDbContext())
+            try
             {
-                var user = db.Users.Find(id);
-                return user;
+                using (OCRCDbContext db = new OCRCDbContext())
+                {
+                    var user = db.Users.Find(id);
+                    return new ReturnResult(ReturnCode.SUCCESS, user);
+                }
+            }
+            catch (Exception e)
+            {
+                return new ReturnResult(ReturnCode.FAILURE, e.Message);
             }
         }
+
+        /// <summary>
+        /// Deletes a User
+        /// </summary>
+        /// <param name="user"> a User object</param>
+        /// <returns> a ReturnResult with a data of true if successful</returns>
+        public static ReturnResult deleteUser(User user)
+        {
+            try
+            {
+                using (OCRCDbContext db = new OCRCDbContext())
+                {
+                    db.Entry(user).State = EntityState.Deleted;
+                    db.Users.Remove(user);
+                    db.SaveChanges();
+                    return new ReturnResult(ReturnCode.SUCCESS, true);
+                }
+            }
+            catch (Exception e)
+            {
+                return new ReturnResult(ReturnCode.FAILURE, e.Message);
+            }
+        }
+
+        /// <summary>
+        ///  deletes a note
+        /// </summary>
+        /// <param name="note"></param>
+        /// <returns></returns>
+        public static ReturnResult deleteNote(Notes note)
+        {
+            try
+            {
+                using (OCRCDbContext db = new OCRCDbContext())
+                {
+                    db.Entry(note).State = EntityState.Deleted;
+                    db.Notes.Remove(note);
+                    db.SaveChanges();
+                    return new ReturnResult(ReturnCode.SUCCESS, true);
+                }
+            }
+            catch (Exception e)
+            {
+                return new ReturnResult(ReturnCode.FAILURE, e.Message);
+            }
+        }
+
+        /// <summary>
+        ///  deletes a status
+        /// </summary>
+        /// <param name="status"></param>
+        /// <returns></returns>
+        public static ReturnResult deleteStatus(Status status)
+        {
+            try
+            {
+                using (OCRCDbContext db = new OCRCDbContext())
+                {
+                    db.Entry(status).State = EntityState.Deleted;
+                    db.Statuses.Remove(status);
+                    db.SaveChanges();
+                    return new ReturnResult(ReturnCode.SUCCESS, true);
+                }
+            }
+            catch (Exception e)
+            {
+                return new ReturnResult(ReturnCode.FAILURE, e.Message);
+            }
+        }
+
         
+
+        /// <summary>
+        /// deletes a ranking
+        /// </summary>
+        /// <param name="ranking"></param>
+        /// <returns></returns>
+        public static ReturnResult deleteRanking(Ranking ranking)
+        {
+            try
+            {
+                using (OCRCDbContext db = new OCRCDbContext())
+                {
+                    db.Entry(ranking).State = EntityState.Deleted;
+                    db.Rankings.Remove(ranking);
+                    db.SaveChanges();
+                    return new ReturnResult(ReturnCode.SUCCESS, true);
+                }
+            }
+            catch (Exception e)
+            {
+                return new ReturnResult(ReturnCode.FAILURE, e.Message);
+            }
+        }
+
+
+
+
     }
 
 
@@ -136,7 +281,9 @@ namespace OCRC.Models
 
     }
 
-
+    /// <summary>
+    /// TODO: better comments
+    /// </summary>
     public class OCRCDbContext : DbContext
     {
        public DbSet<Notes> Notes { get; set; }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -13,7 +14,118 @@ namespace OCRC.Models
 
         // Nas
 
+        /// <summary>
+        /// Finds a user by their Id
+        /// </summary>
+        /// <param name="id"> a user Id</param>
+        /// <returns> A ReturnResult with a User object as data if successful</returns>
+        public static ReturnResult findUserById(int? id)
+        {
+            try
+            {
+                return new ReturnResult(ReturnCode.SUCCESS, OCRC.findUserById(id).data);
+            }
+            catch (Exception e)
+            {
+                return new ReturnResult(ReturnCode.FAILURE, e.Message);
+            }
+        }
 
+        /// <summary>
+        /// Deletes a User
+        /// </summary>
+        /// <param name="user"> a User object</param>
+        /// <returns> a ReturnResult with a data of true if successful</returns>
+        public static ReturnResult deleteUser(User user)
+        {
+            try
+            {
+                return new ReturnResult(ReturnCode.SUCCESS,OCRC.deleteUser(user).data);
+                
+            }
+            catch (Exception e)
+            {
+                return new ReturnResult(ReturnCode.FAILURE, e.Message);
+            }
+        }
+
+
+        public static ReturnResult deleteNote(Notes note)
+        {
+            try
+            {
+                return new ReturnResult(ReturnCode.SUCCESS, OCRC.deleteNote(note).data);
+
+            }
+            catch (Exception e)
+            {
+                return new ReturnResult(ReturnCode.FAILURE, e.Message);
+            }
+        }
+
+        public static ReturnResult deleteRanking(Ranking ranking)
+        {
+            try
+            {
+                return new ReturnResult(ReturnCode.SUCCESS, OCRC.deleteRanking(ranking).data);
+
+            }
+            catch (Exception e)
+            {
+                return new ReturnResult(ReturnCode.FAILURE, e.Message);
+            }
+        }
+
+        public static ReturnResult deleteStatus(Status status)
+        {
+            try
+            {
+                return new ReturnResult(ReturnCode.SUCCESS, OCRC.deleteStatus(status).data);
+
+            }
+            catch (Exception e)
+            {
+                return new ReturnResult(ReturnCode.FAILURE, e.Message);
+            }
+        }
+
+
+        public static ReturnResult findNoteById(int? id)
+        {
+            try
+            {
+                return new ReturnResult(ReturnCode.SUCCESS, OCRC.findNoteById(id).data);
+            }
+            catch (Exception e)
+            {
+                return new ReturnResult(ReturnCode.FAILURE, e.Message);
+            }
+        }
+
+
+        public static ReturnResult findRankingById(int? id)
+        {
+            try
+            {
+                return new ReturnResult(ReturnCode.SUCCESS, OCRC.findRankingById(id).data);
+            }
+            catch (Exception e)
+            {
+                return new ReturnResult(ReturnCode.FAILURE, e.Message);
+            }
+        }
+        
+        public static ReturnResult findStatusById(int? Id)
+        {
+            try
+            {
+                return new ReturnResult(ReturnCode.SUCCESS, OCRC.findStatusById(Id).data);
+            }
+            catch (Exception e)
+            {
+                return new ReturnResult(ReturnCode.FAILURE, e.Message);
+            }
+        }
 
 
         // yi
