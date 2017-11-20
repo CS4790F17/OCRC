@@ -18,11 +18,11 @@ namespace OCRC.Models
         //TODO: take care of FKeys when deleting
 
 
-/// <summary>
-/// Finds a Note using its Id
-/// </summary>
-/// <param name="id"> Note Id</param>
-/// <returns>A ReturnResult with a Note as data</returns>
+        /// <summary>
+        /// Finds a Note using its Id
+        /// </summary>
+        /// <param name="id"> Note Id</param>
+        /// <returns>A ReturnResult with a Note as data</returns>
         public static ReturnResult findNoteById(int? id)
         {
             try
@@ -47,11 +47,11 @@ namespace OCRC.Models
         public static ReturnResult findRankingById(int? id)
         {
             try
-            {    
+            {
                 using (OCRCDbContext db = new OCRCDbContext())
                 {
                     var ranking = db.Rankings.Find(id);
-                    return new ReturnResult(ReturnCode.SUCCESS,ranking);
+                    return new ReturnResult(ReturnCode.SUCCESS, ranking);
                 }
             }
             catch (Exception e)
@@ -60,7 +60,7 @@ namespace OCRC.Models
             }
         }
 
-        
+
         /// <summary>
         /// Finds a status by id
         /// </summary>
@@ -140,7 +140,7 @@ namespace OCRC.Models
                 {
                     db.Entry(note).State = EntityState.Deleted;
                     db.Notes.Remove(note);
-                    int c = db.SaveChanges(); //TODO: find what c represents
+                    int c = db.SaveChanges(); //TODO: returns the number of lines affected. handle errors
                     return new ReturnResult(ReturnCode.SUCCESS, true);
                 }
             }
@@ -173,7 +173,7 @@ namespace OCRC.Models
             }
         }
 
-        
+
 
         /// <summary>
         /// deletes a ranking
@@ -286,10 +286,10 @@ namespace OCRC.Models
     /// </summary>
     public class OCRCDbContext : DbContext
     {
-       public DbSet<Notes> Notes { get; set; }
-       public DbSet<Ranking> Rankings { get; set; }
-       public DbSet<Status> Statuses { get; set; }
-       public DbSet<User> Users { get; set; }
+        public DbSet<Notes> Notes { get; set; }
+        public DbSet<Ranking> Rankings { get; set; }
+        public DbSet<Status> Statuses { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 
 }
