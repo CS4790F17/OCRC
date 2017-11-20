@@ -49,12 +49,20 @@ namespace OCRC.Models
             }
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="note"></param>
+        /// <returns></returns>
         public static ReturnResult deleteNote(Notes note)
         {
             try
             {
-                return new ReturnResult(ReturnCode.SUCCESS, OCRC.deleteNote(note).data);
+                //this is the way to work with return result
+                ReturnResult rr = new ReturnResult();
+                rr.returnCode = ReturnCode.SUCCESS;
+                rr.data = OCRC.deleteNote(note).data;
+                return rr;
 
             }
             catch (Exception e)
@@ -63,6 +71,11 @@ namespace OCRC.Models
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ranking"></param>
+        /// <returns></returns>
         public static ReturnResult deleteRanking(Ranking ranking)
         {
             try
@@ -76,6 +89,11 @@ namespace OCRC.Models
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="status"></param>
+        /// <returns></returns>
         public static ReturnResult deleteStatus(Status status)
         {
             try
@@ -89,7 +107,11 @@ namespace OCRC.Models
             }
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public static ReturnResult findNoteById(int? id)
         {
             try
@@ -102,7 +124,11 @@ namespace OCRC.Models
             }
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public static ReturnResult findRankingById(int? id)
         {
             try
@@ -115,6 +141,11 @@ namespace OCRC.Models
             }
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
         public static ReturnResult findStatusById(int? Id)
         {
             try

@@ -140,7 +140,7 @@ namespace OCRC.Models
                 {
                     db.Entry(note).State = EntityState.Deleted;
                     db.Notes.Remove(note);
-                    db.SaveChanges();
+                    int c = db.SaveChanges(); //TODO: find what c represents
                     return new ReturnResult(ReturnCode.SUCCESS, true);
                 }
             }
