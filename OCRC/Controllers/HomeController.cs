@@ -14,12 +14,7 @@ namespace OCRC.Controllers
             return View();
         }
 
-        public ActionResult ForgotPassword()
-        {
-            ViewBag.Message = "Forgot Password.";
-
-            return View();
-        }
+        
 
         public ActionResult UserList()
         {
@@ -28,12 +23,7 @@ namespace OCRC.Controllers
             return View();
         }
 
-        public ActionResult Login()
-        {
-            ViewBag.Message = "Login";
-
-            return View();
-        }
+        
 
         public ActionResult About()
         {
