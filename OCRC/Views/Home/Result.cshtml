@@ -3,122 +3,101 @@
     ViewBag.Title = "Sport Search";
 }
 
+<div class="col-md-2">
 
-<div class="row">
+    <div class="row collapse navbar-collapse">
         <!-- filter start -->
-        <div class="col-md-12">
-          <!-- Nav tabs -->
-          <ul class="nav nav-tabs nav-justified" role="tablist">
-            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Filter By Sport</a></li>
-            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">More Filter</a></li>
-            
-          </ul>
 
-          <!-- Tab panes -->
-          <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="home">
-              <form class="form-inline">
-                 <!-- Single button -->
-                      <label class="checkbox-inline">
-                        <input type="checkbox" value="">Option 1
-                      </label>
-                      <label class="checkbox-inline">
-                        <input type="checkbox" value="">Option 2
-                      </label>
-                      <label class="checkbox-inline">
-                        <input type="checkbox" value="">Option 3
-                      </label>
-                      <label class="checkbox-inline">
-                        <input type="checkbox" value="">Option 1
-                      </label>
-                      <label class="checkbox-inline">
-                        <input type="checkbox" value="">Option 2
-                      </label>
-                      <label class="checkbox-inline">
-                        <input type="checkbox" value="">Option 3
-                      </label>
-                </form> 
+        <form>
+            <h3>filter by sport</h3>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox"> Check me out
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox"> Check me out
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox"> Check me out
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox"> Check me out
+                </label>
             </div>
 
-            <div role="tabpanel" class="tab-pane" id="profile">
-              <form class="form-inline">
-                <label class="checkbox-inline">
-                        <input type="checkbox" value="">Option 1
-                      </label>
-                      <label class="checkbox-inline">
-                        <input type="checkbox" value="">Option 2
-                      </label>
-                      <label class="checkbox-inline">
-                        <input type="checkbox" value="">Option 3
-                      </label>
-                  
-                  
-                  <div class="form-group ">
-                    <label for="School" class="sr-only">School</label>
-                    <input type="text" class="form-control"  placeholder="School">
-                  </div>
-                  <div class="form-group">
-                    <label for="Name" class="sr-only">Name</label>
-                    <input type="text" class="form-control"  placeholder="Name">
-                  </div>
-                  <div class="form-group">
-                    <label for="Year" class="sr-only">Year</label>
-                    <input type="text" class="form-control"  placeholder="Year">
-                  </div>
-                  <button type="submit" class="btn btn-primary">Search</button>
-                
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Age <span class="caret"></span>
-                </button>
-                
-              </form>
+        </form>
+
+        <form class="form-inline">
+            <h3>filter by sport</h3>
+            <div class="form-group ">
+                <label for="School" class="sr-only">School</label>
+                <input type="text" class="form-control" placeholder="School">
             </div>
-           
-          </div>
+            <div class="form-group">
+                <label for="Name" class="sr-only">Name</label>
+                <input type="text" class="form-control" placeholder="Name">
+            </div>
+            <div class="form-group">
+                <label for="Year" class="sr-only">Grade</label>
+                <input type="text" class="form-control" placeholder="Grade">
+            </div>
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Age <span class="caret"></span>
+            </button>
+            <br />
+            <br />
+            <button type="submit" class="btn btn-primary">Search</button>
 
-        </div>
-                
-        </div>
-        <!-- filter end -->
-    <br>
-    <div class="col-xs-12 col-md-10">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First Name</th>
-                    <th scope="col">Last Name</th>
-                    <th scope="col">Username</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>twitter</td>
-                </tr>
-                <tr>
-                    <th scope="row">4</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>twitter</td>
-                </tr>
-            </tbody>
 
-        </table>
+
+        </form>
     </div>
+
 </div>
 
+<div class="col-md-10 col-sm-12 col-xs-12">
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Username</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>mdo</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>fat</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>twitter</td>
+            </tr>
+            <tr>
+                <th scope="row">4</th>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>twitter</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
