@@ -1,0 +1,44 @@
+﻿@model OCRC.Models.Repo.LoginViewModel
+@{
+    ViewBag.Title = "Home Page";
+
+}
+
+@{
+    Layout = "";
+}
+<head>
+    @Styles.Render("~/Content/bootstrap.min.css")
+    @Styles.Render("~/Content/Site.css")
+</head>
+<body>
+    <div class="container">
+        <div class="card card-container">
+            <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+            <p id="profile-name" class="profile-name-card"></p>
+            
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-signin", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <span id="reauth-email" class="reauth-email"></span>
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" , @placeholder = "Email address", @required = "required" })
+                //<input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                //<input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                @Html.TextBoxFor(m=>m.Password, new { @class= "form-control" , @placeholder = "Password", @required = "required" })
+                <div id="remember" class="checkbox">
+                    <label>
+                        <input type="checkbox" value="remember-me"> Remember me
+                    </label>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+             }<!-- /form end-->
+            <ul>
+                <li class="forgot-password">@Html.ActionLink("Forgot the password?", "ForgotPassword", "Account")</li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>
+
+

@@ -14,6 +14,17 @@ namespace OCRC.Controllers
             return View();
         }
 
+        
+
+        public ActionResult UserList()
+        {
+            ViewBag.Message = "UserList";
+
+            return View();
+        }
+
+        
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
