@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OCRC.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -14,6 +15,11 @@ namespace OCRC.Controllers
         // GET: Account
         public ActionResult RegisterUser()
         {
+            //Finding a user by id 
+            if (Repo.findUserById(1).returnCode == 0)
+            {
+                User user = (User)Repo.findUserById(1).data;
+            }
             return View();
         }
 
