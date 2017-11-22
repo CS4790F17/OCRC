@@ -170,8 +170,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\OCRC.cs" />
+    <Compile Include="Models\OCRC_API.cs" />
     <Compile Include="Models\Repo.cs" />
     <Compile Include="Models\ReturnResult.cs" />
+    <Compile Include="Models\Search.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
