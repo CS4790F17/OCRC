@@ -62,7 +62,7 @@ namespace OCRC.Models
         {
             using (OCRCDbContext db = new OCRCDbContext())
             {
-                db.Entry(dateModified).State = EntityState.Modified;
+                db.Entry(dateModified.ToString()).State = EntityState.Modified;
                 db.SaveChanges();
             }
         }
@@ -75,7 +75,7 @@ namespace OCRC.Models
         {
             using (OCRCDbContext db = new OCRCDbContext())
             {
-                db.Entry(dateCreated).State = EntityState.Modified;
+                db.Entry(dateCreated.ToString()).State = EntityState.Modified;
                 db.SaveChanges();
             }
         }
@@ -129,7 +129,7 @@ namespace OCRC.Models
         {
             using (OCRCDbContext db = new OCRCDbContext())
             {
-                db.Entry(dateCreated).State = EntityState.Modified;
+                db.Entry(dateCreated.ToString()).State = EntityState.Modified;
                 db.SaveChanges();
             }
         }
@@ -209,7 +209,7 @@ namespace OCRC.Models
         {
             using (OCRCDbContext db = new OCRCDbContext())
             {
-                db.Entry(activityModified).State = EntityState.Modified;
+                db.Entry(activityModified.ToString()).State = EntityState.Modified;
                 db.SaveChanges();
             }
         }
