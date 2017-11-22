@@ -20,7 +20,7 @@ namespace OCRC.Models
         // Heather
         public static Notes findNoteById(int? id)
         {
-            return OCRC.findNotesById(id);
+            return OCRC.findNoteById(id);
         }
 
         public static List<Notes> getAllNotes()
@@ -46,7 +46,7 @@ namespace OCRC.Models
 
         public static Ranking findRankingById(int? id)
         {
-            OCRC.findRankingById(id);
+            return OCRC.findRankingById(id);
         }
 
         public static List<Ranking> getAllRankings()
@@ -71,7 +71,7 @@ namespace OCRC.Models
 
         public static Status findStatusById(int? id)
         {
-            OCRC.findStatusById(id);
+            return OCRC.findStatusById(id);
         }
 
         public static List<Status> getAllStatuses()
@@ -96,7 +96,7 @@ namespace OCRC.Models
 
         public static User findUserById(int? id)
         {
-            OCRC.findUserById(id);
+            return OCRC.findUserById(id);
         }
 
         public static List<User> getAllUsers()
