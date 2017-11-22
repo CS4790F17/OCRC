@@ -61,16 +61,16 @@
 
         <!-- header -->
     </div>
-    <div class="container" style="background-color:#f9f9f9">
-        @RenderBody()
-
-        <div class="row">
+        <div class="container" style="background-color:#f9f9f9" >
+            @RenderBody()
+        </div>
+        <div class="container" style="background-color:#f9f9f9">
             <hr />
             <footer>
                 <p>&copy; @DateTime.Now.Year - Ogden City</p>
             </footer>
         </div>
-    </div>
+    
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
