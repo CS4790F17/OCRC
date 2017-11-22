@@ -31,7 +31,7 @@ namespace OCRC.Models
         /// <returns>True if user exist and password is correct</returns>
         public bool IsValid(string _email, string _password)
         {
-            using (var cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Truong\Documents\OCRC.mdf;Integrated Security=True;Connect Timeout=30"))
+            using (var cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|OCRC.mdf;Integrated Security=True;Connect Timeout=30"))
             {
                 string _sql = @"SELECT [email] FROM [dbo].[User] " +
                        @"WHERE [email] = @u AND [password] = @p";
