@@ -190,22 +190,6 @@ namespace OCRC.Models
 
     }
 
-
-    /// <summary>
-    /// TODO: better comment
-    /// </summary>
-    [Table("Role")]
-    public class Role
-    {
-        [Key]
-        public int roleID { get; set; }
-        [DisplayName("Role")]
-        public String role { get; set; }
-        [DisplayName("Access Level")]
-        public String accesslvl { get; set; }
-    }
-
-
     /// <summary>
     /// TODO: better comment
     /// </summary>
@@ -284,7 +268,7 @@ namespace OCRC.Models
         public String email { get; set; }
         [DisplayName("Password"), PasswordPropertyText]
         public String password { get; set; } //TODO: save the hash of this password instead of the actual pw
-        public int roleID { get; set; }
+        public int accesslvl { get; set; }
 
     }
 
@@ -295,7 +279,6 @@ namespace OCRC.Models
        public DbSet<Notes> Notes { get; set; }
        public DbSet<Ranking> Rankings { get; set; }
        public DbSet<Registration> Registrations { get; set; }
-       public DbSet<Role> Roles { get; set; }
        public DbSet<School> Schools { get; set; }
        public DbSet<Sport> Sports { get; set; }
        public DbSet<Status> Statuses { get; set; }
