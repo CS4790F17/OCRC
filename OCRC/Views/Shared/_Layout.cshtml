@@ -19,7 +19,8 @@
 
 </head>
 <body>
-    <div class="container" style="background-color:#f9f9f9">
+    
+    <div class="container">
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -31,7 +32,7 @@
                         <span class="icon-bar"></span>
 
                     </button>
-                    
+
 
                     <a class="navbar-brand" href="#">Ogden City</a>
                 </div>
@@ -45,8 +46,9 @@
                         <li role="presentation" class="active">@Html.ActionLink("Home", "Index", "Home")</li>
                         <li role="presentation">@Html.ActionLink("Report", "About", "Home")</li>
                         <li role="presentation">@Html.ActionLink("Data", "Result", "Home")</li>
-                        <li role="presentation">@Html.ActionLink("Tracking", "Result", "Home")</li>
-                        <li role="presentation">@Html.ActionLink("Register user", "UserList", "Account")</li>
+                        <li role="presentation">@Html.ActionLink("Result", "Result", "Home")</li>
+                        <li role="presentation">@Html.ActionLink("Register user", "RegisterUser", "Account")</li>
+                        <li role="presentation">@Html.ActionLink("User List", "UserList", "Account")</li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
@@ -56,13 +58,13 @@
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
-        
-        <!-- header -->
 
-        <div class="container" >
-            @RenderBody()
-        </div>
-        <div class="container">
+        <!-- header -->
+    </div>
+    <div class="container" style="background-color:#f9f9f9">
+        @RenderBody()
+
+        <div class="row">
             <hr />
             <footer>
                 <p>&copy; @DateTime.Now.Year - Ogden City</p>
