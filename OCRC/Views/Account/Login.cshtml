@@ -1,7 +1,6 @@
-﻿
+﻿@model OCRC.Models.Users
 @{
-    ViewBag.Title = "Home Page";
-
+    ViewBag.Title = "Login";
 }
 
 @{
@@ -11,6 +10,9 @@
     @Styles.Render("~/Content/bootstrap.min.css")
     @Styles.Render("~/Content/Site.css")
 </head>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true, "Login failed. Check your login details.");
 <body>
     <div class="container">
         <div class="card card-container">
@@ -18,14 +20,14 @@
             <p id="profile-name" class="profile-name-card"></p>
             <form class="form-signin">
                 <span id="reauth-email" class="reauth-email"></span>
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                <input type="email" id="email" name="email" class="form-control" placeholder="Email address" required autofocus>
+                <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
                 <div id="remember" class="checkbox">
                     <label>
-                        <input type="checkbox" value="remember-me"> Remember me
+                        <input type="checkbox" id ="RememberMe" name ="RememberMe" value="remember-me"> Remember me
                     </label>
+                    <input class="btn btn-lg btn-primary btn-block btn-signin" type="submit" value="Log In">
                 </div>
-                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
             </form><!-- /form -->
             <ul>
                 <li class="forgot-password">@Html.ActionLink("Forgot the password?", "ForgotPassword", "Account")</li>
@@ -33,6 +35,17 @@
         </div>
     </div>
 
-</body>
+   @*  @if (Request.IsAuthenticated)
+    {
+
+        Response.Redirect("~/HOME/Index");
+    }
+    else
+    {
+        Response.Redirect("~/Account/Login");
+    }*@
+
+    </body>
+    }
 
 

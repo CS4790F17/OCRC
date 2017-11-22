@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using OCRC.Models;
+using System.Web.Security;
 
 namespace OCRC.Controllers
 {
@@ -13,9 +14,6 @@ namespace OCRC.Controllers
         {
             return View();
         }
-
-        
-        
 
         //Yi Lao (Ming)-------------------------
         public ActionResult Result()

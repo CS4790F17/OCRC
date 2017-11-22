@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel;
+using static OCRC.Models.Repo;
 
 namespace OCRC.Models
 {
@@ -62,7 +63,7 @@ namespace OCRC.Models
         {
             using (OCRCDbContext db = new OCRCDbContext())
             {
-                db.Entry(dateModified).State = EntityState.Modified;
+               /// db.Entry(dateModified).State = EntityState.Modified;
                 db.SaveChanges();
             }
         }
@@ -75,7 +76,7 @@ namespace OCRC.Models
         {
             using (OCRCDbContext db = new OCRCDbContext())
             {
-                db.Entry(dateCreated).State = EntityState.Modified;
+                ///db.Entry(dateCreated).State = EntityState.Modified;
                 db.SaveChanges();
             }
         }
@@ -129,7 +130,7 @@ namespace OCRC.Models
         {
             using (OCRCDbContext db = new OCRCDbContext())
             {
-                db.Entry(dateCreated).State = EntityState.Modified;
+               /// db.Entry(dateCreated).State = EntityState.Modified;
                 db.SaveChanges();
             }
         }
@@ -209,7 +210,7 @@ namespace OCRC.Models
         {
             using (OCRCDbContext db = new OCRCDbContext())
             {
-                db.Entry(activityModified).State = EntityState.Modified;
+                ///db.Entry(activityModified).State = EntityState.Modified;
                 db.SaveChanges();
             }
         }
@@ -357,7 +358,6 @@ namespace OCRC.Models
 
     }
 
-<<<<<<< HEAD
     /// <summary>
     /// TODO: better comment
     /// </summary>
@@ -390,8 +390,7 @@ namespace OCRC.Models
     /// <summary>
     /// TODO: better comment
     /// </summary>
-=======
->>>>>>> 88036a83810b54ed6b72135fdd478cf9b2c502c9
+
     [Table("Status")]
     public class Status
     {
@@ -419,10 +418,9 @@ namespace OCRC.Models
         [DisplayName("Password"), PasswordPropertyText]
         public String password { get; set; } //TODO: save the hash of this password instead of the actual pw
         public int accesslvl { get; set; }
-<<<<<<< HEAD
-=======
+
         public String teamIdentifier { get; set; }
->>>>>>> 88036a83810b54ed6b72135fdd478cf9b2c502c9
+
 
     }
 
@@ -433,12 +431,9 @@ namespace OCRC.Models
     {
        public DbSet<Notes> Notes { get; set; }
        public DbSet<Ranking> Rankings { get; set; }
-<<<<<<< HEAD
        public DbSet<Registration> Registrations { get; set; }
        public DbSet<School> Schools { get; set; }
        public DbSet<Sport> Sports { get; set; }
-=======
->>>>>>> 88036a83810b54ed6b72135fdd478cf9b2c502c9
        public DbSet<Status> Statuses { get; set; }
        public DbSet<User> Users { get; set; }
     }
