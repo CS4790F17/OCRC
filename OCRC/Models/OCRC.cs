@@ -371,22 +371,7 @@ namespace OCRC.Models
         [DisplayName("School Coach")]
         public String schoolCoach { get; set; }
     }
-
-
-    /// <summary>
-    /// TODO: better comment
-    /// </summary>
-    [Table("Sport")]
-    public class Sport
-    {
-        [Key]
-        public int sportID { get; set; }
-        [DisplayName("Sport Name")]
-        public String sportName { get; set; }
-
-    }
-
-
+    
     /// <summary>
     /// TODO: better comment
     /// </summary>
