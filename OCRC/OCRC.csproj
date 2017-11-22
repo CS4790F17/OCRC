@@ -170,9 +170,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\OCRC.cs" />
+    <Compile Include="Models\OCRC_API.cs" />
     <Compile Include="Models\Repo.cs" />
     <Compile Include="Models\ReturnResult.cs" />
     <Compile Include="Models\Users.cs" />
+    <Compile Include="Models\Search.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -182,6 +184,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Ogden.jpg" />
+    <Content Include="Content\slideMenu.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
