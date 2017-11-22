@@ -14,7 +14,12 @@ namespace OCRC.Controllers
             return View();
         }
 
-        
+        //Nas
+        public PartialViewResult _KidDetail()
+        {
+            Kid kid = new Kid("s","s","s","s","s");
+            return PartialView(kid);
+        }
         
 
         //Yi Lao (Ming)-------------------------
