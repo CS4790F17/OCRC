@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel;
+using static OCRC.Models.Repo;
 
 namespace OCRC.Models
 {
@@ -357,6 +358,39 @@ namespace OCRC.Models
 
     }
 
+    /// <summary>
+    /// TODO: better comment
+    /// </summary>
+    [Table("School")]
+    public class School
+    {
+        [Key]
+        public int schoolID { get; set; }
+        [DisplayName("School Name")]
+        public String schoolName { get; set; }
+        [DisplayName("School Coach")]
+        public String schoolCoach { get; set; }
+    }
+
+
+    /// <summary>
+    /// TODO: better comment
+    /// </summary>
+    [Table("Sport")]
+    public class Sport
+    {
+        [Key]
+        public int sportID { get; set; }
+        [DisplayName("Sport Name")]
+        public String sportName { get; set; }
+
+    }
+
+
+    /// <summary>
+    /// TODO: better comment
+    /// </summary>
+
     [Table("Status")]
     public class Status
     {
@@ -384,7 +418,9 @@ namespace OCRC.Models
         [DisplayName("Password"), PasswordPropertyText]
         public String password { get; set; } //TODO: save the hash of this password instead of the actual pw
         public int accesslvl { get; set; }
+
         public String teamIdentifier { get; set; }
+
 
     }
 
@@ -395,6 +431,9 @@ namespace OCRC.Models
     {
        public DbSet<Notes> Notes { get; set; }
        public DbSet<Ranking> Rankings { get; set; }
+       public DbSet<Registration> Registrations { get; set; }
+       public DbSet<School> Schools { get; set; }
+       public DbSet<Sport> Sports { get; set; }
        public DbSet<Status> Statuses { get; set; }
        public DbSet<User> Users { get; set; }
     }

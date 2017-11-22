@@ -42,3 +42,4 @@ function testLocalStorageData() {
     sessionStorage.setItem("PROFILE_NAME", "Hoang Cao");
     sessionStorage.setItem("PROFILE_REAUTH_EMAIL", "hoangcao@mail.weber.edu");
 }
+
