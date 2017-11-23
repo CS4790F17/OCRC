@@ -44,7 +44,7 @@ namespace OCRC.Controllers
        
             if (ModelState.IsValid)
             {
-                if (user.IsValid(user.email, user.password))
+                if (user.IsValid(user.email, 2,user.password))
                 {
                    ///SiteMapResolveEventHandler
                    return RedirectToAction("Result", "Home");
