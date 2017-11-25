@@ -1,4 +1,4 @@
-﻿@model OCRC.Models.Users
+﻿@model OCRC.Models.UserLogin
 @{
     ViewBag.Title = "Login";
 }
@@ -9,6 +9,10 @@
 <head>
     @Styles.Render("~/Content/bootstrap.min.css")
     @Styles.Render("~/Content/Site.css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/Login")
+    @Html.Hidden("RedirectTo", Url.Action("Login", "Account"));
 </head>
 @using (Html.BeginForm())
 {
@@ -19,14 +23,13 @@
             <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
             <p id="profile-name" class="profile-name-card"></p>
             <form class="form-signin">
-                <span id="reauth-email" class="reauth-email"></span>
                 <input type="email" id="email" name="email" class="form-control" placeholder="Email address" required autofocus>
                 <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
                 <div id="remember" class="checkbox">
                     <label>
-                        <input type="checkbox" id ="RememberMe" name ="RememberMe" value="remember-me"> Remember me
+                        <input type="checkbox" id ="rememberme" name ="rememberme" value="remember-me"> Remember me
                     </label>
-                    <input class="btn btn-lg btn-primary btn-block btn-signin" type="submit" value="Log In">
+                    <input class="btn btn-lg btn-primary btn-block btn-signin"  type="submit" id="button" value="Log In">
                 </div>
             </form><!-- /form -->
             <ul>
@@ -35,17 +38,10 @@
         </div>
     </div>
 
-   @*  @if (Request.IsAuthenticated)
-    {
-
-        Response.Redirect("~/HOME/Index");
-    }
-    else
-    {
-        Response.Redirect("~/Account/Login");
-    }*@
-
     </body>
     }
+
+
+
 
 

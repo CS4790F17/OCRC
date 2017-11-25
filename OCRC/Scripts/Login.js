@@ -1,31 +1,29 @@
 ﻿$(document).ready(function () {
     testLocalStorageData();
-    loadProfile();
 });
 
 
 function getLocalProfile(callback) {
     var profileName = sessionStorage.getItem("PROFILE_NAME");
-    var profileReAuthEmail = sessionStorage.getItem("PROFILE_REAUTH_EMAIL");
+    var email = sessionStorage.getItem("EMAIL");
 
     if (profileName !== null
-        && profileReAuthEmail !== null) {
-        callback(profileName, profileReAuthEmail);
+        && email !== null) {
+        callback(profileName, email);
     }
     else {
-        var url = $("#RedirectTo").val();
-        location.href = url;
+     
     }
 }
 
 function loadProfile() {
     if (!supportsHTML5Storage()) { return false; }
-    getLocalProfile(function (profileName, profileReAuthEmail) {
+    getLocalProfile(function (profileName, email) {
         //changes in the UI
         $("#profile-name").html(profileName);
-        $("#reauth-email").html(profileReAuthEmail);
-        $("#inputEmail").hide();
-        $("#remember").hide();
+        $("#email").html(email);
+        $("#email").hide();
+        $("#rememberbox").hide();
     });
 }
 
@@ -39,7 +37,17 @@ function supportsHTML5Storage() {
 
 function testLocalStorageData() {
     if (!supportsHTML5Storage()) { return false; }
-    sessionStorage.setItem("PROFILE_NAME", "Hoang Cao");
-    sessionStorage.setItem("PROFILE_REAUTH_EMAIL", "hoangcao@mail.weber.edu");
+    function dofirst() {
+        var button = document.getElementById("button");
+        button.addEventListener("click", saveUserName, false);
+    }
+    function saveUserName() {
+            var name = document.getElementById("profile-name").value;
+            var username = document.getElementById("email").value;
+            sessionStorage.setItem("PROFILE_NAME", name);
+            sessionStorage.setItem("EMAIL", username);
+    }
+    window.addEventListener("load", dofirst, false);
+ 
 }
 

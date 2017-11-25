@@ -34,19 +34,20 @@ namespace OCRC.Controllers
         [HttpGet]
         public ActionResult Login()
         {
-            Models.Users test = new Models.Users();
+            Models.UserLogin test = new Models.UserLogin();
             return View(test);
         }
 
         [HttpPost]
-        public ActionResult Login(Models.Users user)
+        public ActionResult Login(Models.UserLogin user)
         {
        
             if (ModelState.IsValid)
             {
-                if (user.IsValid(user.email, 2,user.password))
+                if (user.IsValid(user.email, 1 ,user.password))
                 {
-                   ///SiteMapResolveEventHandler
+                    ///SiteMapResolveEventHandler
+                    FormsAuthentication.SetAuthCookie(user.email, user.rememberme);
                    return RedirectToAction("Result", "Home");
                 }
                 else

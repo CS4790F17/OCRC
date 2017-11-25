@@ -9,7 +9,7 @@ using OCRC.Models;
 
 namespace OCRC.Models
 {
-    public class Users
+    public class UserLogin
     {
         [Required]
         [Display(Name = "User name")]
@@ -25,7 +25,7 @@ namespace OCRC.Models
         public string password { get; set; }
 
         [Display(Name = "Remember on this computer")]
-        public bool RememberMe { get; set; }
+        public bool rememberme { get; set; }
 
         /// <summary>
         /// Checks if user with given password exists in the database
