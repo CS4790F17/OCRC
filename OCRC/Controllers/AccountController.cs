@@ -15,12 +15,23 @@ namespace OCRC.Controllers
         // GET: Account
         public ActionResult RegisterUser()
         {
-            //Finding a user by id 
-            if (Repo.findUserById(1).returnCode == 0)
-            {
-                User user = (User)Repo.findUserById(1).data;
-            }
+    
             return View();
+        }
+
+        //POST
+        [HttpPost]
+        public ActionResult RegisterUser(User user)
+        {
+            if (ModelState.IsValid)
+            {
+                //TODO:check if exists
+                Repo.AddUser(user);
+                return RedirectToAction("Result", "Home");
+
+            }
+
+            return View(user);
         }
 
         public ActionResult ForgotPassword()

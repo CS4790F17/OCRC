@@ -15,9 +15,14 @@ namespace OCRC.Controllers
         }
 
         //Nas
-        public PartialViewResult _KidDetail()
+        public PartialViewResult _KidDetails()
         {
-            Kid kid = new Kid("s","s","s","s","s");
+            Kid kid = new Kid();
+            kid.fname = "some";
+            kid.lname = "lsome";
+            kid.grade = 3;
+            kid.school = "MIT";
+
             return PartialView(kid);
         }
         

@@ -34,6 +34,40 @@ namespace OCRC.Models
             OCRC.addNote(note);
         }
 
+        public static ReturnResult UserExists(User user)
+        {
+            try
+            {//TODO:create the actual ifExists method
+                return new ReturnResult(0, false);
+            }
+            catch (Exception e)
+            {
+                return new ReturnResult(ReturnCode.FAILURE, e.Message);
+            }
+        }
+
+        public static ReturnResult AddUser(User user)
+        {
+            try
+            {
+                ReturnResult rr = new ReturnResult();
+                user.password = SHA1.Encode(user.password);
+
+                //TODO: user.role[0~3]; then assign the accesslevel
+                user.accesslvl = 1;
+
+                //TODO: set identifier
+                user.teamIdentifier = "Temp";
+                rr.data = OCRC.AddUser(user);
+                rr.returnCode = 0;
+                return rr;
+            }
+            catch (Exception e)
+            {
+                return new ReturnResult(ReturnCode.FAILURE, e.Message);
+            }
+        }
+
         public static void setNotesDateModified(DateTime dateModified)
         {
             OCRC.setNotesDateModified(dateModified);
