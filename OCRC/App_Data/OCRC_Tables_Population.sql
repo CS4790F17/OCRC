@@ -1,5 +1,3 @@
-USE OCRC;
-GO
 INSERT INTO [dbo].[User] VALUES ('Susan','Lowdy','admin@gmail.com','a94a8fe5ccb19ba61c4c0873d391e987982fbbd3',1,null,null);
 INSERT INTO [dbo].[User] VALUES ('Bob','Nolls','clerk@yahoo.com','a94a8fe5ccb19ba61c4c0873d391e987982fbbd3',2,null,null);
 INSERT INTO [dbo].[User] VALUES ('Eric','Lubaguske','clerk2@msn.com','a94a8fe5ccb19ba61c4c0873d391e987982fbbd3',2,null,null);
