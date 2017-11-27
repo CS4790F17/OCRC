@@ -18,10 +18,7 @@ namespace OCRC.Controllers
         //Yi Lao (Ming)-------------------------
         public ActionResult Result()
         {
-            
             var allSports = OCRC_API.getAllSports();
-
-
             return View(allSports);
         }
     }
