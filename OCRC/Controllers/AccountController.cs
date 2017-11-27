@@ -1,6 +1,8 @@
 ﻿using OCRC.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Net.Mail;
 using System.Security.Cryptography;
@@ -9,9 +11,10 @@ using System.Web.Mvc;
 using System.Web.Security;
 using WebMatrix.WebData;
 
+
 namespace OCRC.Controllers
 {
-
+    ///[Authorize]
     public class AccountController : Controller
     {
         // GET: Account
@@ -28,6 +31,12 @@ namespace OCRC.Controllers
         }
 
         [HttpGet]
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        [HttpGet]
         public ActionResult Login()
         {
             Models.UserLogin test = new Models.UserLogin();
@@ -35,6 +44,7 @@ namespace OCRC.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult Login(Models.UserLogin user)
         {
@@ -60,6 +70,14 @@ namespace OCRC.Controllers
             return RedirectToAction("Login", "Account");
         }
 
+        public class UserProfile
+        {
+            [Key]
+            [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+            public int userId { get; set; }
+            public string email { get; set; }  // Add this
+        }
+
         public ActionResult ResetPassword(string rt)
         {
             ResetPasswordModel model = new ResetPasswordModel();
@@ -68,17 +86,18 @@ namespace OCRC.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult ForgotPassword(Models.UserLogin user)
+        public ActionResult ForgotPassword(UserLogin user)
         {
             if (ModelState.IsValid)
             {
                 MembershipUser users;
-                using (var context = new UsersContext())
+                using (var context = new OCRCDbContext())
                 {
                     var foundUserName = (from u in context.UserProfiles
-                                         where u.Email == user.email
-                                         select u.UserName).FirstOrDefault();
+                                         where u.email == user.email
+                                         select u.email).FirstOrDefault();
                     if (foundUserName != null)
                     {
                         users = Membership.GetUser(foundUserName.ToString());
@@ -127,12 +146,13 @@ namespace OCRC.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult ResetPassword(ResetPasswordModel model)
         {
             if (ModelState.IsValid)
             {
-                bool resetResponse = WebSecurity.ResetPassword(model.ReturnToken, model.Password);
+                bool resetResponse = WebSecurity.ResetPassword(model.ReturnToken, model.password);
                 if (resetResponse)
                 {
                     ViewBag.Message = "Successfully Changed";

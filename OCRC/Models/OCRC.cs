@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel;
 using static OCRC.Models.Repo;
+using static OCRC.Controllers.AccountController;
 
 namespace OCRC.Models
 {
@@ -421,6 +422,8 @@ namespace OCRC.Models
        public DbSet<Sport> Sports { get; set; }
        public DbSet<Status> Statuses { get; set; }
        public DbSet<User> Users { get; set; }
+       public OCRCDbContext(): base("DefaultConnection") { }
+       public DbSet<UserProfile> UserProfiles { get; set; }
     }
 
 }

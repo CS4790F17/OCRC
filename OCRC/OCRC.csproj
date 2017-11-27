@@ -178,6 +178,7 @@
     <Compile Include="Models\OCRC.cs" />
     <Compile Include="Models\OCRC_API.cs" />
     <Compile Include="Models\Repo.cs" />
+    <Compile Include="Models\ResetPasswordModel.cs" />
     <Compile Include="Models\ReturnResult.cs" />
     <Compile Include="Models\UserLogin.cs" />
     <Compile Include="Models\Search.cs" />
