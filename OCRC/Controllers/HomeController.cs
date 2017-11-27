@@ -18,8 +18,6 @@ namespace OCRC.Controllers
         //Yi Lao (Ming)-------------------------
         public ActionResult Result()
         {
-            ViewBag.Message = "this is the result page";
-            
             return View();
         }
     }
