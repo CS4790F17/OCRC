@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using OCRC.Models;
-using System.Web.Security;
 
 namespace OCRC.Controllers
 {
@@ -14,6 +13,19 @@ namespace OCRC.Controllers
         {
             return View();
         }
+
+        //Nas
+        public PartialViewResult _KidDetails()
+        {
+            Kid kid = new Kid();
+            kid.fname = "some";
+            kid.lname = "lsome";
+            kid.grade = 3;
+            kid.school = "MIT";
+
+            return PartialView(kid);
+        }
+        
 
         //Yi Lao (Ming)-------------------------
         public ActionResult Result()
