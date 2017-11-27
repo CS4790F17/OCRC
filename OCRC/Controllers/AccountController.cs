@@ -10,7 +10,7 @@ namespace OCRC.Controllers
         // GET: Account
         public ActionResult RegisterUser()
         {
-    
+            //TODO: checkboxes school shows school if checked, , coach shows team
             return View();
         }
 
