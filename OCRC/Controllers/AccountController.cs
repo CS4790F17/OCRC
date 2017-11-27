@@ -1,9 +1,4 @@
 ﻿using OCRC.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -51,12 +46,12 @@ namespace OCRC.Controllers
         [HttpGet]
         public ActionResult Login()
         {
-            Models.Users test = new Models.Users();
+            Users test = new Users();
             return View(test);
         }
 
         [HttpPost]
-        public ActionResult Login(Models.Users user)
+        public ActionResult Login(Users user)
         {
        
             if (ModelState.IsValid)
