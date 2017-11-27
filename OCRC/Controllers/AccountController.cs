@@ -25,7 +25,7 @@ namespace OCRC.Controllers
         {
             if (ModelState.IsValid)
             {
-                //TODO:check if exists
+                //TODO:check if exists, can be done on this layer 
                 Repo.AddUser(user);
                 return RedirectToAction("Result", "Home");
 
