@@ -1,4 +1,4 @@
-DROP TABLE [dbo].[User];
-DROP TABLE [dbo].[Status];
-DROP TABLE [dbo].[Notes];
 DROP TABLE [dbo].[Ranking];
+DROP TABLE [dbo].[Notes];
+DROP TABLE [dbo].[Status];
+DROP TABLE [dbo].[User];
