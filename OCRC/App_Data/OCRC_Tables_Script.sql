@@ -6,6 +6,7 @@ CREATE TABLE [dbo].[User] (
     [password] 	VARCHAR (100) NOT NULL,
     [accesslvl] INT 		  NOT NULL,
 	[teamIdentifier] VARCHAR(100) NULL,
+	[schoolIdentifier]	VARCHAR(100) NULL,
     PRIMARY KEY CLUSTERED ([userID] ASC)
 );
 
@@ -16,6 +17,7 @@ CREATE TABLE [dbo].[Status] (
     [activityModified] 	DATETIME  				 NOT NULL,
     PRIMARY KEY CLUSTERED ([statusID] ASC)
 );
+
 CREATE TABLE [dbo].[Notes] (
     [notesID]      INT           IDENTITY (1, 1) NOT NULL,
     [dateCreated]  DATETIME      NOT NULL,
