@@ -1,12 +1,8 @@
-USE OCRC;
-GO
 DROP TABLE [dbo].[User];
 DROP TABLE [dbo].[Status];
 DROP TABLE [dbo].[Notes];
 DROP TABLE [dbo].[Ranking];
 
-USE OCRC;
-GO
 CREATE TABLE [dbo].[User] (
     [userID]    INT           IDENTITY (1, 1) NOT NULL,
     [fname]    	VARCHAR (50)  NOT NULL,
@@ -51,8 +47,6 @@ CREATE TABLE [dbo].[Ranking] (
 	CONSTRAINT rankSurKey UNIQUE (statusID,userID,dateCreated,sportType)
 );
 
-USE OCRC;
-GO
 INSERT INTO [dbo].[User] VALUES ('Susan','Lowdy','admin@gmail.com','a94a8fe5ccb19ba61c4c0873d391e987982fbbd3',1,null,null);
 INSERT INTO [dbo].[User] VALUES ('Bob','Nolls','clerk@yahoo.com','a94a8fe5ccb19ba61c4c0873d391e987982fbbd3',2,null,null);
 INSERT INTO [dbo].[User] VALUES ('Eric','Lubaguske','clerk2@msn.com','a94a8fe5ccb19ba61c4c0873d391e987982fbbd3',2,null,null);
