@@ -17,6 +17,29 @@ namespace OCRC.Controllers
         // GET: Account
         public ActionResult RegisterUser()
         {
+            //TODO: checkboxes school shows school if checked, , coach shows team
+            return View();
+        }
+
+        //POST
+        [HttpPost]
+        public ActionResult RegisterUser(User user)
+        {
+            if (ModelState.IsValid)
+            {
+                //TODO:check if exists, can be done on this layer 
+                Repo.AddUser(user);
+                return RedirectToAction("Result", "Home");
+
+            }
+
+            return View(user);
+        }
+
+        public ActionResult ForgotPassword()
+        {
+            ViewBag.Message = "Forgot Password.";
+
             return View();
         }
 
@@ -30,7 +53,7 @@ namespace OCRC.Controllers
         [HttpGet]
         public ActionResult Login()
         {
-            Models.UserLogin test = new Models.UserLogin();
+            UserLogin test = new UserLogin();
             return View(test);
         }
 
