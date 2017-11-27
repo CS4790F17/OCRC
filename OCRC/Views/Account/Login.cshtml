@@ -17,6 +17,7 @@
 @using (Html.BeginForm())
 {
     @Html.ValidationSummary(true, "Login failed. Check your login details.");
+    @Html.AntiForgeryToken()
 <body>
     <div class="container">
         <div class="card card-container">
