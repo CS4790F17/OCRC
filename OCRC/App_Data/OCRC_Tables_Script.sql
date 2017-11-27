@@ -1,5 +1,3 @@
-USE OCRC;
-GO
 CREATE TABLE [dbo].[User] (
     [userID]    INT           IDENTITY (1, 1) NOT NULL,
     [fname]    	VARCHAR (50)  NOT NULL,
