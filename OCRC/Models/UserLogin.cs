@@ -12,9 +12,9 @@ namespace OCRC.Models
     
     public class UserLogin
     {
-        [Required(ErrorMessage = "We need your email to send you a reset link!")]
+        [Required]
         [Display(Name = "User name")]
-        [EmailAddress(ErrorMessage = "Not a valid email--what are you trying to do here?")]
+        [DataType(DataType.EmailAddress)]
         public string email { get; set; }
 
         [Required]

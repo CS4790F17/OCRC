@@ -88,29 +88,14 @@ namespace OCRC.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult ForgotPassword(UserLogin user)
+        public ActionResult ForgotPassword(ForgotPasswordModel forgot)
         {
             if (ModelState.IsValid)
             {
-                MembershipUser users;
-                using (var context = new OCRCDbContext())
-                {
-                    var foundUserName = (from u in context.UserProfiles
-                                         where u.email == user.email
-                                         select u.email).FirstOrDefault();
-                    if (foundUserName != null)
+                if (forgot.IsValid(forgot.email))
                     {
-                        users = Membership.GetUser(foundUserName.ToString());
-                    }
-                    else
-                    {
-                        users = null;
-                    }
-                }
-                if (users != null)
-                {
                     // Generae password token that will be used in the email link to authenticate user
-                    var token = WebSecurity.GeneratePasswordResetToken(users.Email);
+                    var token = WebSecurity.GeneratePasswordResetToken(forgot.email);
                     // Generate the html link sent via email
                     string resetLink = "<a href='"
                        + Url.Action("ResetPassword", "Account", new { rt = token }, "http")
@@ -121,7 +106,7 @@ namespace OCRC.Controllers
                     string body = "You link: " + resetLink;
                     string from = "donotreply@asdf.com";
 
-                    MailMessage message = new MailMessage(from, user.email);
+                    MailMessage message = new MailMessage(from, forgot.email);
                     message.Subject = subject;
                     message.Body = body;
                     SmtpClient client = new SmtpClient();
@@ -136,13 +121,13 @@ namespace OCRC.Controllers
                         ModelState.AddModelError("", "Issue sending email: " + e.Message);
                     }
                 }
-                else 
+                else
                 {
                     ModelState.AddModelError("", "No user found by that email.");
                 }
             }
-
-            return View(user);
+          
+            return View(forgot);
         }
 
         [HttpPost]
