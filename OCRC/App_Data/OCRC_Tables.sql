@@ -1,7 +1,7 @@
-DROP TABLE [dbo].[User];
-DROP TABLE [dbo].[Status];
-DROP TABLE [dbo].[Notes];
 DROP TABLE [dbo].[Ranking];
+DROP TABLE [dbo].[Notes];
+DROP TABLE [dbo].[Status];
+DROP TABLE [dbo].[User];
 
 CREATE TABLE [dbo].[User] (
     [userID]    INT           IDENTITY (1, 1) NOT NULL,
@@ -22,6 +22,7 @@ CREATE TABLE [dbo].[Status] (
     [activityModified] 	DATETIME  				 NOT NULL,
     PRIMARY KEY CLUSTERED ([statusID] ASC)
 );
+
 CREATE TABLE [dbo].[Notes] (
     [notesID]      INT           IDENTITY (1, 1) NOT NULL,
     [dateCreated]  DATETIME      NOT NULL,
