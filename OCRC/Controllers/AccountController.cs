@@ -53,7 +53,7 @@ namespace OCRC.Controllers
         [HttpGet]
         public ActionResult Login()
         {
-            Users test = new Users();
+            UserLogin test = new UserLogin();
             return View(test);
         }
 
