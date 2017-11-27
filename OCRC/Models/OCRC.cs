@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel;
+using static OCRC.Models.Repo;
 
 namespace OCRC.Models
 {
@@ -62,7 +63,7 @@ namespace OCRC.Models
         {
             using (OCRCDbContext db = new OCRCDbContext())
             {
-                db.Entry(dateModified).State = EntityState.Modified;
+                db.Entry(dateModified.ToString()).State = EntityState.Modified;
                 db.SaveChanges();
             }
         }
@@ -75,7 +76,7 @@ namespace OCRC.Models
         {
             using (OCRCDbContext db = new OCRCDbContext())
             {
-                db.Entry(dateCreated).State = EntityState.Modified;
+                db.Entry(dateCreated.ToString()).State = EntityState.Modified;
                 db.SaveChanges();
             }
         }
@@ -129,7 +130,7 @@ namespace OCRC.Models
         {
             using (OCRCDbContext db = new OCRCDbContext())
             {
-                db.Entry(dateCreated).State = EntityState.Modified;
+                db.Entry(dateCreated.ToString()).State = EntityState.Modified;
                 db.SaveChanges();
             }
         }
@@ -209,7 +210,7 @@ namespace OCRC.Models
         {
             using (OCRCDbContext db = new OCRCDbContext())
             {
-                db.Entry(activityModified).State = EntityState.Modified;
+                db.Entry(activityModified.ToString()).State = EntityState.Modified;
                 db.SaveChanges();
             }
         }
@@ -357,6 +358,24 @@ namespace OCRC.Models
 
     }
 
+    /// <summary>
+    /// TODO: better comment
+    /// </summary>
+    [Table("School")]
+    public class School
+    {
+        [Key]
+        public int schoolID { get; set; }
+        [DisplayName("School Name")]
+        public String schoolName { get; set; }
+        [DisplayName("School Coach")]
+        public String schoolCoach { get; set; }
+    }
+    
+    /// <summary>
+    /// TODO: better comment
+    /// </summary>
+
     [Table("Status")]
     public class Status
     {
@@ -384,7 +403,9 @@ namespace OCRC.Models
         [DisplayName("Password"), PasswordPropertyText]
         public String password { get; set; } //TODO: save the hash of this password instead of the actual pw
         public int accesslvl { get; set; }
+
         public String teamIdentifier { get; set; }
+
 
     }
 
@@ -395,6 +416,9 @@ namespace OCRC.Models
     {
        public DbSet<Notes> Notes { get; set; }
        public DbSet<Ranking> Rankings { get; set; }
+       public DbSet<Registration> Registrations { get; set; }
+       public DbSet<School> Schools { get; set; }
+       public DbSet<Sport> Sports { get; set; }
        public DbSet<Status> Statuses { get; set; }
        public DbSet<User> Users { get; set; }
     }
