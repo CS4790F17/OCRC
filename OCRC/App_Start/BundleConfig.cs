@@ -21,7 +21,8 @@ namespace OCRC
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/respond.js",
+                      "~/Scripts/access.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/Login").Include(
                       "~/Scripts/Login.js"));

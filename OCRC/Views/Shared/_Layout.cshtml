@@ -45,11 +45,12 @@
                     <ul class="nav navbar-nav">
                         <li role="presentation">@Html.ActionLink("Result", "Result", "Home")</li>
                     </ul>
+                    
+                    <input type="hidden" name="access" value=@ViewBag.access /><!-- store the access level for user link population-->
 
                     <ul id="userLinks" class="nav navbar-nav navbar-right">
                         <li><a href="/Account/logout">Logout</a></li>
 
-                        <li><a href="/Account/UserList">Admin</a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
