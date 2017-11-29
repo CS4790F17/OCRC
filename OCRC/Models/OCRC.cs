@@ -42,6 +42,25 @@ namespace OCRC.Models
             }
         }
 
+        public static ReturnResult AddUser(User user)
+        {
+            try
+            {
+                using(OCRCDbContext db = new OCRCDbContext())
+                {
+                    ReturnResult rr = new ReturnResult();
+                    rr.data = db.Users.Add(user); //we could check this line to see if the command was successful
+                    rr.returnCode = 0;
+                    db.SaveChanges();
+                    return rr;
+                }
+            }
+            catch (Exception e)
+            {
+                return new ReturnResult(ReturnCode.FAILURE, e.Message);
+            }
+        }
+
         /// <summary>
         /// Adds a note to the database
         /// </summary>
@@ -331,9 +350,9 @@ namespace OCRC.Models
     {
         [Key]
         public int notesID { get; set; }
-        [DisplayName("Created Date")]
+        [DisplayName("Created Date"), DataType(DataType.DateTime)]
         public DateTime dateCreated { get; set; }
-        [DisplayName("Modified Date")]
+        [DisplayName("Modified Date"), DataType(DataType.DateTime)]
         public DateTime dateModified { get; set; }
         public int statusID { get; set; }
         public int userID { get; set; }
@@ -349,7 +368,7 @@ namespace OCRC.Models
         public int rankingID { get; set; }
         public int statusID { get; set; }
         public int userID { get; set; }
-        [DisplayName("Date Created")]
+        [DisplayName("Date Created"),DataType(DataType.DateTime)]
         public DateTime dateCreated { get; set; }
         [DisplayName("Rank")]
         public int rank { get; set; }
@@ -398,13 +417,16 @@ namespace OCRC.Models
         public String fname { get; set; }
         [DisplayName("Last Name")]
         public String lname { get; set; }
-        [DisplayName("Email"), EmailAddress]
+        [DisplayName("Email"), EmailAddress, Required]
         public String email { get; set; }
-        [DisplayName("Password"), PasswordPropertyText]
-        public String password { get; set; } //TODO: save the hash of this password instead of the actual pw
+        [DisplayName("Password"), PasswordPropertyText, Required]
+        public String password { get; set; }
         public int accesslvl { get; set; }
 
         public String teamIdentifier { get; set; }
+
+        [NotMapped]
+        public bool[] role { get; set; } //used on the view for checkboxes
 
 
     }
