@@ -14,7 +14,10 @@ namespace OCRC.Models
         public int year { get; set; }
         public List<Ranking> rank { get; set; }
         public String school { get; set; }
-       
+        public int age { get; set; }
+        public int grade { get; set; }
+
+
         public static List<Search> getSearchResultsForActive()
         {
             
@@ -41,11 +44,15 @@ namespace OCRC.Models
                     Repo.addStatus(status);
                     s.fname = kid.fname;
                     s.lname = kid.lname;
+                    s.age = kid.age;
+                    s.grade = kid.grade;
                     s.school = kid.school;
 
                 }
                 if (status.active.Equals("active"))
                 {
+                    s.age = kid.age;
+                    s.grade = kid.grade;
                     s.fname = kid.fname;
                     s.lname = kid.lname;
                     s.school = kid.school;
@@ -61,12 +68,8 @@ namespace OCRC.Models
 
                     
                 }
-                r.statusID = status.statusID;
-                r.userID = 1;
-                r.dateCreated = DateTime.Now;
-                r.rank = 5;
-                r.sportType = "Basketball";
-                Repo.addRanking(r);
+
+               
                 searchResults.Add(s);
 
             }
