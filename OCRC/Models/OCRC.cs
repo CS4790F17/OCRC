@@ -61,6 +61,23 @@ namespace OCRC.Models
             }
         }
 
+        public static void addStatus(Status status)
+        {
+            try
+            {
+                using(OCRCDbContext db = new OCRCDbContext())
+                {
+                    db.Statuses.Add(status);
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+        }
+
         /// <summary>
         /// Adds a note to the database
         /// </summary>
@@ -401,7 +418,7 @@ namespace OCRC.Models
         [Key]
         public int statusID { get; set; }
         [DisplayName("Kid")]
-        public int kidIdentifier { get; set; }
+        public String kidIdentifier { get; set; }
         [DisplayName("Kid Status")]
         public String active { get; set; }
         [DisplayName("Modified Date")]

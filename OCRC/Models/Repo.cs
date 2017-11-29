@@ -68,6 +68,19 @@ namespace OCRC.Models
             }
         }
 
+        public static void addStatus(Status status)
+        {
+            try
+            {
+                OCRC.addStatus(status);
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+        }
+
         public static void setNotesDateModified(DateTime dateModified)
         {
             OCRC.setNotesDateModified(dateModified);

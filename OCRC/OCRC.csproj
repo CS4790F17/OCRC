@@ -180,6 +180,7 @@
     <Compile Include="Models\OCRC_API.cs" />
     <Compile Include="Models\Repo.cs" />
     <Compile Include="Models\ReturnResult.cs" />
+    <Compile Include="Models\SearchViewModel.cs" />
     <Compile Include="Models\UserLogin.cs" />
     <Compile Include="Models\Search.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
