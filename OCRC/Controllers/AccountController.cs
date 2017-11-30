@@ -78,6 +78,7 @@ namespace OCRC.Controllers
             public string email { get; set; }  // Add this
         }
 
+        [AllowAnonymous]
         public ActionResult ResetPassword(string rt)
         {
             ResetPasswordModel model = new ResetPasswordModel();
@@ -92,10 +93,10 @@ namespace OCRC.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (forgot.IsValid(forgot.email))
+                if (true)
                     {
                     // Generae password token that will be used in the email link to authenticate user
-                    var token = WebSecurity.GeneratePasswordResetToken(forgot.email);
+                    string token = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
                     // Generate the html link sent via email
                     string resetLink = "<a href='"
                        + Url.Action("ResetPassword", "Account", new { rt = token }, "http")
@@ -104,9 +105,9 @@ namespace OCRC.Controllers
                     // Email stuff
                     string subject = "Reset your password for asdf.com";
                     string body = "You link: " + resetLink;
-                    string from = "donotreply@asdf.com";
+                    string from = "hoangcao@mail.weber.edu";
 
-                    MailMessage message = new MailMessage(from, forgot.email);
+                    MailMessage message = new MailMessage(from, "lastristory12@yahoo.com");
                     message.Subject = subject;
                     message.Body = body;
                     SmtpClient client = new SmtpClient();
