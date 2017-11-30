@@ -77,7 +77,7 @@ namespace OCRC.Models
             catch (Exception e)
             {
 
-                throw;
+                return;
             }
         }
 
