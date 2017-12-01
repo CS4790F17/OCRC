@@ -104,8 +104,8 @@ namespace OCRC.Controllers
                        + "'>Reset Password Link</a>";
 
                     // Email stuff
-                    string subject = "Reset your password for asdf.com";
-                    string body = "You link: " + resetLink;
+                    string subject = "Reset your password for" + forgot.email;
+                    string body = "Please click this clink to reset your password: " + resetLink;
                     string from = "hoangcao@mail.weber.edu";
 
                     MailMessage message = new MailMessage(from, forgot.email);
@@ -149,7 +149,7 @@ namespace OCRC.Controllers
         {
             if (ModelState.IsValid)
             {
-                bool resetResponse = WebSecurity.ResetPassword(model.ReturnToken, model.password);
+                bool resetResponse = WebSecurity.ResetPassword(model.ReturnToken, model.Password);
                 if (resetResponse)
                 {
                     ViewBag.Message = "Successfully Changed";

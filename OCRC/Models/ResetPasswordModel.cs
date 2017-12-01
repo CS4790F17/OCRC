@@ -11,7 +11,7 @@ namespace OCRC.Models
         [Required]
         [Display(Name = "New Password")]
         [DataType(DataType.Password)]
-        public string password { get; set; }
+        public string Password { get; set; }
 
         [Required]
         [Display(Name = "Confirm Password")]
