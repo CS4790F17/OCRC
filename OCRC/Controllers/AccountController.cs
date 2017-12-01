@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Net.Mail;
 using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -93,7 +94,7 @@ namespace OCRC.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (true)
+                if (forgot.IsValid(forgot.email))
                     {
                     // Generae password token that will be used in the email link to authenticate user
                     string token = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
@@ -107,10 +108,20 @@ namespace OCRC.Controllers
                     string body = "You link: " + resetLink;
                     string from = "hoangcao@mail.weber.edu";
 
-                    MailMessage message = new MailMessage(from, "lastristory12@yahoo.com");
+                    MailMessage message = new MailMessage(from, forgot.email);
                     message.Subject = subject;
                     message.Body = body;
-                    SmtpClient client = new SmtpClient();
+                    message.BodyEncoding = Encoding.UTF8;
+                    message.IsBodyHtml = true;
+                    SmtpClient client = new SmtpClient
+                    {
+                        Host = "smtp.gmail.com",
+                        Port = 587,
+                        EnableSsl = true,
+                        UseDefaultCredentials = false,
+                        Credentials = new System.Net.NetworkCredential("hoangcao@mail.weber.edu", "Thikim22"),
+                        DeliveryMethod = SmtpDeliveryMethod.Network
+                    };
 
                     // Attempt to send the email
                     try

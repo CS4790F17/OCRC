@@ -16,7 +16,7 @@ namespace OCRC.Models
         public string email { get; set; }
         public bool IsValid(string _email)
         {
-            using (var cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|OCRC.mdf;Integrated Security=True;Connect Timeout=30"))
+            using (var cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Hoang\CS4790\OCRC\OCRC\App_Data\DefaultConnection.mdf;Integrated Security=True;Connect Timeout=30"))
             {
                 string _sql = @"SELECT [email] FROM [dbo].[User] " +
                        @"WHERE [email] = @u";
