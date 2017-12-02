@@ -3,6 +3,13 @@
 @{
     ViewBag.Title = "Sport Search";
 }
+
+@{ 
+    var dbContext = new OCRC.Models.OCRCDbContext();
+    String s= dbContext.Rankings.Find(1).sportType;
+    ViewBag.Title = s;
+}
+
 <div class="navbar-header">
     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
@@ -93,7 +100,7 @@
                 <th scope="col">Rank</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="SearchResults">
         @{ int num = 1;}
       @foreach (var item in Model.allOfThem)
       {
@@ -109,6 +116,14 @@
          }
         </tbody>
     </table>
+
+    @Ajax.ActionLink("Link", "MyAction", Model,new AjaxOptions
+                   {
+                       UpdateTargetId = "SearchResults", // <-- DOM element ID to update
+                       InsertionMode = InsertionMode.Replace, // <-- Replace the content of DOM element
+                       HttpMethod = "GET" // <-- HTTP method
+
+                   })
 
 </div>
 
@@ -161,6 +176,9 @@
                     <br />
                     <br />
                     <button type="submit" class="btn btn-primary">Search</button>
+
+ 
+
 
                 </form>
             </div>

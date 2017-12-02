@@ -9,11 +9,9 @@ namespace OCRC.Models
     {
         
         public List<Search> searches { get; set; }
-        public List<Sport> sports { get; set; }
-        
+        public List<Sport> sports { get; set; }      
         public List<Search> allOfThem { get; set; }
-
-
+        
         public List<Sport> getAllSports()
         {
             return null;

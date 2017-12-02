@@ -14,6 +14,8 @@ namespace OCRC.Controllers
             return View();
         }
 
+        
+
         //Nas
         public PartialViewResult _KidDetails()
         {
@@ -25,39 +27,28 @@ namespace OCRC.Controllers
 
             return PartialView(kid);
         }
+
+        
+        public ActionResult MyAction(SearchViewModel svm)
+        {
+            
+            Search s = new Search { fname = "Ajax", lname = "Ajax", age = 2 };
+            s.rank = new List<Ranking>();
+            s.rank.Add(new Ranking {rank=3});
+            s.year = 2000;
+            svm.allOfThem.Add(s);
+
+            return View("Result",svm);
+        }
         
 
         //Yi Lao (Ming)-------------------------
         public ActionResult Result()
         {
-            //var allSports = OCRC_API.getAllSports();
             SearchViewModel svm = new SearchViewModel();
             svm.sports = OCRC_API.getAllSports();
             svm.searches = Search.getSearchResultsForActive();
-            svm.allOfThem = new List<Search>();
-
-            //TODO:Move to repo. a method that takes List<Search> and returns List<Search>.
-            foreach (var aSearch in svm.searches)
-            {
-                int z = 0;
-                foreach (var x in aSearch.rank)
-                {
-                    Search s = new Search();
-                    s.fname = aSearch.fname;
-                    s.lname = aSearch.lname;
-                    s.age = aSearch.age;
-                    s.grade = aSearch.grade;
-                    s.school = aSearch.school;
-                    s.rank = new List<Ranking>();
-                    s.rank.Add(aSearch.rank[z]);
-                    s.year = aSearch.year;
-                    z++;
-                    
-                    svm.allOfThem.Add(s);
-                }
-
-            }
-
+            svm.allOfThem = Repo.getSeachesPerRank(svm.searches);
 
             return View(svm);
         }

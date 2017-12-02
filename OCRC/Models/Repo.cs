@@ -68,6 +68,40 @@ namespace OCRC.Models
             }
         }
 
+        public static List<Search> getSeachesPerRank(List<Search> searches)
+        {
+            try
+            {
+                List<Search> result = new List<Search>();
+                foreach (var aSearch in searches)
+                {
+                    int z = 0;
+                    foreach (var x in aSearch.rank)
+                    {
+                        Search s = new Search();
+                        s.fname = aSearch.fname;
+                        s.lname = aSearch.lname;
+                        s.age = aSearch.age;
+                        s.grade = aSearch.grade;
+                        s.school = aSearch.school;
+                        s.rank = new List<Ranking>();
+                        s.rank.Add(aSearch.rank[z]);
+                        s.year = aSearch.year;
+                        z++;
+                        result.Add(s);
+                    }
+                }
+
+                return result;
+
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+        }
+
         public static void addStatus(Status status)
         {
             try
