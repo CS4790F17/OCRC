@@ -10,24 +10,24 @@ namespace OCRC.Models
 {
     public class ResetPasswordModel
     {
+        [Required]
         [Display(Name = "User name")]
         [EmailAddress]
         public string email { get; set; }
 
         [Required]
+        [Display(Name = "Old Password")]
+        [DataType(DataType.Password)]
+        public string oldPassword { get; set; }
+
+        [Required]
         [Display(Name = "New Password")]
         [DataType(DataType.Password)]
-        public string Password { get; set; }
+        public string NewPassword { get; set; }
 
-        [Required]
-        [Display(Name = "Confirm Password")]
-        [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "New password and confirmation does not match.")]
-        public string ConfirmPassword { get; set; }
-
-        [Required]
+      
         public string ReturnToken { get; set; }
-        public bool IsValid(string _email)
+        public string returnemail(string _email)
         {
             using (var cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Hoang\CS4790\OCRC\OCRC\App_Data\OCRC.mdf;Integrated Security=True"))
             {
@@ -39,23 +39,12 @@ namespace OCRC.Models
                     .Value = _email;
                 cn.Open();
                 var reader = cmd.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    reader.Dispose();
-                    cmd.Dispose();
-                    return true;
-                }
-                else
-                {
-                    reader.Dispose();
-                    cmd.Dispose();
-                    return false;
-                }
+                return _sql;
             }
         }
-        public bool confirm(string _ConfirmPassword, string _ReturnToken)
+        public bool confirm(string _ReturnToken)
         {
-            if (ConfirmPassword == _ConfirmPassword && ReturnToken == _ReturnToken)
+            if (ReturnToken == _ReturnToken)
                 return true;
             else
             {
