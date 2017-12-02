@@ -119,7 +119,7 @@ namespace OCRC.Controllers
                         Port = 587,
                         EnableSsl = true,
                         UseDefaultCredentials = false,
-                        Credentials = new System.Net.NetworkCredential("hoangcao@mail.weber.edu", "password for email"),
+                        Credentials = new System.Net.NetworkCredential("hoangcao@mail.weber.edu", "Thikim22"),
                         DeliveryMethod = SmtpDeliveryMethod.Network
                     };
 
@@ -149,15 +149,19 @@ namespace OCRC.Controllers
         {
             if (ModelState.IsValid)
             {
-            
-                if (model.IsValid(model.Password, model.ConfirmPassword, model.ReturnToken))
+                if (model.IsValid(model.email))
                 {
-                    ViewBag.Message = "Successfully Changed";
+                    MembershipUser u = Membership.GetUser(model.email);
+                    if (u.ChangePassword(model.Password, model.ConfirmPassword) && model.IsValid(model.ConfirmPassword, model.ReturnToken))
+                    {
+                        ViewBag.Message = "Successfully Changed";
+                    }
+                    else
+                    {
+                        ViewBag.Message = "Something went horribly wrong!";
+                    }
                 }
-                else
-                {
-                    ViewBag.Message = "Something went horribly wrong!";
-                }
+                else { ModelState.AddModelError("", "No user found by that email."); }
             }
             return View(model);
         }
