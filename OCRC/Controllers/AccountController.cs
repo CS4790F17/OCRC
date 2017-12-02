@@ -149,9 +149,7 @@ namespace OCRC.Controllers
         {
             if (ModelState.IsValid)
             {                 
-                    string thisUser = Membership.GetUserNameByEmail(model.returnemail(model.email));
-                    MembershipUser mu = Membership.GetUser(thisUser);
-                    if (mu.ChangePassword(model.oldPassword, model.NewPassword))
+                    if(model.changepassword(model.email,model.NewPassword))
                     {
                         ViewBag.Message = "Successfully Changed";
                     }
