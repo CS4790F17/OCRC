@@ -119,7 +119,7 @@ namespace OCRC.Controllers
                         Port = 587,
                         EnableSsl = true,
                         UseDefaultCredentials = false,
-                        Credentials = new System.Net.NetworkCredential("hoangcao@mail.weber.edu", "Thikim22"),
+                        Credentials = new System.Net.NetworkCredential("hoangcao@mail.weber.edu", "password for email"),
                         DeliveryMethod = SmtpDeliveryMethod.Network
                     };
 
