@@ -119,7 +119,7 @@ namespace OCRC.Controllers
                         Port = 587,
                         EnableSsl = true,
                         UseDefaultCredentials = false,
-                        Credentials = new System.Net.NetworkCredential("hoangcao@mail.weber.edu", "Thikim22"),
+                        Credentials = new System.Net.NetworkCredential("hoangcao@mail.weber.edu", "password for email"),
                         DeliveryMethod = SmtpDeliveryMethod.Network
                     };
 
@@ -148,17 +148,24 @@ namespace OCRC.Controllers
         public ActionResult ResetPassword(ResetPasswordModel model)
         {
             if (ModelState.IsValid)
-            {                 
-                    if(model.changepassword(model.email,model.NewPassword))
+            {
+                if (model.NewPassword == model.ConfirmPassword)
+                {
+                    if (model.changepassword(model.email, model.NewPassword))
                     {
                         ViewBag.Message = "Successfully Changed";
                     }
                     else
                     {
-                        ViewBag.Message = "Something went horribly wrong!";
+                        ModelState.AddModelError("", "Something went horribly wrong!");
                     }
-                }        
-            return View(model);
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Password didn't match");
+                }
+                    }        
+                return View(model);
         }
     }
 }
