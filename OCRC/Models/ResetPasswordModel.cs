@@ -23,10 +23,13 @@ namespace OCRC.Models
         [Required]
         [Display(Name = "Confirm Password")]
         [DataType(DataType.Password)]
+        [Compare("NewPassword", ErrorMessage = "New password and confirmation does not match.")]
         public string ConfirmPassword { get; set; }
 
-      
+        [Required]
+        [Display(Name = "Token")]
         public string ReturnToken { get; set; }
+
         public string returnemail(string _email)
         {
             using (var cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Hoang\CS4790\OCRC\OCRC\App_Data\OCRC.mdf;Integrated Security=True"))
@@ -66,15 +69,6 @@ namespace OCRC.Models
                 {
                     return false;
                 }
-            }
-        }
-        public bool confirm(string _ReturnToken)
-        {
-            if (ReturnToken == _ReturnToken)
-                return true;
-            else
-            {
-                return false;
             }
         }
     }

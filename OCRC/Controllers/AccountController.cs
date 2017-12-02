@@ -80,10 +80,10 @@ namespace OCRC.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult ResetPassword(string token)
+        public ActionResult ResetPassword(string rt)
         {
             ResetPasswordModel model = new ResetPasswordModel();
-            model.ReturnToken = token;
+            model.ReturnToken =rt;
             return View(model);
         }
 
@@ -119,7 +119,7 @@ namespace OCRC.Controllers
                         Port = 587,
                         EnableSsl = true,
                         UseDefaultCredentials = false,
-                        Credentials = new System.Net.NetworkCredential("hoangcao@mail.weber.edu", "password for email"),
+                        Credentials = new System.Net.NetworkCredential("hoangcao@mail.weber.edu", "Thikim22"),
                         DeliveryMethod = SmtpDeliveryMethod.Network
                     };
 
@@ -149,23 +149,18 @@ namespace OCRC.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (model.NewPassword == model.ConfirmPassword)
-                {
-                    if (model.changepassword(model.email, model.NewPassword))
+ 
+               if (model.changepassword(model.email, model.NewPassword))
                     {
                         ViewBag.Message = "Successfully Changed";
                     }
-                    else
+               else
                     {
                         ModelState.AddModelError("", "Something went horribly wrong!");
                     }
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Password didn't match");
-                }
-                    }        
-                return View(model);
+                
+            }        
+               return View(model);
         }
     }
 }
