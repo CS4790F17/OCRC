@@ -26,7 +26,6 @@ namespace OCRC.Models
         [Compare("NewPassword", ErrorMessage = "New password and confirmation does not match.")]
         public string ConfirmPassword { get; set; }
 
-        [Required]
         [Display(Name = "Token")]
         public string ReturnToken { get; set; }
 
