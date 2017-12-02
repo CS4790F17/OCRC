@@ -149,8 +149,8 @@ namespace OCRC.Controllers
         {
             if (ModelState.IsValid)
             {
-                bool resetResponse = WebSecurity.ResetPassword(model.ReturnToken, model.Password);
-                if (resetResponse)
+            
+                if (model.IsValid(model.Password, model.ConfirmPassword, model.ReturnToken))
                 {
                     ViewBag.Message = "Successfully Changed";
                 }

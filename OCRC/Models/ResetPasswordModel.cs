@@ -21,5 +21,15 @@ namespace OCRC.Models
 
         [Required]
         public string ReturnToken { get; set; }
+
+        public bool IsValid(string _Password, string _ConfirmPassword, string _ReturnToken)
+        {
+            if (Password == _Password && ConfirmPassword == _ConfirmPassword && ReturnToken == _ReturnToken)
+                return true;
+            else
+            {
+                return false;
+            }
+        }
     }
 }
