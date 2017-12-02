@@ -15,7 +15,7 @@ using WebMatrix.WebData;
 
 namespace OCRC.Controllers
 {
-    ///[Authorize]
+
     public class AccountController : Controller
     {
         // GET: Account
@@ -80,10 +80,10 @@ namespace OCRC.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult ResetPassword(string rt)
+        public ActionResult ResetPassword(string token)
         {
             ResetPasswordModel model = new ResetPasswordModel();
-            model.ReturnToken = rt;
+            model.ReturnToken = token;
             return View(model);
         }
 
@@ -152,7 +152,7 @@ namespace OCRC.Controllers
                 if (model.IsValid(model.email))
                 {
                     MembershipUser u = Membership.GetUser(model.email);
-                    if (u.ChangePassword(model.Password, model.ConfirmPassword) && model.IsValid(model.ConfirmPassword, model.ReturnToken))
+                    if (u.ChangePassword(model.Password, model.ConfirmPassword) && model.confirm(model.ConfirmPassword, model.ReturnToken))
                     {
                         ViewBag.Message = "Successfully Changed";
                     }

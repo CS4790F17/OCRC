@@ -422,8 +422,6 @@ namespace OCRC.Models
        public DbSet<Sport> Sports { get; set; }
        public DbSet<Status> Statuses { get; set; }
        public DbSet<User> Users { get; set; }
-       public OCRCDbContext(): base("DefaultConnection") { }
-       public DbSet<UserProfile> UserProfiles { get; set; }
     }
 
 }

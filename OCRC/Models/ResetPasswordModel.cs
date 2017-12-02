@@ -53,7 +53,7 @@ namespace OCRC.Models
                 }
             }
         }
-        public bool IsValid(string _ConfirmPassword, string _ReturnToken)
+        public bool confirm(string _ConfirmPassword, string _ReturnToken)
         {
             if (ConfirmPassword == _ConfirmPassword && ReturnToken == _ReturnToken)
                 return true;
