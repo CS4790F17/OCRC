@@ -15,7 +15,7 @@ using WebMatrix.WebData;
 
 namespace OCRC.Controllers
 {
-
+    
     public class AccountController : Controller
     {
         // GET: Account
@@ -119,7 +119,7 @@ namespace OCRC.Controllers
                         Port = 587,
                         EnableSsl = true,
                         UseDefaultCredentials = false,
-                        Credentials = new System.Net.NetworkCredential("hoangcao@mail.weber.edu", "Thikim22"),
+                        Credentials = new System.Net.NetworkCredential("hoangcao@mail.weber.edu", "Password for email"),
                         DeliveryMethod = SmtpDeliveryMethod.Network
                     };
 
