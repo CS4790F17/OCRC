@@ -1,0 +1,40 @@
+﻿@model OCRC.Models.SearchViewModel
+
+
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Year</th>
+                <th scope="col">Rank</th>
+                <th scope="col">Age</th>
+                <th scope="col">School</th>
+                <th scope="col">Grade</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @{ int num = 1;}
+            @foreach (var item in Model.searches)
+            {
+
+                <tr>
+                    <th scope="row">@num</th>@{num++;}
+                    <td>@item.fname</td>
+                    <td>@item.lname</td>
+                    <td>@item.year</td>
+                    <td>@item.rank[0].rank</td>
+                    <td>@item.age</td>
+                    <td>@item.school</td>
+                    <td>@item.grade</td>
+
+
+                </tr>
+
+              }
+        </tbody>
+    </table>
+

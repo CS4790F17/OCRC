@@ -11,16 +11,12 @@ namespace OCRC.Models
         public List<Search> searches { get; set; }
         public List<Sport> sports { get; set; }
         
-        public List<Search> allOfThem { get; set; }
-
-
-        public List<Sport> getAllSports()
+       public static SearchViewModel getSearchViewModel()
         {
-            return null;
-        }
-        public List<Search> getAllSearchResults()
-        {
-            return null;
+            SearchViewModel svm = new SearchViewModel();
+            svm.searches = Search.getSearchResultsForActive();
+            svm.sports = OCRC_API.getAllSports();
+            return svm;
         }
     }
 }

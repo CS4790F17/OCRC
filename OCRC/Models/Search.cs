@@ -22,6 +22,7 @@ namespace OCRC.Models
         {
             
             List<Search> searchResults = new List<Search>();
+            List<Search> allSearchWithSplitRanking = new List<Search>();
             List<Kid> kids = OCRC_API.getAllKids();
             List<Registration> reg = OCRC_API.getAllRegistrations();
             List<Ranking> allrankings = Repo.getAllRankings();
@@ -33,7 +34,7 @@ namespace OCRC.Models
                 s.rank = new List<Ranking>();
                 Ranking r = new Ranking();
                 
-
+                //if kid does not exist
                 Status status = Repo.findStatusById(kid.kidID);
                 if (status == null)
                 {
@@ -65,16 +66,35 @@ namespace OCRC.Models
                             s.rank.Add(Ranking);
                         }
                     }
-
                     
                 }
-
                
                 searchResults.Add(s);
+                //Splitting the Search Ranking list into individual Search Objects so each ranking will only have one ranking in the list instead of possibly more then one
+                foreach (var aSearch in searchResults)
+                {
+                    int z = 0;
+                    foreach (var x in aSearch.rank)
+                    {
+                        Search ns = new Search();
+                        ns.fname = aSearch.fname;
+                        ns.lname = aSearch.lname;
+                        ns.age = aSearch.age;
+                        ns.grade = aSearch.grade;
+                        ns.school = aSearch.school;
+                        ns.rank = new List<Ranking>();
+                        ns.rank.Add(aSearch.rank[z]);
+                        ns.year = aSearch.year;
+                        z++;
+
+                        allSearchWithSplitRanking.Add(s);
+                    }
+
+                }
 
             }
 
-            return searchResults;
+            return allSearchWithSplitRanking;
         }
 
 

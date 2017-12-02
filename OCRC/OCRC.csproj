@@ -258,6 +258,7 @@
     <Content Include="Views\Account\UserList.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Home\_KidDetails.cshtml" />
+    <Content Include="Views\Shared\ResultPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
