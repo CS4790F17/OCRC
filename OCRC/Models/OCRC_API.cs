@@ -9,6 +9,7 @@ namespace OCRC.Models
     {
         public int sportID { get; set; }
         public String sportName { get; set; }
+        
     }
 
     public class Kid
@@ -50,7 +51,7 @@ namespace OCRC.Models
     public class OCRC_API
     {
 
-
+        
         public static List<Sport> getAllSports()
         {
             List<Sport> sports = new List<Sport>()

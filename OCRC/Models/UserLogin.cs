@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using OCRC.Models;
 
+
 namespace OCRC.Models
 {
     
@@ -50,7 +51,7 @@ namespace OCRC.Models
                      .Value = _accesslvl;
                 cmd.Parameters
                      .Add(new SqlParameter("@p", SqlDbType.NVarChar))
-                     .Value = Helpers.SHA1.Encode(_password);
+                     .Value = SHA1.Encode(_password);
                  cn.Open();
                  var reader = cmd.ExecuteReader();
                  if (reader.HasRows)
