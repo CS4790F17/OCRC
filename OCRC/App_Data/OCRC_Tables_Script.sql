@@ -42,3 +42,10 @@ CREATE TABLE [dbo].[Ranking] (
 	FOREIGN KEY ([userID]) REFERENCES [dbo].[User] ([userID]),
 	CONSTRAINT rankSurKey UNIQUE (statusID,userID,dateCreated,sportType)
 );
+
+CREATE TABLE [dbo].[PasswordReset] (
+	[passwordresetID]	INT		IDENTITY (1, 1)	NOT NULL,
+	[token]				VARCHAR(100)			NULL,
+	[email]				VARCHAR(100) 			NOT NULL UNIQUE,
+	FOREIGN KEY ([email]) REFERENCES [dbo].[User] ([email])
+);
