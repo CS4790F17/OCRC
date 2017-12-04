@@ -6,9 +6,60 @@
 
 @{ 
     var dbContext = new OCRC.Models.OCRCDbContext();
-    String s= dbContext.Rankings.Find(1).sportType;
+    String s = dbContext.Rankings.Find(1).sportType;
     ViewBag.Title = s;
 }
+<script>
+
+    $(function () {
+        $('#btnDD').on("click", function () {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("notMyAction")',
+                data: { 'value': $('#txtName').val() }, //pass your filters here, variable name in the controller should be named value
+                datatype: 'json',
+                cache: false,
+                success: (data) => {
+                    //$('#txtName').val(data.n); //set the value of whats in the box with the id txtName
+                    buildTableBody(data);
+                }
+
+            })
+            return false;
+        });
+    });
+
+    //TODO: Call the function when the user starts searching or filtering.
+    //TODO: Complete implementing the Json action.
+
+
+    //IN PROGRESS...
+    function buildTableBody(searchItem) {
+        document.getElementById("SearchResults").innerHTML = 
+            "<tr>" +
+            "<td>" + searchItem+ "<td>" +
+
+        "<tr>";
+
+        //            <tr>
+       //        <th scope="row">num</th>num++
+       //        <td>item.fname</td>
+       //        <td>item.lname</td>
+       //        <td>item.year</td>
+       //        <td>item.rank[0].rank</td>
+       //        <td>item.age</td>
+       //        <td>item.school</td>
+       //        <td>item.grade</td>
+       //
+       //
+       //    </tr>
+
+    }
+
+
+
+</script>
+
 
 <div class="navbar-header">
     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse" aria-expanded="false">
@@ -36,6 +87,14 @@
             </div>
             <button type="submit" class="btn btn-primary">Search</button>
         </form>
+
+@using (Html.BeginForm())
+{
+    @Html.TextBox("txtName", 0)
+    <button id="btnDD">sub</button>
+}
+
+
     </div>
 </div>
 <br />
@@ -55,7 +114,7 @@
                         <input type="checkbox"> @item.sportName
                     </label>
                 </div>
-            }
+                }
 
 
 
@@ -63,7 +122,7 @@
         <form class="row form-inline">
 
             <h3>More Filter</h3>
-            <select class="form-control">
+            <select id="gradeFilter" class="form-control">
                 <option value="Grade">Grade</option>
                 
                 @for (int i = 1; i < 14; i++)
@@ -72,7 +131,7 @@
                 }
             </select>
 
-            <select class="form-control">
+            <select id="ageFilter" class="form-control">
                 <option value="Age">Age</option>
                 @for (int i = 5; i < 20; i++)
                 {
@@ -126,13 +185,7 @@
         </tbody>
     </table>
 
-    @Ajax.ActionLink("Link", "MyAction", Model,new AjaxOptions
-                   {
-                       UpdateTargetId = "SearchResults", // <-- DOM element ID to update
-                       InsertionMode = InsertionMode.Replace, // <-- Replace the content of DOM element
-                       HttpMethod = "GET" // <-- HTTP method
 
-                   })
 
 </div>
 
@@ -161,9 +214,7 @@
 
 
 
-                </form>
 
-                <form>
 
                     <h3>More Filter</h3>
                     <select class="form-control">

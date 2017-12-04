@@ -28,17 +28,34 @@ namespace OCRC.Controllers
             return PartialView(kid);
         }
 
-        
-        public ActionResult MyAction(SearchViewModel svm)
+ 
+
+        public JsonResult notMyAction(int value)
         {
             
-            Search s = new Search { fname = "Ajax", lname = "Ajax", age = 2 };
-            s.rank = new List<Ranking>();
-            s.rank.Add(new Ranking {rank=3});
-            s.year = 2000;
-            svm.allOfThem.Add(s);
 
-            return View("Result",svm);
+            Search s = new Search { fname = "Ajax", lname = "Ajax", age = 2 };
+            SearchViewModel svm = new SearchViewModel();
+
+            svm.searches = Search.getSearchResultsForActive();
+            svm.allOfThem = Repo.getSeachesPerRank(svm.searches);
+
+            List<Search> res = new List<Search>();
+
+
+
+            svm.sports = OCRC_API.getAllSports();
+            foreach (var item in  svm.allOfThem)
+            {
+                if(item.age == value)
+                {
+                    res.Add(item);
+                }
+             }
+
+           
+
+            return new JsonResult { Data = new { n = res } };
         }
         
 
