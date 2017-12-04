@@ -7,6 +7,7 @@ using OCRC.Models;
 
 namespace OCRC.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         public ActionResult Index()
@@ -14,15 +15,30 @@ namespace OCRC.Controllers
             return View();
         }
 
-        
+        //Nas
+        public PartialViewResult _KidDetails()
+        {
+            Kid kid = new Kid();
+            kid.fname = "some";
+            kid.lname = "lsome";
+            kid.grade = 3;
+            kid.school = "MIT";
+
+            return PartialView(kid);
+        }
         
 
         //Yi Lao (Ming)-------------------------
         public ActionResult Result()
         {
-            ViewBag.Message = "this is the result page";
-            
-            return View();
+            List<object> passData = new List<object>();
+            var allSports = OCRC_API.getAllSports();
+            var allKids = OCRC_API.getAllKids();
+            passData.Add(allSports);
+            passData.Add(allKids);
+
+
+            return View(passData);
         }
     }
 }

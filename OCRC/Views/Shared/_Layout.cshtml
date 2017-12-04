@@ -18,8 +18,9 @@
     @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">*@
 
 </head>
+
 <body>
-    
+
     <div class="container">
         <nav class="navbar navbar-default">
             <div class="container-fluid">
@@ -34,7 +35,7 @@
                     </button>
 
 
-                    <a class="navbar-brand" href="#">Ogden City</a>
+                    <a class="navbar-brand" href="/">Ogden City</a>
                 </div>
 
 
@@ -42,18 +43,14 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-
-                        <li role="presentation" class="active">@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li role="presentation">@Html.ActionLink("Report", "About", "Home")</li>
-                        <li role="presentation">@Html.ActionLink("Data", "Result", "Home")</li>
                         <li role="presentation">@Html.ActionLink("Result", "Result", "Home")</li>
-                        <li role="presentation">@Html.ActionLink("Register user", "RegisterUser", "Account")</li>
-                        <li role="presentation">@Html.ActionLink("User List", "UserList", "Account")</li>
                     </ul>
+                    
+                    <input type="hidden" name="access" value=@ViewBag.access /><!-- store the access level for user link population-->
 
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Logout</a></li>
-                        <li><a href="#">Username</a></li>
+                    <ul id="userLinks" class="nav navbar-nav navbar-right">
+                        <li><a href="/Account/logout">Logout</a></li>
+
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
