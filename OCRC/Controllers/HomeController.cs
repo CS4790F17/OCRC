@@ -30,8 +30,14 @@ namespace OCRC.Controllers
         //Yi Lao (Ming)-------------------------
         public ActionResult Result()
         {
+            List<object> passData = new List<object>();
             var allSports = OCRC_API.getAllSports();
-            return View(allSports);
+            var allKids = OCRC_API.getAllKids();
+            passData.Add(allSports);
+            passData.Add(allKids);
+
+
+            return View(passData);
         }
     }
 }
