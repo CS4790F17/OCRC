@@ -176,9 +176,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\SHA1.cs" />
+    <Compile Include="Models\ForgotPasswordModel.cs" />
     <Compile Include="Models\OCRC.cs" />
     <Compile Include="Models\OCRC_API.cs" />
     <Compile Include="Models\Repo.cs" />
+    <Compile Include="Models\ResetPasswordModel.cs" />
     <Compile Include="Models\ReturnResult.cs" />
     <Compile Include="Models\UserLogin.cs" />
     <Compile Include="Models\Search.cs" />
