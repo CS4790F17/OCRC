@@ -55,12 +55,6 @@ namespace OCRC.Controllers
         }
 
         [HttpGet]
-        public ActionResult ForgotPassword()
-        {
-            return View();
-        }
-
-        [HttpGet]
         public ActionResult Login()
         {
             UserLogin test = new UserLogin();
