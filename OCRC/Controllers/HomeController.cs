@@ -7,6 +7,7 @@ using OCRC.Models;
 
 namespace OCRC.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         public ActionResult Index()

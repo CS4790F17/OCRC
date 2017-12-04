@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel;
 using static OCRC.Models.Repo;
+using static OCRC.Controllers.AccountController;
 
 namespace OCRC.Models
 {
