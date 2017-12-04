@@ -250,6 +250,22 @@ namespace OCRC.Models
             }
         }
 
+        public static User findUserByEmail(String userEmail)
+        {
+            try
+            {
+                using(OCRCDbContext db = new OCRCDbContext())
+                {
+                    var user = db.Users.Where(it => it.email == userEmail).FirstOrDefault();
+                    return user;
+                }
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
+
         /// <summary>
         /// Returns a list of all the users
         /// </summary>

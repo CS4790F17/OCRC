@@ -167,6 +167,20 @@ namespace OCRC.Models
         {
             OCRC.setUserTeamIdentifier(teamIdentifier);
         }
+
+        public static User findUserByEmail(String userEmail)
+        {
+            try
+            {
+                var user = OCRC.findUserByEmail(userEmail);
+                return user;
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+        }
         // Eric
        
 
