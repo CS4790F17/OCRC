@@ -57,7 +57,7 @@ namespace OCRC.Models
                     .Value = _email;
                 cmd.Parameters
                     .Add(new SqlParameter("@v", SqlDbType.NVarChar))
-                    .Value = Helpers.SHA1.Encode(_NewPassword);
+                    .Value = SHA1.Encode(_NewPassword);
                 cn.Open();
                 var reader = cmd.ExecuteReader();
                 if(reader.RecordsAffected ==1)
