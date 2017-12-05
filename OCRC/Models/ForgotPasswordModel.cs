@@ -12,7 +12,7 @@ namespace OCRC.Models
     {
         [Required(ErrorMessage = "We need your email to send you a reset link!")]
         [Display(Name = "User name")]
-        [EmailAddress(ErrorMessage = "Not a valid email--what are you trying to do here?")]
+        [EmailAddress(ErrorMessage = "We cannot find any user with that email")]
         public string email { get; set; }
         public bool IsValid(string _email)
         {

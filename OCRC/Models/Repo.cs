@@ -163,6 +163,11 @@ namespace OCRC.Models
             OCRC.setUserAccesslvl(accesslvl);
         }
 
+        public static void setToken(string token)
+        {
+            OCRC.setToken(token);
+        }
+
         public static void setUserTeamIdentifier(string teamIdentifier)
         {
             OCRC.setUserTeamIdentifier(teamIdentifier);
@@ -181,8 +186,23 @@ namespace OCRC.Models
                 throw;
             }
         }
+
+
+        public static PasswordReset findTokenByEmail(String userEmail)
+        {
+            try
+            {
+                var token = OCRC.findTokenByEmail(userEmail);
+                return token;
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+        }
         // Eric
-       
+
 
         // Mohammed
 
