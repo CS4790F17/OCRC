@@ -30,11 +30,11 @@ namespace OCRC.Controllers
 
  
 
-        public JsonResult filterSearch(String[] sport, int age,int grade,String name, int year, String school)
+        public JsonResult filterSearch(String[] sport, int age,int grade,String year,String school)
         {
             //check if Json requested or return null;
 
-            List<Search> result = Repo.filterSearches(sport,age, grade,name,year,school);
+            List<Search> result = Repo.filterSearches(sport,age, grade,year,school);
 
             return new JsonResult { Data = new { n = result} };
         }
