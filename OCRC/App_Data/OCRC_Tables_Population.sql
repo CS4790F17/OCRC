@@ -24,8 +24,8 @@ INSERT INTO [dbo].[Ranking] VALUES (2,4,'07-18-2017 14:00',5,'Fishing');
 INSERT INTO [dbo].[Ranking] VALUES (2,4,'06-05-2017 23:59',6,'Swimming');
 INSERT INTO [dbo].[Ranking] VALUES (2,4,'05-02-2017 15:00',4,'Wrestling');
 
-INSERT INTO [dbo].[PasswordReset] VALUES ("token","email");
-INSERT INTO [dbo].[PasswordReset] VALUES ("token","email");
-INSERT INTO [dbo].[PasswordReset] VALUES ("token","email");
-INSERT INTO [dbo].[PasswordReset] VALUES ("token","email");
-INSERT INTO [dbo].[PasswordReset] VALUES ("token","email");
+INSERT INTO [dbo].[PasswordReset] VALUES ('token','email');
+INSERT INTO [dbo].[PasswordReset] VALUES ('token','email2');
+INSERT INTO [dbo].[PasswordReset] VALUES ('token','email3');
+INSERT INTO [dbo].[PasswordReset] VALUES ('token','email4');
+INSERT INTO [dbo].[PasswordReset] VALUES ('token','email5');
