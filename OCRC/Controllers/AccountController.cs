@@ -114,7 +114,6 @@ namespace OCRC.Controllers
         {
             if (ModelState.IsValid)
             {
-                ViewBag.Message = Session["FirstName"];
                 if (forgot.IsValid(forgot.email))
                     {
                     // Generae password token that will be used in the email link to authenticate user
@@ -125,7 +124,9 @@ namespace OCRC.Controllers
                        + "'>Reset Password Link</a>";
 
                     // Email stuff
-                    string subject = "Reset your password for" + forgot.email;
+                    User info = Repo.findUserByEmail(forgot.email);
+                    String name = info.fname + " " + info.lname;
+                    string subject = "Reset your password for " + name;
                     string body = "Please click this clink to reset your password: " + resetLink;
                     string from = "hoangcao@mail.weber.edu";
 
