@@ -175,7 +175,7 @@ namespace OCRC.Models
                 var user = OCRC.findUserByEmail(userEmail);
                 return user;
             }
-            catch (Exception e)
+            catch (Exception)
             {
 
                 throw;
