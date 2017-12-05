@@ -38,7 +38,7 @@ namespace OCRC.Models
         /// <returns>True if user exist and password is correct</returns>
         public bool IsValid(string _email, int _accesslvl, string _password)
         {
-            using (var cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Hoang\CS4790\OCRC\OCRC\App_Data\OCRC.mdf;Integrated Security=True"))
+            using (var cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename=|DataDirectory|OCRC.mdf;Integrated Security=True;Connect Timeout=30"))
             {
                 string _sql = @"SELECT [email] FROM [dbo].[User] " +
                        @"WHERE [email] = @u AND [password] = @p AND [accesslvl] = @s";
@@ -66,6 +66,22 @@ namespace OCRC.Models
                      cmd.Dispose();
                      return false;
                  }
+            }
+        }
+
+        public string returnFname(string _email)
+        {
+            using (var cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Hoang\CS4790\OCRC\OCRC\App_Data\OCRC.mdf;Integrated Security=True"))
+            {
+                string _sql = @"SELECT [fname] FROM [dbo].[User] " +
+                       @"WHERE [email] = @u";
+                var cmd = new SqlCommand(_sql, cn);
+                cmd.Parameters
+                    .Add(new SqlParameter("@u", SqlDbType.NVarChar))
+                    .Value = _email;
+                cn.Open();
+                var reader = cmd.ExecuteReader();
+                return (reader.ToString());
             }
         }
     }

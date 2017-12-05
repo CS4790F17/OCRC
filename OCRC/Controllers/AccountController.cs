@@ -39,14 +39,7 @@ namespace OCRC.Controllers
 
             return View(user);
         }
-
-        public ActionResult ForgotPassword()
-        {
-            ViewBag.Message = "Forgot Password.";
-
-            return View();
-        }
-
+        [Authorize]
         public ActionResult UserList()
         {
             ViewBag.Message = "UserList";
@@ -57,6 +50,7 @@ namespace OCRC.Controllers
         [HttpGet]
         public ActionResult ForgotPassword()
         {
+            ViewBag.Message = Session["FirstName"];
             return View();
         }
 
@@ -79,6 +73,9 @@ namespace OCRC.Controllers
                 {
                     ///SiteMapResolveEventHandler
                     FormsAuthentication.SetAuthCookie(user.email, user.rememberme);
+                    User info = Repo.findUserByEmail(user.email);
+                    Session["Username"] = info.fname + " " + info.lname;
+                    //=Session["Username"] =//
                     return RedirectToAction("Result", "Home");
                 }
                 else
@@ -117,6 +114,7 @@ namespace OCRC.Controllers
         {
             if (ModelState.IsValid)
             {
+                ViewBag.Message = Session["FirstName"];
                 if (forgot.IsValid(forgot.email))
                     {
                     // Generae password token that will be used in the email link to authenticate user
@@ -142,7 +140,7 @@ namespace OCRC.Controllers
                         Port = 587,
                         EnableSsl = true,
                         UseDefaultCredentials = false,
-                        Credentials = new System.Net.NetworkCredential("hoangcao@mail.weber.edu", "password for token"),
+                        Credentials = new System.Net.NetworkCredential("hoangcao@mail.weber.edu", "Thikim22"),
                         DeliveryMethod = SmtpDeliveryMethod.Network
                     };
 
