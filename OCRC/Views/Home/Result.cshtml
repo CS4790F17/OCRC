@@ -6,46 +6,78 @@
 
 <script>
 
+    let arr = [];
+    function sportClicked() {
+        arr = [];
+
+        $("label[name=lblCB]").each(function (index) {
+            if ($('input')[index+4].checked) { //needs adjustment, instead of hardcoding a 4, find the index of the first label
+                arr.push($(this).text());
+            }
+        });
+        runFilter(); // handles the onchange event for checkboxes
+    }
+
+    function searchAfterKeyPressed() {
+
+    }
+
     $(function () { // on click changed to a timeout
-        $('#btnDD').on("click", function () { //rename Id's to be self descriptive.
+        $('#btnDD').on("click", runFilter);
+        $('#ageFilter').on("change", runFilter);
+        $('#gradeFilter').on("change", runFilter);
+        $('#schoolInput').on('keyup change', runFilterAfterDelay);
+        $('#nameInput').on('keyup change', runFilterAfterDelay);
+        $('#yearInput').on('keyup change', runFilterAfterDelay);
+    });
+
+    var timeout = null;
+    function runFilterAfterDelay() {
+        clearTimeout(timeout);
+
+        timeout = setTimeout(function () {
+            runFilter();
+        }, 1000);
+    }
+
+
+    function runFilter() { //rename Id's to be self descriptive.
             $.ajax({
                 type: "POST",
-                url: '@Url.Action("notMyAction")', //better action name
-                data: { 'value': $('#txtName').val() }, //pass your filters here, variable name in the controller should be named value
+                url: '@Url.Action("filterSearch")', //better action name
+                data: {
+                    'sport': arr,
+                    'age': $('#ageFilter')[0].options[$('#ageFilter')[0].selectedIndex].value,
+                    'grade': $('#gradeFilter')[0].options[$('#gradeFilter')[0].selectedIndex].value,
+                    'name': $('#nameInput').text(),
+                    'year'  $('#yearInput').val(),
+                    'school': $('#nameInput').text()
+                },
                 datatype: 'json',
                 cache: false,
                 success: (data) => {
-                    //$('#txtName').val(data.n); //set the value of whats in the box with the id txtName
-                    console.log(data.n);
+                     document.title = "changed";
+                    
                     clearTableBody();
                     data.n.forEach(buildTableBody);
+                    if (document.getElementById("SearchResults").innerHTML == "") { //temp message
+                        document.getElementById("SearchResults").innerHTML = " No Results Found ";
+                    }
                 }
 
             })
             return false;
-        });
-    });
-
-    function getFilters() {
-        //sports
-        //age
-        //grade
-
-        //call this in the data section of the ajax call? must handle nulls ! OR return an object either way that gets checked int he controller
-        //return { 'sport': sport filter values, 'age':ages filter values, 'grade' :grade filter values }
-    }
+        }
 
     //TODO: Call the function when the user starts searching or filtering.
-
 
     function clearTableBody() {
         document.getElementById("SearchResults").innerHTML = "";
     }
 
-    //IN PROGRESS...
     function buildTableBody(searchItems) {
-        document.getElementById("SearchResults").innerHTML += 
-        "<tr>" + "<td>" + "</td>"+
+        document.getElementById("SearchResults").innerHTML +=
+        "<tr>" +
         "<td>" + searchItems.fname + "</td>" +
         "<td>" + searchItems.lname + "</td>" +
         "<td>" + searchItems.year + "</td>" +
@@ -53,8 +85,8 @@
         "<td>" + searchItems.age + "</td>" +
         "<td>" + searchItems.school + "</td>" +
         "<td>" + searchItems.grade + "</td>" +
+        "<td>" + searchItems.sport + "</td>" +
         "</tr>";
-
     }
 
 </script>
@@ -74,15 +106,15 @@
         <form class="form-inline">
             <div class="form-group ">
                 <label for="School" class="sr-only">School</label>
-                <input type="text" class="form-control" placeholder="School">
+                <input id="schoolInput" type="text" class="form-control" placeholder="School">
             </div>
             <div class="form-group">
                 <label for="Name" class="sr-only">Name</label>
-                <input type="text" class="form-control" placeholder="Name">
+                <input id="nameInput" type="text" class="form-control" placeholder="Name">
             </div>
             <div class="form-group">
                 <label for="Year" class="sr-only">Year</label>
-                <input type="text" class="form-control" placeholder="Year">
+                <input id="yearInput" type="number" class="form-control" placeholder="Year">
             </div>
             <button type="submit" class="btn btn-primary">Search</button>
         </form>
@@ -106,15 +138,12 @@
 
         <form>
             <h3>Filter By Sport</h3>
-            @foreach (var item in Model.sports)
-            {
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox"> @item.sportName
-                    </label>
-                </div>
+            <div id="sportsFilter">
+                @foreach (var item in Model.sports)
+                { //do no indent
+               <label  name="lblCB" class="checkbox"><input onclick="sportClicked()" name="@item.sportName" type="checkbox">@item.sportName</label>
                 }
-
+            </div>
 
 
         </form>
@@ -122,7 +151,7 @@
 
             <h3>More Filter</h3>
             <select id="gradeFilter" class="form-control">
-                <option value="Grade">Grade</option>
+                <option value="0">Grade</option>
                 
                 @for (int i = 1; i < 14; i++)
                 {
@@ -131,7 +160,7 @@
             </select>
 
             <select id="ageFilter" class="form-control">
-                <option value="Age">Age</option>
+                <option value="0">Age</option>
                 @for (int i = 5; i < 20; i++)
                 {
                     <option value="@i">@i</option>
@@ -151,7 +180,7 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col">#</th>
+
                 <th scope="col">First Name</th>
                 <th scope="col">Last Name</th>
                 <th scope="col">Year</th>
@@ -159,16 +188,17 @@
                 <th scope="col">Age</th>
                 <th scope="col">School</th>
                 <th scope="col">Grade</th>
+                <th scope="col">Sport</th>
                 
             </tr>
         </thead>
         <tbody id="SearchResults">
-        @{ int num = 1;}
+
       @foreach (var item in Model.allOfThem)
       {
           
             <tr>
-                <th scope="row">@num</th>@{num++;}
+
                 <td>@item.fname</td>
                 <td>@item.lname</td>
                 <td>@item.year</td>
@@ -176,6 +206,7 @@
                 <td>@item.age</td>
                 <td>@item.school</td>
                 <td>@item.grade</td>
+                <td>@item.sport</td>
                 
 
             </tr>

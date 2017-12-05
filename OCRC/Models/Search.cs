@@ -16,6 +16,7 @@ namespace OCRC.Models
         public String school { get; set; }
         public int age { get; set; }
         public int grade { get; set; }
+        public String sport { get; set; }
 
 
         public static List<Search> getSearchResultsForActive()
@@ -47,6 +48,9 @@ namespace OCRC.Models
                     s.age = kid.age;
                     s.grade = kid.grade;
                     s.school = kid.school;
+                    
+                    s.sport = Repo.getRankingByStatusId(status.statusID).sportType;
+                    
 
                 }
                 if (status.active.Equals("active"))
@@ -57,8 +61,9 @@ namespace OCRC.Models
                     s.lname = kid.lname;
                     s.school = kid.school;
                     s.year = OCRC_API.registrationYear(kid.kidID);
-             
-                    foreach(var Ranking in allrankings)
+                    s.sport = Repo.getRankingByStatusId(status.statusID).sportType;
+
+                    foreach (var Ranking in allrankings)
                     {
                         if(status.statusID == Ranking.statusID)
                         {

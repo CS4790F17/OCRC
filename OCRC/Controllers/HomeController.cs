@@ -30,32 +30,13 @@ namespace OCRC.Controllers
 
  
 
-        public JsonResult notMyAction(int value)
+        public JsonResult filterSearch(String[] sport, int age,int grade,String name, int year, String school)
         {
-            
+            //check if Json requested or return null;
 
-            Search s = new Search { fname = "Ajax", lname = "Ajax", age = 2 };
-            SearchViewModel svm = new SearchViewModel();
+            List<Search> result = Repo.filterSearches(sport,age, grade,name,year,school);
 
-            svm.searches = Search.getSearchResultsForActive();
-            svm.allOfThem = Repo.getSeachesPerRank(svm.searches);
-
-            List<Search> res = new List<Search>();
-
-
-
-            svm.sports = OCRC_API.getAllSports();
-            foreach (var item in  svm.allOfThem)
-            {
-                if(item.age == value)
-                {
-                    res.Add(item);
-                }
-             }
-
-           
-
-            return new JsonResult { Data = new { n = res } };
+            return new JsonResult { Data = new { n = result} };
         }
         
 
