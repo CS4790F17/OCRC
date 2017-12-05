@@ -260,7 +260,7 @@ namespace OCRC.Models
                     return user;
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }
