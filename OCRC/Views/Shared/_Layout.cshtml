@@ -51,12 +51,12 @@
                         <li role="presentation">@Html.ActionLink("Result", "Result", "Home")</li>
                     </ul>
                     
-                    <input type="hidden" name="access" value=@ViewBag.access /><!-- store the access level for user link population-->
-                    <input type="hidden" name="team" value=@ViewBag.team /><!-- store the team for user link population-->
-                    <input type="hidden" name="school" value=@ViewBag.school /><!-- store the school for user link population-->
+                    <input type="hidden" name="access" value=@Session["Access"] /><!-- store the access level for user link population-->
+                    <input type="hidden" name="team" value=@Session["Team"] /><!-- store the team for user link population-->
+                    <input type="hidden" name="school" value=@Session["School"] /><!-- store the school for user link population-->
 
                     <ul id="userLinks" class="nav navbar-nav navbar-right">
-                        <li><a href="/Account/logout">Logout</a></li>
+                        <li><a href="/Account/logout">@Session["Username"] Logout</a></li>
 
                     </ul>
                 </div><!-- /.navbar-collapse -->
