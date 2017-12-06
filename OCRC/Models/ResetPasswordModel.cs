@@ -29,21 +29,6 @@ namespace OCRC.Models
         [Display(Name = "Token")]
         public string ReturnToken { get; set; }
 
-        public string returnemail(string _email)
-        {
-            using (var cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|OCRC.mdf;Integrated Security=True;Connect Timeout=30"))
-            {
-                string _sql = @"SELECT [email] FROM [dbo].[User] " +
-                       @"WHERE [email] = @u";
-                var cmd = new SqlCommand(_sql, cn);
-                cmd.Parameters
-                    .Add(new SqlParameter("@u", SqlDbType.NVarChar))
-                    .Value = _email;
-                cn.Open();
-                var reader = cmd.ExecuteReader();
-                return _sql;
-            }
-        }
 
         public bool changepassword(string _email, string _NewPassword)
         {
