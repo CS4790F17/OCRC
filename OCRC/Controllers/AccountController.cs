@@ -16,7 +16,7 @@ using WebMatrix.WebData;
 namespace OCRC.Controllers
 {
     
-    public class AccountController : Controller
+    public class AccountController : Controller 
     {
         // GET: Account
         public ActionResult RegisterUser()
@@ -103,7 +103,7 @@ namespace OCRC.Controllers
         public ActionResult ResetPassword(string rt)
         {
             ResetPasswordModel model = new ResetPasswordModel();
-            model.ReturnToken =rt;
+            model.ReturnToken = rt;
             return View(model);
         }
 
@@ -125,9 +125,7 @@ namespace OCRC.Controllers
 
                     // Email stuff
                     User info = Repo.findUserByEmail(forgot.email);
-                    String name = info.fname + " " + info.lname;
-                    //PasswordReset password = Repo.findTokenByEmail(forgot.email);
-                    //password.token = token;
+                    String name = info.fname + " " + info.lname;                   
                     forgot.changetoken(forgot.email,token);
                     string subject = "Reset your password for " + name;
                     string body = "Please click this clink to reset your password: " + resetLink;
@@ -174,8 +172,9 @@ namespace OCRC.Controllers
         {
             if (ModelState.IsValid)
             {
- 
-               if (model.changepassword(model.email, model.NewPassword))
+                PasswordReset password = Repo.findTokenByEmail(model.email);
+                string returntoken = (string)Session["token1"];
+                if (model.changepassword(model.email, model.NewPassword) )
                     {
                         ViewBag.Message = "Successfully Changed";
                     }
