@@ -7,6 +7,7 @@ using OCRC.Models;
 
 namespace OCRC.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         public ActionResult Index()
@@ -51,7 +52,7 @@ namespace OCRC.Controllers
 
 
         //Yi Lao (Ming)-------------------------
-        public ActionResult Result()
+        public ActionResult Result(ResetPasswordModel model)
         {
             SearchViewModel svm = new SearchViewModel();
             svm.sports = OCRC_API.getAllSports();
@@ -59,6 +60,13 @@ namespace OCRC.Controllers
             svm.allOfThem = Repo.getSeachesPerRank(svm.searches);
 
             return View(svm);
+
+            //List<object> passData = new List<object>();
+            //var allSports = OCRC_API.getAllSports();
+            //var allKids = OCRC_API.getAllKids();
+            //passData.Add(allSports);
+            //passData.Add(allKids);
+            //return View(passData);
         }
     }
 }
