@@ -112,8 +112,8 @@
             "<li class=\"modal-Text\"> Grade: <span>" + KidInfo.grade + "</span></li>" +
             "<li class=\"modal-Text\"> Age:   <span>" + KidInfo.age + "</span></li>" +
             "<li class=\"modal-Text\"> Rank:  <span>" + KidInfo.rank[0].rank + "</span></li>" +
-            "<li class=\"modal-Text\"> School:<span>" + KidInfo.school + "</span></li>" +
-            "<li class=\"modal-Text\"> Sport:<span>" + KidInfo.sport + "</span></li>" +
+            "<li class=\"modal-Text\"> School: <span>" + KidInfo.school + "</span></li>" +
+            "<li class=\"modal-Text\"> Sport: <span>" + KidInfo.sport + "</span></li>" +
         "</ul> ";
     }
 
@@ -146,13 +146,6 @@
             </div>
             <button type="submit" class="btn btn-primary">Search</button>
         </form>
-
-@using (Html.BeginForm())
-{
-    @Html.TextBox("txtName", 0)
-    <button id="btnDD">sub</button>
-}
-
 
     </div>
 </div>
@@ -276,6 +269,10 @@
         font-weight:bolder;
     }
 
+    .modal-Text span {
+        font-weight: normal;
+    }
+
     .clickableRow {
         transition: all 0.3s ease 0s;
     }
@@ -290,6 +287,7 @@
     }
 
 
+
 </style>
 
 
@@ -301,7 +299,7 @@
 
             <div class="modal-header">
                 <span class="close">&times;</span>
-                <h4>Details</h4>
+                <h4 style="color:aliceblue">Details</h4>
             </div>
 
             <div id="searchModalBody" class="modal-body">
