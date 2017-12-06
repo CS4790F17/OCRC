@@ -70,13 +70,17 @@ namespace OCRC.Controllers
 
             if (ModelState.IsValid)
             {
-                if (user.IsValid(user.email, 1, user.password))
+                User info = Repo.findUserByEmail(user.email);
+                Session["Username"] = info.fname + " " + info.lname;
+                Session["Access"] = info.accesslvl;
+                user.accesslvl = info.accesslvl;
+                Session["Team"] = info.teamIdentifier;
+                Session["School"] = info.teamIdentifier;
+
+                if (user.IsValid(user.email, user.accesslvl, user.password))
                 {
                     ///SiteMapResolveEventHandler
                     FormsAuthentication.SetAuthCookie(user.email, user.rememberme);
-                    User info = Repo.findUserByEmail(user.email);
-                    System.Web.HttpContext.Current.Session["Username"] = info.fname + " " + info.lname;
-                    //=Session["Username"] =//
                     return RedirectToAction("Result", "Home");
                 }
                 else
@@ -89,6 +93,7 @@ namespace OCRC.Controllers
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
+            Session.Clear();
             return RedirectToAction("Login", "Account");
         }
 
