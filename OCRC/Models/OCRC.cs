@@ -483,7 +483,7 @@ namespace OCRC.Models
         public int accesslvl { get; set; }
 
         public String teamIdentifier { get; set; }
-
+        public String schoolIdentifier { get; set; }
         [NotMapped]
         public bool[] role { get; set; } //used on the view for checkboxes
     }
