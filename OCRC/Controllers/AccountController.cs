@@ -55,6 +55,7 @@ namespace OCRC.Controllers
         }
 
         [HttpGet]
+
         public ActionResult Login()
         {
             UserLogin test = new UserLogin();
@@ -75,7 +76,9 @@ namespace OCRC.Controllers
                     FormsAuthentication.SetAuthCookie(user.email, user.rememberme);
                     User info = Repo.findUserByEmail(user.email);
                     Session["Username"] = info.fname + " " + info.lname;
-                    //=Session["Username"] =//
+                    Session["Access"] = info.accesslvl;
+                    Session["Team"] = info.teamIdentifier;
+                    Session["School"] = info.teamIdentifier;
                     return RedirectToAction("Result", "Home");
                 }
                 else
@@ -88,6 +91,7 @@ namespace OCRC.Controllers
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
+            Session.Clear();
             return RedirectToAction("Login", "Account");
         }
 
