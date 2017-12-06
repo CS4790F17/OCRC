@@ -29,15 +29,13 @@ namespace OCRC.Controllers
         
 
         //Yi Lao (Ming)-------------------------
-        public ActionResult Result()
+        public ActionResult Result(ResetPasswordModel model)
         {
             List<object> passData = new List<object>();
             var allSports = OCRC_API.getAllSports();
             var allKids = OCRC_API.getAllKids();
             passData.Add(allSports);
             passData.Add(allKids);
-
-
             return View(passData);
         }
     }

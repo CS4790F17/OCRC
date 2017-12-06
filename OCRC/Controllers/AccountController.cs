@@ -39,14 +39,7 @@ namespace OCRC.Controllers
 
             return View(user);
         }
-
-        public ActionResult ForgotPassword()
-        {
-            ViewBag.Message = "Forgot Password.";
-
-            return View();
-        }
-
+        [Authorize]
         public ActionResult UserList()
         {
             ViewBag.Message = "UserList";
@@ -55,6 +48,16 @@ namespace OCRC.Controllers
         }
 
         [HttpGet]
+<<<<<<< HEAD
+=======
+        public ActionResult ForgotPassword()
+        {
+            ViewBag.Message = Session["FirstName"];
+            return View();
+        }
+
+        [HttpGet]
+>>>>>>> Hoang-Branch
         public ActionResult Login()
         {
             UserLogin test = new UserLogin();
@@ -73,6 +76,9 @@ namespace OCRC.Controllers
                 {
                     ///SiteMapResolveEventHandler
                     FormsAuthentication.SetAuthCookie(user.email, user.rememberme);
+                    User info = Repo.findUserByEmail(user.email);
+                    Session["Username"] = info.fname + " " + info.lname;
+                    //=Session["Username"] =//
                     return RedirectToAction("Result", "Home");
                 }
                 else
@@ -121,7 +127,12 @@ namespace OCRC.Controllers
                        + "'>Reset Password Link</a>";
 
                     // Email stuff
-                    string subject = "Reset your password for" + forgot.email;
+                    User info = Repo.findUserByEmail(forgot.email);
+                    String name = info.fname + " " + info.lname;
+                    //PasswordReset password = Repo.findTokenByEmail(forgot.email);
+                    //password.token = token;
+                    forgot.changetoken(forgot.email,token);
+                    string subject = "Reset your password for " + name;
                     string body = "Please click this clink to reset your password: " + resetLink;
                     string from = "hoangcao@mail.weber.edu";
 
@@ -136,7 +147,7 @@ namespace OCRC.Controllers
                         Port = 587,
                         EnableSsl = true,
                         UseDefaultCredentials = false,
-                        Credentials = new System.Net.NetworkCredential("hoangcao@mail.weber.edu", "password for token"),
+                        Credentials = new System.Net.NetworkCredential("hoangcao@mail.weber.edu", "Thikim22"),
                         DeliveryMethod = SmtpDeliveryMethod.Network
                     };
 

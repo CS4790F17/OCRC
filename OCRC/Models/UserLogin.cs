@@ -38,7 +38,11 @@ namespace OCRC.Models
         /// <returns>True if user exist and password is correct</returns>
         public bool IsValid(string _email, int _accesslvl, string _password)
         {
+<<<<<<< HEAD
             using (var cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|OCRC.mdf;Integrated Security=True"))
+=======
+            using (var cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|OCRC.mdf;Integrated Security=True;Connect Timeout=30"))
+>>>>>>> Hoang-Branch
             {
                 string _sql = @"SELECT [email] FROM [dbo].[User] " +
                        @"WHERE [email] = @u AND [password] = @p AND [accesslvl] = @s";

@@ -14,7 +14,7 @@ namespace OCRC.Models
         [Display(Name = "User name")]
         [EmailAddress]
         public string email { get; set; }
-
+        
         [Required]
         [Display(Name = "New Password")]
         [DataType(DataType.Password)]
@@ -31,7 +31,7 @@ namespace OCRC.Models
 
         public string returnemail(string _email)
         {
-            using (var cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Hoang\CS4790\OCRC\OCRC\App_Data\OCRC.mdf;Integrated Security=True"))
+            using (var cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|OCRC.mdf;Integrated Security=True;Connect Timeout=30"))
             {
                 string _sql = @"SELECT [email] FROM [dbo].[User] " +
                        @"WHERE [email] = @u";
@@ -47,7 +47,7 @@ namespace OCRC.Models
 
         public bool changepassword(string _email, string _NewPassword)
         {
-            using (var cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Hoang\CS4790\OCRC\OCRC\App_Data\OCRC.mdf;Integrated Security=True"))
+            using (var cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|OCRC.mdf;Integrated Security=True;Connect Timeout=30"))
             {
                 string _sql = @"UPDATE [dbo].[User] " + @"SET [password] = @v " +
                        @"WHERE [email] = @u";
