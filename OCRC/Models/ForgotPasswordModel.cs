@@ -40,5 +40,23 @@ namespace OCRC.Models
                 }
             }
         }
+
+        public void changetoken(string _email, string _NewToken)
+        {
+            using (var cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|OCRC.mdf;Integrated Security=True;Connect Timeout=30"))
+            {
+                string _sql = @"UPDATE [dbo].[PasswordReset] " + @"SET [token] = @v " +
+                       @"WHERE [email] = @u";
+                var cmd = new SqlCommand(_sql, cn);
+                cmd.Parameters
+                    .Add(new SqlParameter("@u", SqlDbType.NVarChar))
+                    .Value = _email;
+                cmd.Parameters
+                    .Add(new SqlParameter("@v", SqlDbType.NVarChar))
+                    .Value = _NewToken;
+                cn.Open();
+                var reader = cmd.ExecuteReader();
+            }
+        }
     }
 }

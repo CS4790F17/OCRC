@@ -126,8 +126,9 @@ namespace OCRC.Controllers
                     // Email stuff
                     User info = Repo.findUserByEmail(forgot.email);
                     String name = info.fname + " " + info.lname;
-                    PasswordReset password = Repo.findTokenByEmail(forgot.email);
-                    password.token = token;
+                    //PasswordReset password = Repo.findTokenByEmail(forgot.email);
+                    //password.token = token;
+                    forgot.changetoken(forgot.email,token);
                     string subject = "Reset your password for " + name;
                     string body = "Please click this clink to reset your password: " + resetLink;
                     string from = "hoangcao@mail.weber.edu";
