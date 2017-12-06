@@ -147,7 +147,7 @@ namespace OCRC.Controllers
                         Port = 587,
                         EnableSsl = true,
                         UseDefaultCredentials = false,
-                        Credentials = new System.Net.NetworkCredential("hoangcao@mail.weber.edu", "Thikim22"),
+                        Credentials = new System.Net.NetworkCredential("hoangcao@mail.weber.edu", "password for email"),
                         DeliveryMethod = SmtpDeliveryMethod.Network
                     };
 
@@ -178,7 +178,6 @@ namespace OCRC.Controllers
             if (ModelState.IsValid)
             {
                 PasswordReset password = Repo.findTokenByEmail(model.email);
-                string returntoken = (string)Session["token1"];
                 if (model.changepassword(model.email, model.NewPassword) )
                     {
                         ViewBag.Message = "Successfully Changed";
