@@ -6,6 +6,12 @@
 
 <script>
 
+    $('#loadingWhileAjax').bind('ajaxStart', function () {
+        $(this).show();
+    }).bind('ajaxStop', function () {
+        $(this).hide();
+    });
+
     let arr = [];
     function sportClicked() {
         arr = [];
@@ -83,7 +89,6 @@
         return false;
     }
 
-    //TODO: Call the function when the user starts searching or filtering.
 
     function clearTableBody() {
         document.getElementById("SearchResults").innerHTML = "";
