@@ -69,7 +69,7 @@ namespace OCRC.Controllers
 
             if (ModelState.IsValid)
             {
-                if (user.IsValid(user.email, 1, user.password))
+                if (user.IsValid(user.email, user.password))
                 {
                     ///SiteMapResolveEventHandler
                     FormsAuthentication.SetAuthCookie(user.email, user.rememberme);
@@ -118,6 +118,7 @@ namespace OCRC.Controllers
                     {
                     // Generae password token that will be used in the email link to authenticate user
                     string token = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
+
                     // Generate the html link sent via email
                     string resetLink = "<a href='"
                        + Url.Action("ResetPassword", "Account", new { rt = token }, "http")
