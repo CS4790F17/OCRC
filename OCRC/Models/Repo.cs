@@ -68,6 +68,106 @@ namespace OCRC.Models
             }
         }
 
+        public static Ranking getRankingByStatusId(int statusID)
+        {
+            try
+            {
+                Ranking ranking = OCRC.getAllRankings().Where(item => item.statusID == statusID).FirstOrDefault();
+                return ranking;
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+        }
+
+        //by age, grade and sports
+        public static List<Search> filterSearches(String[] sport,int age, int grade,String year,String school,String name)
+        {
+            try
+            {
+
+                List<Search> l1 = Search.getSearchResultsForActive();
+                List<Search> result = getSeachesPerRank(l1);
+
+                //filtering
+                if (age!=0)
+                    result = result.Where(search => search.age == age).ToList();
+                if (grade != 0)
+                    result = result.Where(search => search.grade == grade).ToList();
+                if (sport != null)
+                    result = result.Where(search => sport.Contains(search.sport)).ToList();
+                if(year != "")
+                    result = result.Where(search => search.year.ToString() == year).ToList();
+                if(school != "")
+                    result = result.Where(search => search.school.Contains(school)).ToList();
+                if (name != "") 
+                    result = result.Where( search =>
+                    (search.fname+" "+search.lname).ToLower()
+                    .Contains(name.ToLower()))
+                    .ToList();
+
+
+                return result;
+
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+        }
+
+        public static List<Search> getSeachesPerRank(List<Search> searches)
+        {
+            try
+            {
+                List<Search> result = new List<Search>();
+                foreach (var aSearch in searches)
+                {
+                    int z = 0;
+                    foreach (var x in aSearch.rank)
+                    {
+                        Search s = new Search();
+                        s.fname = aSearch.fname;
+                        s.lname = aSearch.lname;
+                        s.age = aSearch.age;
+                        s.grade = aSearch.grade;
+                        s.school = aSearch.school;
+                        s.rank = new List<Ranking>();
+                        s.rank.Add(aSearch.rank[z]);
+                        s.year = aSearch.year;
+                        s.sport = aSearch.sport;
+                        s.id = aSearch.id;
+                        z++;
+                        result.Add(s);
+                    }
+                }
+
+                return result;
+
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+        }
+
+        public static void addStatus(Status status)
+        {
+            try
+            {
+                OCRC.addStatus(status);
+            }
+            catch (Exception e)
+            {
+
+                return;
+            }
+        }
+
         public static void setNotesDateModified(DateTime dateModified)
         {
             OCRC.setNotesDateModified(dateModified);
@@ -163,12 +263,46 @@ namespace OCRC.Models
             OCRC.setUserAccesslvl(accesslvl);
         }
 
+        public static void setToken(string token)
+        {
+            OCRC.setToken(token);
+        }
+
         public static void setUserTeamIdentifier(string teamIdentifier)
         {
             OCRC.setUserTeamIdentifier(teamIdentifier);
         }
+
+        public static User findUserByEmail(String userEmail)
+        {
+            try
+            {
+                var user = OCRC.findUserByEmail(userEmail);
+                return user;
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+        }
+
+
+        public static PasswordReset findTokenByEmail(String userEmail)
+        {
+            try
+            {
+                var token = OCRC.findTokenByEmail(userEmail);
+                return token;
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+        }
         // Eric
-       
+
 
         // Mohammed
 
