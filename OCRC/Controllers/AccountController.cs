@@ -75,7 +75,7 @@ namespace OCRC.Controllers
                     ///SiteMapResolveEventHandler
                     FormsAuthentication.SetAuthCookie(user.email, user.rememberme);
                     User info = Repo.findUserByEmail(user.email);
-                    Session["Username"] = info.fname + " " + info.lname;
+                    System.Web.HttpContext.Current.Session["Username"] = info.fname + " " + info.lname;
                     //=Session["Username"] =//
                     return RedirectToAction("Result", "Home");
                 }
