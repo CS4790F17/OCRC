@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel;
 using static OCRC.Models.Repo;
+using static OCRC.Controllers.AccountController;
 
 namespace OCRC.Models
 {
@@ -266,6 +267,38 @@ namespace OCRC.Models
             }
         }
 
+        public static User findUserByEmail(String userEmail)
+        {
+            try
+            {
+                using(OCRCDbContext db = new OCRCDbContext())
+                {
+                    var user = db.Users.Where(it => it.email == userEmail).FirstOrDefault();
+                    return user;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static PasswordReset findTokenByEmail(String userEmail)
+        {
+            try
+            {
+                using (OCRCDbContext db = new OCRCDbContext())
+                {
+                    var token = db.PasswordResets.Where(it => it.email == userEmail).FirstOrDefault();
+                    return token;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         /// <summary>
         /// Returns a list of all the users
         /// </summary>
@@ -340,6 +373,15 @@ namespace OCRC.Models
             using (OCRCDbContext db = new OCRCDbContext())
             {
                 db.Entry(accesslvl).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
+        public static void setToken(string token)
+        {
+            using (OCRCDbContext db = new OCRCDbContext())
+            {
+                db.Entry(token).State = EntityState.Modified;
                 db.SaveChanges();
             }
         }
@@ -444,8 +486,17 @@ namespace OCRC.Models
 
         [NotMapped]
         public bool[] role { get; set; } //used on the view for checkboxes
+    }
 
-
+    [Table("PasswordReset")]
+    public class PasswordReset
+    {
+        [Key]
+        public int passwordresetID { get; set; }
+        [DisplayName("Token")]
+        public String token { get; set; }
+        [DisplayName("Email")]
+        public String email { get; set; }
     }
 
     /// <summary>
@@ -460,6 +511,7 @@ namespace OCRC.Models
        public DbSet<Sport> Sports { get; set; }
        public DbSet<Status> Statuses { get; set; }
        public DbSet<User> Users { get; set; }
+        public DbSet<PasswordReset> PasswordResets { get; set; }
     }
 
 }

@@ -10,28 +10,12 @@ using OCRC.Models;
 
 namespace OCRC.Models
 {
-    public class ResetPasswordModel
-    {
-        [Required]
-        [Display(Name = "New Password")]
-        [DataType(DataType.Password)]
-        public string Password { get; set; }
-
-        [Required]
-        [Display(Name = "Confirm Password")]
-        [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "New password and confirmation does not match.")]
-        public string ConfirmPassword { get; set; }
-
-        [Required]
-        public string ReturnToken { get; set; }
-    }
-
+    
     public class UserLogin
     {
-        [Required(ErrorMessage = "We need your email to send you a reset link!")]
+        [Required]
         [Display(Name = "User name")]
-        [EmailAddress(ErrorMessage = "Not a valid email--what are you trying to do here?")]
+        [DataType(DataType.EmailAddress)]
         public string email { get; set; }
 
         [Required]
