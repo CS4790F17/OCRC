@@ -48,8 +48,6 @@ namespace OCRC.Controllers
         }
 
         [HttpGet]
-<<<<<<< HEAD
-=======
         public ActionResult ForgotPassword()
         {
             ViewBag.Message = Session["FirstName"];
@@ -57,7 +55,7 @@ namespace OCRC.Controllers
         }
 
         [HttpGet]
->>>>>>> Hoang-Branch
+
         public ActionResult Login()
         {
             UserLogin test = new UserLogin();
