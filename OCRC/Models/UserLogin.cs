@@ -19,10 +19,6 @@ namespace OCRC.Models
         public string email { get; set; }
 
         [Required]
-        [Display(Name = "Role")]
-        public int accesslvl { get; set; }
-
-        [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string password { get; set; }
@@ -36,19 +32,16 @@ namespace OCRC.Models
         /// <param name="_username">User name</param>
         /// <param name="_password">User password</param>
         /// <returns>True if user exist and password is correct</returns>
-        public bool IsValid(string _email, int _accesslvl, string _password)
+        public bool IsValid(string _email, string _password)
         {
             using (var cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|OCRC.mdf;Integrated Security=True;Connect Timeout=30"))
             {
                 string _sql = @"SELECT [email] FROM [dbo].[User] " +
-                       @"WHERE [email] = @u AND [password] = @p AND [accesslvl] = @s";
+                       @"WHERE [email] = @u AND [password] = @p ";
                  var cmd = new SqlCommand(_sql, cn);
                  cmd.Parameters
                      .Add(new SqlParameter("@u", SqlDbType.NVarChar))
                      .Value = _email;
-                cmd.Parameters
-                     .Add(new SqlParameter("@s", SqlDbType.Int))
-                     .Value = _accesslvl;
                 cmd.Parameters
                      .Add(new SqlParameter("@p", SqlDbType.NVarChar))
                      .Value = SHA1.Encode(_password);

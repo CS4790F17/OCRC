@@ -16,7 +16,7 @@ using WebMatrix.WebData;
 namespace OCRC.Controllers
 {
     
-    public class AccountController : Controller
+    public class AccountController : Controller 
     {
         // GET: Account
         public ActionResult RegisterUser()
@@ -70,17 +70,15 @@ namespace OCRC.Controllers
 
             if (ModelState.IsValid)
             {
-                User info = Repo.findUserByEmail(user.email);
-                Session["Username"] = info.fname + " " + info.lname;
-                Session["Access"] = info.accesslvl;
-                user.accesslvl = info.accesslvl;
-                Session["Team"] = info.teamIdentifier;
-                Session["School"] = info.teamIdentifier;
-
-                if (user.IsValid(user.email, user.accesslvl, user.password))
+                if (user.IsValid(user.email, user.password))
                 {
                     ///SiteMapResolveEventHandler
                     FormsAuthentication.SetAuthCookie(user.email, user.rememberme);
+                    User info = Repo.findUserByEmail(user.email);
+                    Session["Username"] = info.fname + " " + info.lname;
+                    Session["Access"] = info.accesslvl;
+                    Session["Team"] = info.teamIdentifier;
+                    Session["School"] = info.teamIdentifier;
                     return RedirectToAction("Result", "Home");
                 }
                 else
@@ -109,7 +107,7 @@ namespace OCRC.Controllers
         public ActionResult ResetPassword(string rt)
         {
             ResetPasswordModel model = new ResetPasswordModel();
-            model.ReturnToken =rt;
+            model.ReturnToken = rt;
             return View(model);
         }
 
@@ -124,6 +122,7 @@ namespace OCRC.Controllers
                     {
                     // Generae password token that will be used in the email link to authenticate user
                     string token = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
+
                     // Generate the html link sent via email
                     string resetLink = "<a href='"
                        + Url.Action("ResetPassword", "Account", new { rt = token }, "http")
@@ -131,9 +130,7 @@ namespace OCRC.Controllers
 
                     // Email stuff
                     User info = Repo.findUserByEmail(forgot.email);
-                    String name = info.fname + " " + info.lname;
-                    //PasswordReset password = Repo.findTokenByEmail(forgot.email);
-                    //password.token = token;
+                    String name = info.fname + " " + info.lname;                   
                     forgot.changetoken(forgot.email,token);
                     string subject = "Reset your password for " + name;
                     string body = "Please click this clink to reset your password: " + resetLink;
@@ -180,8 +177,9 @@ namespace OCRC.Controllers
         {
             if (ModelState.IsValid)
             {
- 
-               if (model.changepassword(model.email, model.NewPassword))
+                PasswordReset password = Repo.findTokenByEmail(model.email);
+                string returntoken = (string)Session["token1"];
+                if (model.changepassword(model.email, model.NewPassword) )
                     {
                         ViewBag.Message = "Successfully Changed";
                     }
