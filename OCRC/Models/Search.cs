@@ -8,7 +8,7 @@ namespace OCRC.Models
 
     public class Search
     {
-        
+        public int id { get; set; }
         public String fname { get; set; }
         public String lname { get; set; }
         public int year { get; set; }
@@ -43,6 +43,7 @@ namespace OCRC.Models
                     status.active = "active";
                     status.activityModified = DateTime.Now;
                     Repo.addStatus(status);
+                    s.id = kid.kidID;
                     s.fname = kid.fname;
                     s.lname = kid.lname;
                     s.age = kid.age;
@@ -55,6 +56,7 @@ namespace OCRC.Models
                 }
                 if (status.active.Equals("active"))
                 {
+                    s.id = kid.kidID;
                     s.age = kid.age;
                     s.grade = kid.grade;
                     s.fname = kid.fname;

@@ -139,6 +139,7 @@ namespace OCRC.Models
                         s.rank.Add(aSearch.rank[z]);
                         s.year = aSearch.year;
                         s.sport = aSearch.sport;
+                        s.id = aSearch.id;
                         z++;
                         result.Add(s);
                     }

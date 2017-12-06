@@ -36,9 +36,19 @@ namespace OCRC.Controllers
 
             List<Search> result = Repo.filterSearches(sport,age, grade,year,school,name);
 
-            return new JsonResult { Data = new { n = result} };
+            return new JsonResult { Data = new { result = result} };
         }
-        
+
+
+        public JsonResult getKidDataForModal(int kidId)
+        {
+            Search search = Search.getSearchResultsForActive().Where(s=>
+                kidId == s.id).FirstOrDefault();
+            
+
+            return new JsonResult { Data = new { result = search } };
+        }
+
 
         //Yi Lao (Ming)-------------------------
         public ActionResult Result()
