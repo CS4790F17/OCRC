@@ -279,7 +279,7 @@ namespace OCRC.Models
             }
             catch (Exception)
             {
-                throw;
+                return null;
             }
         }
 
