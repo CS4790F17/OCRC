@@ -83,7 +83,7 @@ namespace OCRC.Models
         }
 
         //by age, grade and sports
-        public static List<Search> filterSearches(String[] sport,int age, int grade,String year,String school)
+        public static List<Search> filterSearches(String[] sport,int age, int grade,String year,String school,String name)
         {
             try
             {
@@ -98,12 +98,15 @@ namespace OCRC.Models
                     result = result.Where(search => search.grade == grade).ToList();
                 if (sport != null)
                     result = result.Where(search => sport.Contains(search.sport)).ToList();
-                if(year != null)
+                if(year != "")
                     result = result.Where(search => search.year.ToString() == year).ToList();
-                if(school != null)
+                if(school != "")
                     result = result.Where(search => search.school.Contains(school)).ToList();
-               // if (name != null) // finding a better way
-                //    result = result.Where( search => (search.fname+" "+ search.lname).Contains(name)).ToList();
+                if (name != "") 
+                    result = result.Where( search =>
+                    (search.fname+" "+search.lname).ToLower()
+                    .Contains(name.ToLower()))
+                    .ToList();
 
 
                 return result;

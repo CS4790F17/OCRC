@@ -37,7 +37,7 @@
 
         timeout = setTimeout(function () {
             runFilter();
-        }, 1000);
+        }, 500);
     }
 
 
@@ -51,8 +51,8 @@
                     'age': $('#ageFilter')[0].options[$('#ageFilter')[0].selectedIndex].value,
                     'grade': $('#gradeFilter')[0].options[$('#gradeFilter')[0].selectedIndex].value,
                     'year': $('#yearInput').val(),
-                    'school': $('#schoolInput').val()
-                    
+                    'school': $('#schoolInput').val(),
+                    'name':$('#nameInput').val()
 
                 },
                 datatype: 'json',
@@ -60,7 +60,7 @@
                 success: (data) => {
                     document.title = "changed";
 
-                    console.log();
+                    console.log($('#nameInput').val());
 
                     clearTableBody();
                     data.n.forEach(buildTableBody);
