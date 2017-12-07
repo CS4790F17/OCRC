@@ -25,6 +25,15 @@ namespace OCRC.Controllers
             return View();
         }
 
+        public ActionResult EditUser(int? id)
+        {
+            ViewBag.Message = "EditUser";
+            User user = Repo.findUserById(id);
+            user.password = "";
+            return View(user);
+        }
+
+
         //POST
         [HttpPost]
         public ActionResult RegisterUser(User user)
@@ -44,7 +53,9 @@ namespace OCRC.Controllers
         {
             ViewBag.Message = "UserList";
 
-            return View();
+            List<User> vm = Repo.getAllUsers();
+
+            return View(vm);
         }
 
         [HttpGet]
