@@ -10,6 +10,11 @@
     @Styles.Render("~/Content/bootstrap.min.css")
     @Styles.Render("~/Content/slideMenu.css") 
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+
+
 
     <!-- Latest compiled and minified CSS -->
     @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">*@
@@ -35,7 +40,7 @@
                     </button>
 
 
-                    <a class="navbar-brand" href="#">Ogden City</a>
+                    <a class="navbar-brand" href="/">Ogden City</a>
                 </div>
 
 
@@ -43,18 +48,16 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-
-                        <li role="presentation" class="active">@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li role="presentation">@Html.ActionLink("Report", "About", "Home")</li>
-                        <li role="presentation">@Html.ActionLink("Data", "Result", "Home")</li>
                         <li role="presentation">@Html.ActionLink("Result", "Result", "Home")</li>
-                        <li role="presentation">@Html.ActionLink("Register user", "RegisterUser", "Account")</li>
-                        <li role="presentation">@Html.ActionLink("User List", "UserList", "Account")</li>
                     </ul>
+                    
+                    <input type="hidden" name="access" value=@Session["Access"] /><!-- store the access level for user link population-->
+                    <input type="hidden" name="team" value=@Session["Team"] /><!-- store the team for user link population-->
+                    <input type="hidden" name="school" value=@Session["School"] /><!-- store the school for user link population-->
 
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Logout</a></li>
-                        <li><a href="#">Username</a></li>
+                    <ul id="userLinks" class="nav navbar-nav navbar-right">
+                        <li><a href="/Account/logout">@Session["Username"] Logout</a></li>
+
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -73,8 +76,6 @@
         </div>
     
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
 
     @RenderSection("scripts", required: false)
     
