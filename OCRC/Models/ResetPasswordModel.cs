@@ -29,7 +29,7 @@ namespace OCRC.Models
         [Display(Name = "Token")]
         public string ReturnToken { get; set; }
 
-
+        //Reset the password for exits customer
         public bool changepassword(string _email, string _NewPassword)
         {
             using (var cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|OCRC.mdf;Integrated Security=True;Connect Timeout=30"))
