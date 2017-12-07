@@ -257,6 +257,7 @@
     <Content Include="Views\Account\UserList.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Home\_KidDetails.cshtml" />
+    <Content Include="Views\Home\coachView.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

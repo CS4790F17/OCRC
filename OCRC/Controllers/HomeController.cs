@@ -9,8 +9,16 @@ namespace OCRC.Controllers
 {
     public class HomeController : Controller
     {
+
         public ActionResult Index()
         {
+            return View();
+        }
+
+        public ActionResult coachView()
+        {
+            ViewBag.Message = "CoachView";
+
             return View();
         }
 

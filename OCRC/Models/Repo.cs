@@ -176,11 +176,5 @@ namespace OCRC.Models
         // Hoang
 
         // Nelson
-        public class Coach
-        {
-
-        }
-
-
     }
 }
