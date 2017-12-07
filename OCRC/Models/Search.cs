@@ -50,7 +50,7 @@ namespace OCRC.Models
                     s.grade = kid.grade;
                     s.school = kid.school;
                     
-                    s.sport = Repo.getRankingByStatusId(status.statusID).sportType;
+                    //s.sport = Repo.getRankingByStatusId(status.statusID).sportType;
                     
                 }
                 if (status.active.Equals("active"))
@@ -63,7 +63,7 @@ namespace OCRC.Models
                     s.school = kid.school;
                     s.year = OCRC_API.registrationYear(kid.kidID);
 
-                    s.sport = Repo.getRankingByStatusId(status.statusID).sportType;
+                    //s.sport = Repo.getRankingByStatusId(status.statusID).sportType;
 
                     foreach (var Ranking in allrankings)
                     {
