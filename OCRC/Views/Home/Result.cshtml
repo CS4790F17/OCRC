@@ -6,12 +6,14 @@
 
 <script>
 
+
+
     let arr = [];
     function sportClicked() {
         arr = [];
 
         $("label[name=lblCB]").each(function (index) {
-            if ($('input')[index+4].checked) { //needs adjustment, instead of hardcoding a 4, find the index of the first label
+            if ($('input')[index+6].checked) { //needs adjustment, instead of hardcoding a 4, find the index of the first label
                 arr.push($(this).text());
             }
         });
@@ -83,7 +85,6 @@
         return false;
     }
 
-    //TODO: Call the function when the user starts searching or filtering.
 
     function clearTableBody() {
         document.getElementById("SearchResults").innerHTML = "";
@@ -106,7 +107,12 @@
 
 
     function buildSearchModalBody(KidInfo) {
-        document.getElementById("searchModalBody").innerHTML = "<ul class=\"list-unstyled \">" +
+        document.getElementById("searchModalBody").innerHTML = "<ul class=\"list-unstyled align-right\">" +
+            "<li class=\"modal-Text \">" +
+            "<input type=\"radio\" name=\"optradio\">Active " +
+            "<input type=\"radio\" name=\"optradio\"> Inactive</li>" +
+            "</ul> <br/>" +
+            "<ul class=\"list-unstyled \">" +
             "<li class=\"modal-Text\"> Full Name:  <span>" + KidInfo.fname + " " + KidInfo.lname + "</span></li>" +
             "<li class=\"modal-Text\"> Year:  <span>" + KidInfo.year + "</span></li>" +
             "<li class=\"modal-Text\"> Grade: <span>" + KidInfo.grade + "</span></li>" +
@@ -114,10 +120,16 @@
             "<li class=\"modal-Text\"> Rank:  <span>" + KidInfo.rank[0].rank + "</span></li>" +
             "<li class=\"modal-Text\"> School: <span>" + KidInfo.school + "</span></li>" +
             "<li class=\"modal-Text\"> Sport: <span>" + KidInfo.sport + "</span></li>" +
-        "</ul> ";
+            "<li class=\"modal-Text\"> Note:</li>" +
+            "</ul> " +
+            "<textarea class=\"form-control\" rows= \"5\" id= \"comment\" ></textarea><br/>" + 
+            "<a class=\"btn btn-default\" href=\"#\" role=\"button\">Save</a>"
+            ;
     }
 
 </script>
+
+
 
 
 <div class="navbar-header">
@@ -144,7 +156,7 @@
                 <label for="Year" class="sr-only">Year</label>
                 <input id="yearInput" type="text" class="form-control" placeholder="Year">
             </div>
-            <button type="submit" class="btn btn-primary">Search</button>
+           
         </form>
 
     </div>
@@ -189,7 +201,7 @@
             </select>
             <br />
             <br />
-            <button type="submit" class="btn btn-primary">Search</button>
+       
 
         </form>
     </div>
@@ -311,6 +323,7 @@
 </div>
 
 
+
 <!--slide menu start-->
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -356,7 +369,7 @@
                     </select>
                     <br />
                     <br />
-                    <button type="submit" class="btn btn-primary">Search</button>
+                   
 
  
 
@@ -375,6 +388,7 @@
 
 <script>
     /* Set the width of the side navigation to 250px */
+    
     function openNav() {
         document.getElementById("mySidenav").style.width = "250px";
     }
