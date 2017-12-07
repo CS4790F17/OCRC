@@ -16,7 +16,7 @@
 </head>
 @using (Html.BeginForm())
 {
-    @Html.ValidationSummary(true, "Login failed. Check your login details.");
+    
     @Html.AntiForgeryToken()
 <body>
     <div class="container">
@@ -36,6 +36,7 @@
             <ul>
                 <li class="forgot-password">@Html.ActionLink("Forgot the password?", "ForgotPassword", "Account")</li>
             </ul>
+         @Html.ValidationSummary(true, "Login failed. Check your login details.");
         </div>
     </div>
 
