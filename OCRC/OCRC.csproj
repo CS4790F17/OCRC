@@ -258,6 +258,7 @@
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Home\_KidDetails.cshtml" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
