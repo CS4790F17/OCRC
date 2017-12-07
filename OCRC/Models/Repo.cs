@@ -101,7 +101,7 @@ namespace OCRC.Models
                 if(year != "")
                     result = result.Where(search => search.year.ToString() == year).ToList();
                 if(school != "")
-                    result = result.Where(search => search.school.Contains(school)).ToList();
+                    result = result.Where(search => search.school.ToLower().Contains(school.ToLower())).ToList();
                 if (name != "") 
                     result = result.Where( search =>
                     (search.fname+" "+search.lname).ToLower()
