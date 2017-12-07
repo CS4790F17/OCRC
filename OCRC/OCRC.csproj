@@ -182,6 +182,7 @@
     <Compile Include="Models\Repo.cs" />
     <Compile Include="Models\ResetPasswordModel.cs" />
     <Compile Include="Models\ReturnResult.cs" />
+    <Compile Include="Models\SearchViewModel.cs" />
     <Compile Include="Models\UserLogin.cs" />
     <Compile Include="Models\Search.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -195,6 +196,7 @@
     <Content Include="App_Data\OCRC_Tables_Drop.sql" />
     <Content Include="App_Data\OCRC_Tables_Population.sql" />
     <Content Include="App_Data\OCRC_Tables_Script.sql" />
+    <Content Include="Content\25.gif" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -219,6 +221,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="Properties\PublishProfiles\OCRCftp_pub.pubxml" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -227,6 +230,8 @@
     <Content Include="Scripts\jquery-3.2.1.slim.js" />
     <Content Include="Scripts\jquery-3.2.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -260,6 +265,7 @@
     <Content Include="Views\Account\UserList.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Home\_KidDetails.cshtml" />
+    <Content Include="Views\Account\EditUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

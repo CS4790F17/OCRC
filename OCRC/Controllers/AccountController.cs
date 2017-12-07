@@ -16,7 +16,7 @@ using WebMatrix.WebData;
 namespace OCRC.Controllers
 {
     
-    public class AccountController : Controller
+    public class AccountController : Controller 
     {
         // GET: Account
         public ActionResult RegisterUser()
@@ -24,6 +24,15 @@ namespace OCRC.Controllers
             //TODO: checkboxes school shows school if checked, , coach shows team
             return View();
         }
+
+        public ActionResult EditUser(int? id)
+        {
+            ViewBag.Message = "EditUser";
+            User user = Repo.findUserById(id);
+            user.password = "";
+            return View(user);
+        }
+
 
         //POST
         [HttpPost]
@@ -39,28 +48,25 @@ namespace OCRC.Controllers
 
             return View(user);
         }
-
-        public ActionResult ForgotPassword()
-        {
-            ViewBag.Message = "Forgot Password.";
-
-            return View();
-        }
-
+        [Authorize]
         public ActionResult UserList()
         {
             ViewBag.Message = "UserList";
 
-            return View();
+            List<User> vm = Repo.getAllUsers();
+
+            return View(vm);
         }
 
         [HttpGet]
         public ActionResult ForgotPassword()
         {
+            ViewBag.Message = Session["FirstName"];
             return View();
         }
 
         [HttpGet]
+
         public ActionResult Login()
         {
             UserLogin test = new UserLogin();
@@ -75,10 +81,15 @@ namespace OCRC.Controllers
 
             if (ModelState.IsValid)
             {
-                if (user.IsValid(user.email, 1, user.password))
+                if (user.IsValid(user.email, user.password))
                 {
                     ///SiteMapResolveEventHandler
                     FormsAuthentication.SetAuthCookie(user.email, user.rememberme);
+                    User info = Repo.findUserByEmail(user.email);
+                    Session["Username"] = info.fname + " " + info.lname;
+                    Session["Access"] = info.accesslvl;
+                    Session["Team"] = info.teamIdentifier;
+                    Session["School"] = info.teamIdentifier;
                     return RedirectToAction("Result", "Home");
                 }
                 else
@@ -91,6 +102,7 @@ namespace OCRC.Controllers
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
+            Session.Clear();
             return RedirectToAction("Login", "Account");
         }
 
@@ -106,7 +118,7 @@ namespace OCRC.Controllers
         public ActionResult ResetPassword(string rt)
         {
             ResetPasswordModel model = new ResetPasswordModel();
-            model.ReturnToken =rt;
+            model.ReturnToken = rt;
             return View(model);
         }
 
@@ -121,13 +133,17 @@ namespace OCRC.Controllers
                     {
                     // Generae password token that will be used in the email link to authenticate user
                     string token = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
+
                     // Generate the html link sent via email
                     string resetLink = "<a href='"
                        + Url.Action("ResetPassword", "Account", new { rt = token }, "http")
                        + "'>Reset Password Link</a>";
 
                     // Email stuff
-                    string subject = "Reset your password for" + forgot.email;
+                    User info = Repo.findUserByEmail(forgot.email);
+                    String name = info.fname + " " + info.lname;                   
+                    forgot.changetoken(forgot.email,token);
+                    string subject = "Reset your password for " + name;
                     string body = "Please click this clink to reset your password: " + resetLink;
                     string from = "hoangcao@mail.weber.edu";
 
@@ -142,7 +158,7 @@ namespace OCRC.Controllers
                         Port = 587,
                         EnableSsl = true,
                         UseDefaultCredentials = false,
-                        Credentials = new System.Net.NetworkCredential("hoangcao@mail.weber.edu", "password for token"),
+                        Credentials = new System.Net.NetworkCredential("hoangcao@mail.weber.edu", "password for email"),
                         DeliveryMethod = SmtpDeliveryMethod.Network
                     };
 
@@ -172,8 +188,8 @@ namespace OCRC.Controllers
         {
             if (ModelState.IsValid)
             {
- 
-               if (model.changepassword(model.email, model.NewPassword))
+                PasswordReset password = Repo.findTokenByEmail(model.email);
+                if (model.changepassword(model.email, model.NewPassword) )
                     {
                         ViewBag.Message = "Successfully Changed";
                     }
