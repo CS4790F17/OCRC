@@ -107,7 +107,12 @@
 
 
     function buildSearchModalBody(KidInfo) {
-        document.getElementById("searchModalBody").innerHTML = "<ul class=\"list-unstyled \">" +
+        document.getElementById("searchModalBody").innerHTML = "<ul class=\"list-unstyled align-right\">" +
+            "<li class=\"modal-Text \">" +
+            "<input type=\"radio\" name=\"optradio\">Active " +
+            "<input type=\"radio\" name=\"optradio\"> Inactive</li>" +
+            "</ul> <br/>" +
+            "<ul class=\"list-unstyled \">" +
             "<li class=\"modal-Text\"> Full Name:  <span>" + KidInfo.fname + " " + KidInfo.lname + "</span></li>" +
             "<li class=\"modal-Text\"> Year:  <span>" + KidInfo.year + "</span></li>" +
             "<li class=\"modal-Text\"> Grade: <span>" + KidInfo.grade + "</span></li>" +
@@ -115,7 +120,11 @@
             "<li class=\"modal-Text\"> Rank:  <span>" + KidInfo.rank[0].rank + "</span></li>" +
             "<li class=\"modal-Text\"> School: <span>" + KidInfo.school + "</span></li>" +
             "<li class=\"modal-Text\"> Sport: <span>" + KidInfo.sport + "</span></li>" +
-        "</ul> ";
+            "<li class=\"modal-Text\"> Note:</li>" +
+            "</ul> " +
+            "<textarea class=\"form-control\" rows= \"5\" id= \"comment\" ></textarea><br/>" + 
+            "<a class=\"btn btn-default\" href=\"#\" role=\"button\">Save</a>"
+            ;
     }
 
 </script>
