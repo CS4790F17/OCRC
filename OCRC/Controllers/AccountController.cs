@@ -58,6 +58,7 @@ namespace OCRC.Controllers
             return View(vm);
         }
 
+        //Get method for ForgotPassword Page
         [HttpGet]
         public ActionResult ForgotPassword()
         {
@@ -65,14 +66,75 @@ namespace OCRC.Controllers
             return View();
         }
 
-        [HttpGet]
+        //Post method for ForgotPassword Page
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult ForgotPassword(ForgotPasswordModel forgot)
+        {
+            if (ModelState.IsValid)
+            {
+                if (forgot.IsValid(forgot.email))
+                {
+                    // Generae password token that will be used in the email link to authenticate user
+                    string token = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
 
+                    // Generate the html link sent via email
+                    string resetLink = "<a href='"
+                       + Url.Action("ResetPassword", "Account", new { rt = token }, "http")
+                       + "'>Reset Password Link</a>";
+
+                    // Email stuff
+                    User info = Repo.findUserByEmail(forgot.email);
+                    String name = info.fname + " " + info.lname;
+                    forgot.changetoken(forgot.email, token);
+                    string subject = "Reset your password for " + name;
+                    string body = "Please click this clink to reset your password: " + resetLink;
+                    string from = "hoangcao@mail.weber.edu";
+
+                    MailMessage message = new MailMessage(from, forgot.email);
+                    message.Subject = subject;
+                    message.Body = body;
+                    message.BodyEncoding = Encoding.UTF8;
+                    message.IsBodyHtml = true;
+                    SmtpClient client = new SmtpClient
+                    {
+                        Host = "smtp.gmail.com",
+                        Port = 587,
+                        EnableSsl = true,
+                        UseDefaultCredentials = false,
+                        Credentials = new System.Net.NetworkCredential("hoangcao@mail.weber.edu", "password for email"),
+                        DeliveryMethod = SmtpDeliveryMethod.Network
+                    };
+
+                    // Attempt to send the email
+                    try
+                    {
+                        client.Send(message);
+                    }
+                    catch (Exception e)
+                    {
+                        ModelState.AddModelError("", "Issue sending email: " + e.Message);
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "No user found by that email.");
+                }
+            }
+
+            return View(forgot);
+        }
+
+        //Get method for Login Page
+        [HttpGet]
         public ActionResult Login()
         {
             UserLogin test = new UserLogin();
             return View(test);
         }
 
+        //Post method for Login Page
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -114,6 +176,7 @@ namespace OCRC.Controllers
             public string email { get; set; }  // Add this
         }
 
+        //Get method for ResetPassword Page
         [AllowAnonymous]
         public ActionResult ResetPassword(string rt)
         {
@@ -122,65 +185,8 @@ namespace OCRC.Controllers
             return View(model);
         }
 
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public ActionResult ForgotPassword(ForgotPasswordModel forgot)
-        {
-            if (ModelState.IsValid)
-            {
-                if (forgot.IsValid(forgot.email))
-                    {
-                    // Generae password token that will be used in the email link to authenticate user
-                    string token = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
 
-                    // Generate the html link sent via email
-                    string resetLink = "<a href='"
-                       + Url.Action("ResetPassword", "Account", new { rt = token }, "http")
-                       + "'>Reset Password Link</a>";
-
-                    // Email stuff
-                    User info = Repo.findUserByEmail(forgot.email);
-                    String name = info.fname + " " + info.lname;                   
-                    forgot.changetoken(forgot.email,token);
-                    string subject = "Reset your password for " + name;
-                    string body = "Please click this clink to reset your password: " + resetLink;
-                    string from = "hoangcao@mail.weber.edu";
-
-                    MailMessage message = new MailMessage(from, forgot.email);
-                    message.Subject = subject;
-                    message.Body = body;
-                    message.BodyEncoding = Encoding.UTF8;
-                    message.IsBodyHtml = true;
-                    SmtpClient client = new SmtpClient
-                    {
-                        Host = "smtp.gmail.com",
-                        Port = 587,
-                        EnableSsl = true,
-                        UseDefaultCredentials = false,
-                        Credentials = new System.Net.NetworkCredential("hoangcao@mail.weber.edu", "password for email"),
-                        DeliveryMethod = SmtpDeliveryMethod.Network
-                    };
-
-                    // Attempt to send the email
-                    try
-                    {
-                        client.Send(message);
-                    }
-                    catch (Exception e)
-                    {
-                        ModelState.AddModelError("", "Issue sending email: " + e.Message);
-                    }
-                }
-                else
-                {
-                    ModelState.AddModelError("", "No user found by that email.");
-                }
-            }
-          
-            return View(forgot);
-        }
-
+        //Post method for ResetPassword Page
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
