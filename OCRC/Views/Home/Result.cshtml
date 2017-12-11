@@ -11,12 +11,12 @@
     let arr = [];
     function sportClicked() {
         arr = [];
-
-        $("label[name=lblCB]").each(function (index) {
-            if ($('input')[index+6].checked) { //needs adjustment, instead of hardcoding a 4, find the index of the first label
-                arr.push($(this).text());
+        let obj = $("#sportsFilter label input");
+        for (i = 0; i < obj.length; i++) {
+            if (obj[i].checked) {
+                arr.push(obj[i].name)
             }
-        });
+        }
         runFilter(); // handles the onchange event for checkboxes
     }
 
@@ -164,8 +164,10 @@
             <h3>Filter By Sport</h3>
             <div id="sportsFilter">
                 @foreach (var item in Model.sports)
-                { //do no indent
-               <label  name="lblCB" class="checkbox"><input onclick="sportClicked()" name="@item.sportName" type="checkbox">@item.sportName</label>
+                { 
+               <label  class="checkbox">
+                <input onclick="sportClicked()" name="@item.sportName" type="checkbox">@item.sportName
+               </label>
                 }
             </div>
 
