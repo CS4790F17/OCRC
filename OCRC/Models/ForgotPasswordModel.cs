@@ -14,6 +14,8 @@ namespace OCRC.Models
         [Display(Name = "User name")]
         [EmailAddress(ErrorMessage = "We cannot find any user with that email")]
         public string email { get; set; }
+
+        //Check if we have the same email in DB
         public bool IsValid(string _email)
         {
             using (var cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|OCRC.mdf;Integrated Security=True;Connect Timeout=30"))
@@ -41,6 +43,7 @@ namespace OCRC.Models
             }
         }
 
+        //Create a new token for that email
         public void changetoken(string _email, string _NewToken)
         {
             using (var cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|OCRC.mdf;Integrated Security=True;Connect Timeout=30"))

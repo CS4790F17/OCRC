@@ -6,9 +6,12 @@
     if ($('input[name=access]').val() == '1') {
         $('#userLinks').append('<li><a href="/Account/UserList">Admin</a></li>');
     }
-    if ($('input[name=access]').val() == '3' || $('input[name=access]').val() == '4') {
+    if ($('input[name=team]').val().lenght > 0) {
+        $('#userLinks').append('<li><a href="/home/result">' + $('input[name=team]').val() + '</a></li>');
+    }
 
-        $('#userLinks').append('<li><a href="/home/result">Team Or School</a></li>');
+    if ($('input[name=school]').val().lenght > 0) {
+        $('#userLinks').append('<li><a href="/home/result">'+ $('input[name=school]').val() +'</a></li>');
     }
 
     $("#role_2_").on("change", function () {

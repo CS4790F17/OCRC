@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+//Class to enrypt the password with Sha1
 namespace OCRC
 {
     public class SHA1
