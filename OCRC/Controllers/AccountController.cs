@@ -39,7 +39,10 @@ namespace OCRC.Controllers
 
             return View(user);
         }
+
+        //Get method for UserList in Admin Page
         [Authorize]
+        [HttpGet]
         public ActionResult UserList()
         {
             ViewBag.Message = "UserList";
@@ -150,6 +153,9 @@ namespace OCRC.Controllers
             }
             return View(user);
         }
+
+        //Get method for Logout Page
+        [HttpGet]
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
