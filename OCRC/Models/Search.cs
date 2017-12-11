@@ -18,7 +18,10 @@ namespace OCRC.Models
         public int grade { get; set; }
         public String sport { get; set; }
 
-
+        /// <summary>
+        /// returns a list of search model for kids who are active
+        /// </summary>
+        /// <returns></returns>
         public static List<Search> getSearchResultsForActive()
         {
             
@@ -73,7 +76,6 @@ namespace OCRC.Models
                         }
                     }
 
-                    
                 }
 
                
