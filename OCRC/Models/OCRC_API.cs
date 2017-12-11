@@ -4,14 +4,14 @@ using System.Linq;
 using System.Web;
 
 namespace OCRC.Models
-{
+{   //Model for a sport might change depending on clients database
     public class Sport
     {
         public int sportID { get; set; }
         public String sportName { get; set; }
-
+        
     }
-
+    //Model for a kid might change depending on clients database
     public class Kid
     {
         public int kidID { get; set; }
@@ -21,7 +21,7 @@ namespace OCRC.Models
         public int age { get; set; }
         public String school { get; set; }
     }
-
+    //Model  registration  might change depending on clients database
     public class Registration
     {
         public int registrationID { get; set; }
@@ -30,7 +30,7 @@ namespace OCRC.Models
         public DateTime dateRegistered { get; set; }
         public int teamID { get; set; }
     }
-
+    //model for a team might change depending on clients database
     public class Team
     {
         public int teamId { get; set; }
@@ -38,7 +38,7 @@ namespace OCRC.Models
         public int sportID { get; set; }
         public String teamName { get; set; }
     }
-
+    
     /*
     public class groupofTables
     {
@@ -48,31 +48,30 @@ namespace OCRC.Models
         public Sport sport { get; set; }
     }*/
 
+     //This class contains dummydata since we don't have an api to work with currently
     public class OCRC_API
     {
+
+        //dummy data representing all the sports we would get from the clients database returns all sports
         public static List<Sport> getAllSports()
         {
             List<Sport> sports = new List<Sport>()
-            {
-                 new Sport { sportID = 1, sportName = "Basketball" },
-                 new Sport { sportID = 2, sportName = "Baseball" },
-                 new Sport { sportID = 3, sportName = "Boxing" },
-                 new Sport { sportID = 4, sportName = "Fishing" },
-                 new Sport { sportID = 5, sportName = "Soccer" },
-                 new Sport { sportID = 6, sportName = "Volleyball" },
-                 new Sport { sportID = 7, sportName = "Swimming" },
-                 new Sport { sportID = 8, sportName = "Wrestling" },
-                 new Sport { sportID = 9, sportName = "Dancing" },
-                 new Sport { sportID = 10, sportName = "Football" }
-            };
-            /*//get API_Sports from External Database
-            foreach (Sport e in API_Sports)
-            {
-                sports.Add(new Sport { sportID = e.ActivityId, sportName = e.Name });
-            }*/
+                {
+                    new Sport {sportID = 1,  sportName = "Basketball"},
+                    new Sport{sportID = 2, sportName = "Baseball"},
+                    new Sport{sportID = 3, sportName = "Boxing" },
+                    new Sport{sportID = 4, sportName = "Fishing"},
+                    new Sport{sportID = 5,  sportName = "Soccer"},
+                    new Sport{sportID = 6, sportName = "Volleyball"},
+                    new Sport{sportID = 7, sportName = "Swimming" },
+                    new Sport{sportID = 8, sportName = "Wrestling"},
+                    new Sport{sportID = 9, sportName = "Dancing"},
+                    new Sport{sportID = 10, sportName = "Football"}
+
+                };
             return sports;
         }
-    
+        //dummy data representing a kid assuming we would get something like this from the client database
         public static List<Kid> getAllKids()
         {
             List<Kid> kids = new List<Kid>()
@@ -87,16 +86,9 @@ namespace OCRC.Models
                     new Kid{kidID = 8, grade = 11, fname = "Neil", lname = "Tyson", age = 17, school = "Roy High"},
                     new Kid{kidID = 9, grade = 8, fname = "Brian", lname = "Rauge", age = 13, school = "Highland Jr"}
                 };
-            //get API_Kids from External Databse
-            /*Not sure how to get the School and Grade seeing that they are in a
-            different table in their database then the rest of this data.
-            foreach (Kid e in API_Kids)
-            {
-                kids.Add(new Kid { kidID = e.PersonId, grade = e.Grade, fname = e.FirstName, lname = e.LastName, age = e.Birthday, school = e.School });
-            }*/
             return kids;
         }
-
+        //dummy data representing the registration returns a list of registrations
         public static List<Registration> getAllRegistrations()
         {
             List<Registration> reg = new List<Registration>()
@@ -121,17 +113,10 @@ namespace OCRC.Models
                     new Registration{registrationID = 18, dateRegistered = new DateTime(2016, 4, 11), registrationYear = 2016, kidID = 9, teamID = 27 }
 
                 };
-            //get API_Registrations from External Databse
-            /*Not sure how to get the TeamId seeing that they are in a
-            different table in their database then the rest of this data.
-            foreach (Registration e in API_Registrations)
-            {
-                reg.Add(new Registration { registrationID = e.RegistrationId, dateRegistered = e.CreateTime, registrationYear = registrationYear(e.PersonId), kidID = e.PersonId, teamID = e.GroupId });
-            }*/
             return reg;
         }
 
-
+        //dummy data gets all teams
         public static List<Team> getAllTeams()
         {
             List<Team> teams = new List<Team>()
@@ -164,13 +149,6 @@ namespace OCRC.Models
                 new Team{teamId = 26, sportID = 6, userID = 26, teamName = "Royals" },
                 new Team{teamId = 27, sportID = 7, userID = 27, teamName = "Hurricanes" }
             };
-            //get API_Teams from External Databse
-            /*Not sure how to get the TeamName seeing that they are in a
-            different table in their database then the rest of this data.
-            foreach (Team e in API_Teams)
-            {
-                teams.Add(new Team { teamId = e.GroupId, userID = e.PersonId, teamName = e.Name });
-            }*/
             return teams;
         }
 
@@ -200,7 +178,7 @@ namespace OCRC.Models
 
             return mostRecentYear.Year;
         }
-
+        //gets the all the sports for each kid based on a kidID
         public static List<Sport> getSportsPerKid(int kidID)
         {
             List<Team> allTeams = getAllTeams();

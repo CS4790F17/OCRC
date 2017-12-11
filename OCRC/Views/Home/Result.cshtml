@@ -186,15 +186,15 @@
             <select id="gradeFilter" class="form-control">
                 <option value="0">Grade</option>
                 
-                @for (int i = 1; i < 14; i++)
+                @for (int i = 1; i < 13; i++)
                 {
-                    <option value="@i">@i th</option>
+                    <option value="@i">@(i)th</option>
                 }
             </select>
 
             <select id="ageFilter" class="form-control">
                 <option value="0">Age</option>
-                @for (int i = 5; i < 20; i++)
+                @for (int i = 5; i < 19; i++)
                 {
                     <option value="@i">@i</option>
                 }
