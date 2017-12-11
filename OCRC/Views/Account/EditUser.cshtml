@@ -1,14 +1,15 @@
 ﻿@model OCRC.Models.User
 @{
-    ViewBag.Title = "RegisterUser";
+    ViewBag.Title = "EditUser";
 }
 
 
-@using (Html.BeginForm("RegisterUser", "Account", FormMethod.Post))
+@using (Html.BeginForm("EditUser", "Account", FormMethod.Post))
 {
     <div class="col-xs-12 col-md-12">
-        <h3>Register New User</h3>
+        <h3>Edit User</h3>
         <form class="col-xs-12 col-md-4 col-md-offset-3">
+            @Html.HiddenFor(model => model.userID)
             <div class="form-group">
                 @Html.LabelFor(model => model.fname, new { htmlAttributes = new { @class = "control-label" } })
                 @Html.EditorFor(model => model.fname, new { htmlAttributes = new { @class = "form-control", @placeholder = "First Name" } })
@@ -43,7 +44,7 @@
             </div>
             <div class="form-group" id="schoolSelector">
                 <label for="exampleInputEmail1">School</label>
-                @Html.EditorFor(model => model.teamIdentifier, new { htmlAttributes = new { @class = "form-control", @placeholder = "School Name" } })
+                @Html.EditorFor(model => model.schoolIdentifier, new { htmlAttributes = new { @class = "form-control", @placeholder = "School Name" } })
             </div>
 
             <div class="form-group">

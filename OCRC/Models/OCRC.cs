@@ -62,6 +62,26 @@ namespace OCRC.Models
             }
         }
 
+        public static ReturnResult UpdateUser(User user)
+        {
+            try
+            {
+                using (OCRCDbContext db = new OCRCDbContext())
+                {
+                    ReturnResult rr = new ReturnResult();
+                    db.Entry(user).State = EntityState.Modified;
+                    rr.data = db.Entry(user); //we could check this line to see if the command was successful
+                    rr.returnCode = 0;
+                    db.SaveChanges();
+                    return rr;
+                }
+            }
+            catch (Exception e)
+            {
+                return new ReturnResult(ReturnCode.FAILURE, e.Message);
+            }
+        }
+
         public static void addStatus(Status status)
         {
             try

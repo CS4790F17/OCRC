@@ -50,7 +50,7 @@
                     <ul class="nav navbar-nav">
                         <li role="presentation">@Html.ActionLink("Result", "Result", "Home")</li>
                     </ul>
-                    
+                    <!-- some hidden info for access.js to use when setting nav links -->
                     <input type="hidden" name="access" value=@Session["Access"] /><!-- store the access level for user link population-->
                     <input type="hidden" name="team" value=@Session["Team"] /><!-- store the team for user link population-->
                     <input type="hidden" name="school" value=@Session["School"] /><!-- store the school for user link population-->

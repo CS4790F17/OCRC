@@ -21,8 +21,32 @@ namespace OCRC.Controllers
         // GET: Account
         public ActionResult RegisterUser()
         {
-            //TODO: checkboxes school shows school if checked, , coach shows team
-            return View();
+            User user = new Models.User();
+            user.role = new bool[4];
+            return View(user);
+        }
+        //POST
+        [HttpPost]
+        public ActionResult RegisterUser(User user)
+        {
+            if (ModelState.IsValid)
+            {
+                // set the access level 
+                if (user.role[0])
+                {
+                    user.accesslvl = 1;
+                }else if(user.role[1])
+                { 
+                    user.accesslvl = 2;
+                }else if(user.role[2] || user.role[3])
+                {
+                    user.accesslvl = 3;
+                }
+                Repo.AddUser(user);
+                return RedirectToAction("UserList", "Account");
+            }
+
+            return View(user);
         }
 
         public ActionResult EditUser(int? id)
@@ -33,16 +57,31 @@ namespace OCRC.Controllers
             return View(user);
         }
 
-
         //POST
         [HttpPost]
-        public ActionResult RegisterUser(User user)
+        public ActionResult EditUser(User user)
         {
+            if (user.password == null)
+            { 
+                ModelState["password"].Errors.Clear();
+            }
             if (ModelState.IsValid)
             {
-                //TODO:check if exists, can be done on this layer 
-                Repo.AddUser(user);
-                return RedirectToAction("Result", "Home");
+                // reset the access level 
+                if (user.role[0])
+                {
+                    user.accesslvl = 1;
+                }
+                else if (user.role[1])
+                {
+                    user.accesslvl = 2;
+                }
+                else if (user.role[2] || user.role[3])
+                {
+                    user.accesslvl = 3;
+                }
+                Repo.UpdateUser(user);
+                return RedirectToAction("UserList", "Account");
 
             }
 
@@ -151,7 +190,7 @@ namespace OCRC.Controllers
                     Session["Username"] = info.fname + " " + info.lname;
                     Session["Access"] = info.accesslvl;
                     Session["Team"] = info.teamIdentifier;
-                    Session["School"] = info.teamIdentifier;
+                    Session["School"] = info.schoolIdentifier;
                     return RedirectToAction("Result", "Home");
                 }
                 else

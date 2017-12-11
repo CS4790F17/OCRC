@@ -9,7 +9,29 @@ namespace OCRC.Models
     public class Repo
     {
         // Tim
+        public static ReturnResult UpdateUser(User user)
+        {
+            try
+            {
+                ReturnResult rr = new ReturnResult();
 
+                if (user.password != null) {
+                    user.password = SHA1.Encode(user.password);
+                } else {
+                    User thisUser = Repo.findUserById(user.userID);
+                    user.password = thisUser.password;
+                }
+
+
+                rr.data = OCRC.UpdateUser(user);
+                rr.returnCode = 0;
+                return rr;
+            }
+            catch (Exception e)
+            {
+                return new ReturnResult(ReturnCode.FAILURE, e.Message);
+            }
+        }
 
         // Nas
 
@@ -53,11 +75,6 @@ namespace OCRC.Models
                 ReturnResult rr = new ReturnResult();
                 user.password = SHA1.Encode(user.password);
 
-                //TODO: user.role[0~3]; then assign the accesslevel
-                user.accesslvl = 1;
-
-                //TODO: set identifier
-                user.teamIdentifier = "Temp";
                 rr.data = OCRC.AddUser(user);
                 rr.returnCode = 0;
                 return rr;
@@ -230,7 +247,26 @@ namespace OCRC.Models
 
         public static User findUserById(int? id)
         {
-            return OCRC.findUserById(id);
+            User user = OCRC.findUserById(id);
+            user.role = new bool[4];
+            if(user.accesslvl == 1)
+            {
+                user.role[0] = true;
+            }
+            if(user.accesslvl == 2)
+            {
+                user.role[1] = true;
+            }
+            if(user.teamIdentifier != null)
+            {
+                user.role[2] = true;
+            }
+            if (user.schoolIdentifier != null)
+            {
+                user.role[3] = true;
+            }
+
+            return user;
         }
 
         public static List<User> getAllUsers()
