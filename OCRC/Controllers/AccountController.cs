@@ -163,14 +163,6 @@ namespace OCRC.Controllers
             return RedirectToAction("Login", "Account");
         }
 
-        public class UserProfile
-        {
-            [Key]
-            [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-            public int userId { get; set; }
-            public string email { get; set; }  // Add this
-        }
-
         //Get method for ResetPassword Page
         [AllowAnonymous]
         public ActionResult ResetPassword(string rt)
