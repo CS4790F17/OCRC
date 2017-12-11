@@ -87,7 +87,10 @@ namespace OCRC.Controllers
 
             return View(user);
         }
+
+        //Get method for UserList in Admin Page
         [Authorize]
+        [HttpGet]
         public ActionResult UserList()
         {
             ViewBag.Message = "UserList";
@@ -200,19 +203,14 @@ namespace OCRC.Controllers
             }
             return View(user);
         }
+
+        //Get method for Logout Page
+        [HttpGet]
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
             Session.Clear();
             return RedirectToAction("Login", "Account");
-        }
-
-        public class UserProfile
-        {
-            [Key]
-            [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-            public int userId { get; set; }
-            public string email { get; set; }  // Add this
         }
 
         //Get method for ResetPassword Page
